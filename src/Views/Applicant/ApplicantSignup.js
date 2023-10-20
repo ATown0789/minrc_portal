@@ -70,10 +70,6 @@ const ApplicantSignup = () => {
         dispatch(setLoader(false));
       }
     });
-
-    // dispatch(addJob({ ...job, id: newJobID }));
-
-    // navigate("/job-post-success");
   });
 
   return (

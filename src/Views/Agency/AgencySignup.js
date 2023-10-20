@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Select from "react-select";
-import { MultiSelect } from "Components/MultiSelect";
-import skilloptions from "../../DUMMY_DATA/skilloptions.json";
-import keywords from "../../DUMMY_DATA/keywords.json";
 import { stateOptions } from "Components/stateOptions";
 import {
   auth,
@@ -10,150 +6,56 @@ import {
   signInWithGoogle,
 } from "firebase.config";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { FormProvider, useForm } from "react-hook-form";
 import "./agencysignup.css";
 import {
   agencyEmailValidation,
   agencyLocationValidation,
   agencyNameValidation,
-  applicantAoisValidation,
-  applicantLocationValidation,
-  applicantSkillsValidation,
-  educationValidation,
-  emailValidation,
   fNameValidation,
   lNameValidation,
-  minrcYearValidation,
   passwordValidation,
-  professionalSummaryValidation,
 } from "utils/inputValidations";
 import { Input } from "Components/Input";
 import { useDispatch } from "react-redux";
 import { setLoader } from "Redux/Loader/loaderSlice";
 
 const AgencySignup = () => {
-  const [fName, setFName] = useState("");
-  const [lName, setLName] = useState("");
-  const [agency, setAgency] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [stateSel, setStateSel] = useState("");
-
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
   const navigate = useNavigate();
-  const authType = "agency";
   const dispatch = useDispatch();
-  const edOptions = [
-    { value: "highschool", label: "Highschool" },
-    { value: "undergraduate", label: "Undergraduate" },
-    { value: "graduate", label: "Graduate School" },
-  ];
   const methods = useForm();
   const control = methods.control;
   const errors = methods.formState.errors;
 
-  let minrcYear, education, skills, interests, summary;
-
-  const register = (e) => {
-    e.preventDefault();
-    registerWithEmailAndPassword(
-      fName,
-      email,
-      password,
-      lName,
-      minrcYear,
-      education,
-      skills,
-      stateSel,
-      interests,
-      summary,
-      agency,
-      authType
-    );
-    setSubmitted(true);
-    setTimeout(() => navigate("/"), 3000);
+  const registerAgency = async (agency) => {
+    const response = await registerWithEmailAndPassword(agency);
+    return response;
   };
 
   const onSubmit = methods.handleSubmit(async (data) => {
     dispatch(setLoader(true));
-    let registrant = {
-      email: data.email,
+    let agency = {
+      email: data.agencyEmail,
       password: data.password,
       fname: data.fName,
       lName: data.lName,
-      minrcYear: data.minrcYear,
-      education: data.education.label,
-      skills: data.applicantSkills,
       stateSel: data.location.value,
-      interests: data.applicantAois,
-      summary: data.professionalSummary
-        .split("\n")
-        .filter((str) => str.trim() !== ""),
-      agency: "applicant",
+      agency: data.agencyName,
     };
-    console.log(registrant);
-    // registerApplicant(registrant).then((response) => {
-    //   console.log(response);
-    //   if (response === true) {
-    //     setTimeout(() => {
-    //       dispatch(setLoader(false));
-    //       navigate("/applicant-signup-success");
-    //     }, 2000);
-    //   } else {
-    //     alert(response);
-    //     dispatch(setLoader(false));
-    //   }
-    // });
-
-    // dispatch(addJob({ ...job, id: newJobID }));
-
-    // navigate("/job-post-success");
+    console.log(agency);
+    registerAgency(agency).then((response) => {
+      console.log(response);
+      if (response === true) {
+        setTimeout(() => {
+          dispatch(setLoader(false));
+          navigate("/applicant-signup-success");
+        }, 2000);
+      } else {
+        alert(response);
+        dispatch(setLoader(false));
+      }
+    });
   });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (fName === "" || lName === "" || email === "" || password === "") {
-      setError(true);
-    } else {
-      setSubmitted(true);
-      setError(false);
-    }
-  };
-
-  const successMessage = () => {
-    return (
-      <div
-        className="success"
-        style={{
-          display: submitted ? "" : "none",
-        }}
-      >
-        <h1
-          style={{
-            color: "green",
-            textAlign: "center",
-          }}
-        >
-          Agency "{agency}" successfully registered!!
-        </h1>
-      </div>
-    );
-  };
-
-  const errorMessage = () => {
-    return (
-      <div
-        className="error"
-        style={{
-          display: error ? "" : "none",
-        }}
-      >
-        <h1>Please enter all the fields</h1>
-      </div>
-    );
-  };
 
   return (
     <div className="applicant-form-container">
@@ -253,9 +155,8 @@ const AgencySignup = () => {
           <Input {...fNameValidation} />
           <Input {...lNameValidation} />
           <Input {...agencyNameValidation} />
-          <Input {...emailValidation} />
-          <Input {...passwordValidation} />
           <Input {...agencyEmailValidation} />
+          <Input {...passwordValidation} />
           <Input
             {...agencyLocationValidation}
             control={control}
