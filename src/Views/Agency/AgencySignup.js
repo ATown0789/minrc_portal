@@ -11,7 +11,26 @@ import {
 } from "firebase.config";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { FormProvider, useForm } from "react-hook-form";
 import "./agencysignup.css";
+import {
+  agencyEmailValidation,
+  agencyLocationValidation,
+  agencyNameValidation,
+  applicantAoisValidation,
+  applicantLocationValidation,
+  applicantSkillsValidation,
+  educationValidation,
+  emailValidation,
+  fNameValidation,
+  lNameValidation,
+  minrcYearValidation,
+  passwordValidation,
+  professionalSummaryValidation,
+} from "utils/inputValidations";
+import { Input } from "Components/Input";
+import { useDispatch } from "react-redux";
+import { setLoader } from "Redux/Loader/loaderSlice";
 
 const AgencySignup = () => {
   const [fName, setFName] = useState("");
@@ -25,6 +44,15 @@ const AgencySignup = () => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   const authType = "agency";
+  const dispatch = useDispatch();
+  const edOptions = [
+    { value: "highschool", label: "Highschool" },
+    { value: "undergraduate", label: "Undergraduate" },
+    { value: "graduate", label: "Graduate School" },
+  ];
+  const methods = useForm();
+  const control = methods.control;
+  const errors = methods.formState.errors;
 
   let minrcYear, education, skills, interests, summary;
 
@@ -47,6 +75,42 @@ const AgencySignup = () => {
     setSubmitted(true);
     setTimeout(() => navigate("/"), 3000);
   };
+
+  const onSubmit = methods.handleSubmit(async (data) => {
+    dispatch(setLoader(true));
+    let registrant = {
+      email: data.email,
+      password: data.password,
+      fname: data.fName,
+      lName: data.lName,
+      minrcYear: data.minrcYear,
+      education: data.education.label,
+      skills: data.applicantSkills,
+      stateSel: data.location.value,
+      interests: data.applicantAois,
+      summary: data.professionalSummary
+        .split("\n")
+        .filter((str) => str.trim() !== ""),
+      agency: "applicant",
+    };
+    console.log(registrant);
+    // registerApplicant(registrant).then((response) => {
+    //   console.log(response);
+    //   if (response === true) {
+    //     setTimeout(() => {
+    //       dispatch(setLoader(false));
+    //       navigate("/applicant-signup-success");
+    //     }, 2000);
+    //   } else {
+    //     alert(response);
+    //     dispatch(setLoader(false));
+    //   }
+    // });
+
+    // dispatch(addJob({ ...job, id: newJobID }));
+
+    // navigate("/job-post-success");
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -97,12 +161,7 @@ const AgencySignup = () => {
         <h1 className="signup-h1">Agency Registration</h1>
       </div>
 
-      <div className="messages">
-        {errorMessage()}
-        {successMessage()}
-      </div>
-
-      <form onSubmit={register} className="new-applicant-form">
+      {/* <form onSubmit={register} className="new-applicant-form">
         <label className="label">
           First Name
           <input
@@ -142,7 +201,7 @@ const AgencySignup = () => {
         </label>
 
         <label className="label">
-          Email
+          Agency Contact Email
           <input
             onChange={(e) => {
               setEmail(e.target.value);
@@ -182,7 +241,36 @@ const AgencySignup = () => {
         <button className="submit-btn" type="submit">
           Submit
         </button>
-      </form>
+      </form> */}
+
+      <FormProvider {...methods}>
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          noValidate
+          autoComplete="off"
+          className="new-applicant-form"
+        >
+          <Input {...fNameValidation} />
+          <Input {...lNameValidation} />
+          <Input {...agencyNameValidation} />
+          <Input {...emailValidation} />
+          <Input {...passwordValidation} />
+          <Input {...agencyEmailValidation} />
+          <Input
+            {...agencyLocationValidation}
+            control={control}
+            options={stateOptions}
+          />
+
+          <button onClick={onSubmit} className="submit-btn" type="submit">
+            Register
+          </button>
+
+          <div className="login-text">
+            Already have an account? <Link to="/">Login</Link> now.
+          </div>
+        </form>
+      </FormProvider>
     </div>
   );
 };

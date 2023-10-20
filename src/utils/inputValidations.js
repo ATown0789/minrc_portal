@@ -44,7 +44,7 @@ export const passwordValidation = {
   label: "Password",
   type: "password",
   id: "password",
-  placeholder: "type password ...",
+  placeholder: "Password must be at least 8 characters",
   validation: {
     required: {
       value: true,
@@ -481,6 +481,61 @@ export const hiringPhoneValidation = {
       value:
         /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]‌​)\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)([2-9]1[02-9]‌​|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})\s*(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+)\s*)?$/i,
       message: "please enter a valid phone number",
+    },
+  },
+};
+
+export const agencyNameValidation = {
+  name: "agencyName",
+  label: "Agency",
+  type: "text",
+  id: "agencyName",
+  className: "input",
+  placeholder: "Agency name",
+  columns: "35",
+  validation: {
+    required: {
+      value: true,
+      message: "required",
+    },
+    maxLength: {
+      value: 60,
+      message: "60 characters max",
+    },
+  },
+};
+
+export const agencyEmailValidation = {
+  name: "agencyEmail",
+  label: "Agency Email",
+  type: "text",
+  id: "agencyEmail",
+  className: "input",
+  placeholder: "Agency email address",
+  columns: "35",
+  validation: {
+    required: {
+      value: true,
+      message: "required",
+    },
+    pattern: {
+      value:
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      message: "enter a valid email address",
+    },
+  },
+};
+
+export const agencyLocationValidation = {
+  name: "location",
+  label: "Agency Location",
+  id: "location",
+  type: "select",
+  placeholder: "Select your state",
+  validation: {
+    required: {
+      value: true,
+      message: "required",
     },
   },
 };
