@@ -1,0 +1,117 @@
+.new-applicant-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.applicant-form-container {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.signup-h1 {
+  margin-bottom: 30px;
+}
+
+.submit-btn.google {
+  background-color: #4285f4;
+}
+
+.submit-btn.google:hover {
+  background-color: #3873d2;
+}
+
+input,
+.select-input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.select-input {
+  text-align: left;
+  padding: 0;
+  height: 32px;
+  border-radius: 3px;
+  border-color: black !important;
+}
+
+.btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.submit-btn {
+  align-self: center;
+  width: 200px;
+  margin-top: 20px;
+  background-color: green;
+  letter-spacing: 1.5px;
+  color: whitesmoke;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.348);
+  cursor: pointer;
+  transition: all ease 0.3s;
+  text-decoration: none;
+  text-align: center;
+}
+
+.cancel-btn {
+  align-self: center;
+  width: 200px;
+  margin-top: 20px;
+  background-color: gray;
+  letter-spacing: 1.5px;
+  color: whitesmoke;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.348);
+  cursor: pointer;
+  transition: all ease 0.3s;
+  text-decoration: none;
+  text-align: center;
+}
+
+.cancel-btn:hover {
+  background-color: rgb(98, 98, 98);
+  color: whitesmoke;
+}
+
+.submit-btn:first-of-type {
+  margin-top: 40px;
+}
+
+.submit-btn:hover {
+  background-color: rgb(0, 189, 0);
+  color: whitesmoke;
+}
+
+.signup-multiselect {
+  max-width: 375px;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.login-text {
+  align-self: center;
+  margin-top: 50px;
+}

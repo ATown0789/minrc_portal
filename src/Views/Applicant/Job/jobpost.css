@@ -1,0 +1,50 @@
+.jobpost-container {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.job-description {
+  line-height: 1.5;
+  margin: 5px;
+}
+
+.job-description:last-of-type {
+  margin-bottom: 30px;
+}
+
+a.job-btn.success.sticky,
+a.job-btn.edit.sticky {
+  width: 200px;
+  position: fixed;
+  top: 150px;
+  right: 100px;
+  z-index: 99;
+}
+
+@media (max-width: 450px) {
+  a.job-btn.success.sticky,
+  a.job-btn.edit.sticky {
+    position: sticky;
+    top: 5px;
+  }
+
+  .jobpost-container {
+    position: relative;
+    top: -40px;
+    width: 90%;
+  }
+
+  .sticky-job-btn-container {
+    position: sticky;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    top: 5px;
+    right: 10px;
+    z-index: 999;
+  }
+}

@@ -1,0 +1,158 @@
+[
+  {
+    "value": "communication",
+    "label": "Communication"
+  },
+  {
+    "value": "positive-attitude",
+    "label": "Positive Attitude"
+  },
+  {
+    "value": "teamwork",
+    "label": "Teamwork"
+  },
+  {
+    "value": "self-management",
+    "label": "Self-Management"
+  },
+  {
+    "value": "willingness-to-learn",
+    "label": "Willingness To Learn"
+  },
+  {
+    "value": "problem-solving-decision-making",
+    "label": "Problem Solving/Decision Making"
+  },
+  {
+    "value": "leadership",
+    "label": "Leadership"
+  },
+  {
+    "value": "microsoft-office",
+    "label": "Microsoft Office"
+  },
+  {
+    "value": "adaptability",
+    "label": "Adaptability"
+  },
+  {
+    "value": "creativity",
+    "label": "Creativity"
+  },
+  {
+    "value": "attention-to-detail",
+    "label": "Attention to Detail"
+  },
+  {
+    "value": "design",
+    "label": "Design"
+  },
+  {
+    "value": "data-analysis",
+    "label": "Data Analysis"
+  },
+  {
+    "value": "math",
+    "label": "Math"
+  },
+  {
+    "value": "computer-sciences",
+    "label": "Computer Sciences"
+  },
+  {
+    "value": "marketing",
+    "label": "Marketing"
+  },
+  {
+    "value": "administration",
+    "label": "Administration"
+  },
+  {
+    "value": "writing",
+    "label": "Writing"
+  },
+  {
+    "value": "project-management",
+    "label": "Project Management"
+  },
+  {
+    "value": "foreign-language",
+    "label": "Foreign Language"
+  },
+  {
+    "value": "customer-service",
+    "label": "Customer Service"
+  },
+  {
+    "value": "research",
+    "label": "Research"
+  },
+  {
+    "value": "survey-or-monitoring",
+    "label": "Survey or Monitoring"
+  },
+  {
+    "value": "animal-handling",
+    "label": "Animal Handling"
+  },
+  {
+    "value": "animal-trapping",
+    "label": "Animal Trapping"
+  },
+  {
+    "value": "field-surveys",
+    "label": "Field Surveys"
+  },
+  {
+    "value": "utv-atv-operator",
+    "label": "UTV/ATV Operator"
+  },
+  {
+    "value": "boat-operator",
+    "label": "Boat Operator"
+  },
+  {
+    "value": "safety-training",
+    "label": "Safety Training"
+  },
+  {
+    "value": "supervisory-experience",
+    "label": "Supervisory Experience"
+  },
+  {
+    "value": "tractor-equipment-operations",
+    "label": "Tractor / Equipment Operations"
+  },
+  {
+    "value": "4wd-vehicle-operations",
+    "label": "4WD Vehicle Operations"
+  },
+  {
+    "value": "prescribed-fire-training-experience",
+    "label": "Prescribed Fire Training / Experience"
+  },
+  {
+    "value": "habitat-management",
+    "label": "Habitat Management"
+  },
+  {
+    "value": "captive-rearing-captive-animal-management",
+    "label": "Captive Rearing / Captive Animal Management"
+  },
+  {
+    "value": "animal-welfare-training",
+    "label": "Animal Welfare Training"
+  },
+  {
+    "value": "stakeholder-or-public-interactions",
+    "label": "Stakeholder or Public Interactions"
+  },
+  {
+    "value": "working-with-youth",
+    "label": "Working with Youth"
+  },
+  {
+    "value": "lab-operations",
+    "label": "Lab Operations"
+  }
+]

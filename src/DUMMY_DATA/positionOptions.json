@@ -1,0 +1,18 @@
+[
+  {
+    "value": "full",
+    "label": "Full Time"
+  },
+  {
+    "value": "part",
+    "label": "Part Time"
+  },
+  {
+    "value": "internship",
+    "label": "Internship"
+  },
+  {
+    "value": "seasonal",
+    "label": "Temporary/Seasonal"
+  }
+]

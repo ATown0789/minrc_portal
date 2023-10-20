@@ -1,0 +1,559 @@
+[
+  {
+    "id": 3,
+    "title": "North Carolina Bird Atlas Technician",
+    "dueDate": "03/12/23",
+    "summary": [
+      "The North Carolina Wildlife Resources Commission is seeking field technicians for the third spring/summer (approx. May 15th - August 1) of the NC Bird Atlas!",
+      "Technicians will be responsible for submitting survey checklists and coding breeding behaviors through eBird following appropriate atlas protocols."
+    ],
+
+    "locations": [
+      { "value": "Remote", "label": "Remote" },
+      { "value": "Raleigh, NC", "label": "Raleigh, NC" }
+    ],
+    "keywords": [
+      {
+        "value": "climate-science-field-ecology",
+        "label": "Climate Science Field ecology"
+      },
+      {
+        "value": "natural-resource-policy",
+        "label": "Natural Resource Policy"
+      },
+      {
+        "value": "coastal-systems",
+        "label": "Coastal Systems"
+      },
+      {
+        "value": "interpretation",
+        "label": "Interpretation"
+      },
+      {
+        "value": "youth-outreach",
+        "label": "Youth Outreach"
+      }
+    ],
+    "type": "Full Time",
+    "agency": "NC Bird Atlas",
+    "salary": "$15-$20/hr + shared housing + occasional per diem",
+    "start": "05/15/23",
+    "end": "08/01/23",
+    "description": [
+      "The North Carolina Wildlife Resources Commission is seeking field technicians for the third spring/summer (approx. May 15th - August 1) of the NC Bird Atlas! Positions will be based in the Piedmont of North Carolina. Technicians will be responsible for submitting survey checklists and coding breeding behaviors through eBird following appropriate atlas protocols. Some night and weekend work will also be required. Work vehicles, shared housing, and all necessary field equipment will be provided. Technicians should expect extensive travel, possibility for backcountry and/or front country (car) camping, long pre-dawn days, inclement weather, biting insects, and hot, humid days. The field season will begin with a short training/calibration in visual and acoustic bird ID skills and our specific protocols (Raleigh, NC)."
+    ],
+    "responsibilities": [
+      "Clean bird facilities and feed birds daily",
+      "Assist with bird training with both education and falconry raptors",
+      "Handle birds during educational programs",
+      "Present public educational programs",
+      "Present public educational programs",
+      "Provide enrichment",
+      "Raise baby quail",
+      "Provide activities for River Valley Raptor’s outdoor raptor school"
+    ],
+    "qualifications": [
+      "Must be able to identify North Carolina breeding birds by sight and sound,",
+      "eBird experience",
+      "Mmust be able to work well both independently and with a small team in remote areas.",
+      "Must be willing to work early mornings, some evenings and weekends, and travel extensively.",
+      "Valid driver’s license and good driving record required."
+    ],
+    "website": "https://ebird.org/atlasnc/home",
+    "views": 32,
+    "interest": [
+      {
+        "id": "234155",
+        "email": "someone@gmail.com",
+        "skills": [
+          "Leadership",
+          "Animal Survey",
+          "Web Design",
+          "Technical Writing",
+          "Public Speaking"
+        ],
+        "education": "Undergraduate"
+      },
+      {
+        "id": "234542",
+        "email": "someoneElse@gmail.com",
+        "skills": [
+          "Leadership",
+          "Animal Survey",
+          "Web Design",
+          "Technical Writing",
+          "Public Speaking"
+        ],
+        "education": "Undergraduate"
+      },
+      {
+        "id": "886456",
+        "email": "anotherSomeone@gmail.com",
+        "skills": [
+          "Leadership",
+          "Animal Survey",
+          "Web Design",
+          "Technical Writing",
+          "Public Speaking"
+        ],
+        "education": "Undergraduate"
+      },
+      {
+        "id": "234123",
+        "email": "lastSomeone@gmail.com",
+        "skills": [
+          "Leadership",
+          "Animal Survey",
+          "Web Design",
+          "Technical Writing",
+          "Public Speaking"
+        ],
+        "education": "Undergraduate"
+      }
+    ],
+    "match": 3
+  },
+  {
+    "id": 1,
+    "title": "Bat Biologist",
+    "dueDate": "02/30/23",
+    "summary": [
+      "Copperhead Environmental Consulting is expanding our team and actively seeking a Bat Biologist to join our family of professional consultants. We are seeking a candidate who is looking to develop a long-term career in the environmental consulting industry and is open to diversification across the company.",
+      "Applicants should have experience with mist-netting, radio-telemetry, and acoustic monitoring of North American bat species as well as leading a site crew, data management, report writing, and client and agency interaction."
+    ],
+    "locations": [
+      { "value": "Remote", "label": "Remote" },
+      { "value": "KY", "label": "KY - Kentucky" },
+      { "value": "TN", "label": "TN - Tennessee" }
+    ],
+    "keywords": [
+      {
+        "value": "genetics",
+        "label": "Genetics"
+      },
+      {
+        "value": "r3",
+        "label": "R3"
+      },
+      {
+        "value": "hunter-education",
+        "label": "Hunter Education"
+      },
+      {
+        "value": "invasive-species",
+        "label": "Invasive Species"
+      },
+      {
+        "value": "wildlife-diseases",
+        "label": "Wildlife Diseases"
+      }
+    ],
+    "type": "Full Time",
+    "agency": "Copperhead Environmental Consulting",
+    "salary": "DOE",
+    "start": "04/01/23",
+    "end": "12/14/23",
+    "description": [
+      "Copperhead Environmental Consulting is expanding our team and actively seeking a Bat Biologist to join our family of professional consultants. We are seeking a candidate who is looking to develop a long-term career in the environmental consulting industry and is open to diversification across the company. Applicants should have experience with mist-netting, radio-telemetry, and acoustic monitoring of North American bat species as well as leading a site crew, data management, report writing, and client and agency interaction. Those holding a USFWS permit for bat survey or the experience to be added to one, ability to analyze acoustic data, or is able to assist with other surveys such as wetland delineations, avian surveys, or botanical surveys will be given top consideration."
+    ],
+    "responsibilities": [
+      "Successfully complete bat surveys using mist-nets, harp traps, and acoustic detectors",
+      "Oversee technical staff and work well with others in environmentally challenging field conditions",
+      "Equipment transportation, setup, and breakdown",
+      "Coordinate with field technicians to ensure all proper PPE and field gear is available for projects",
+      "Equipment and vehicle maintenance, prep, and decontamination",
+      "Conduct data collection and data management electronically",
+      "Conduct data analysis and literature research",
+      "Be a mentor to other staff and be mentored on the job",
+      "Participate in many roles as part of a project team"
+    ],
+    "qualifications": [
+      "Rabies vaccinations and a titre check within the last 2 years",
+      "Bachelor’s degree or higher in biology or closely related field of study",
+      "At least 2 years of progressive experience in biological surveys and resource management",
+      "Ability to travel for extended periods throughout the year, but primarily in summer, and work over weekends and some holidays (that can be taken off later)",
+      "Ability to work long days in adverse conditions through frequent schedule changes",
+      "Ability to carry heavy equipment (over 50 lbs) over long distances (at least ½ mile)",
+      "Excellent communication skills",
+      "Experience in writing technical reports",
+      "Ability to take initiative, resolve problems, and ensure tasks are completed in the most effective and safe manner possible",
+      "Ability to work as a member of a team as well as independently to make decisions and complete tasks in the most effective and safe manner possible",
+      "Must hold a valid driver’s license and be able to operate a 4WD vehicle in off-road conditions"
+    ],
+    "benefits": [
+      "Competitive salary based on education, knowledge, and relevant experience",
+      "Comprehensive Medical, Dental, and Vision insurance",
+      "401k, including a company match",
+      "Paid Time Off",
+      "Compensatory Time Off (with restrictions)",
+      "Paid Holidays"
+    ],
+    "website": "https://copperheadconsulting.com/careers/",
+    "views": 22,
+    "interest": [
+      {
+        "id": "234155",
+        "email": "someone@gmail.com",
+        "skills": [
+          "Leadership",
+          "Animal Survey",
+          "Web Design",
+          "Technical Writing",
+          "Public Speaking"
+        ],
+        "education": "Undergraduate"
+      },
+      {
+        "id": "234542",
+        "email": "someone@gmail.com",
+        "skills": [
+          "Leadership",
+          "Animal Survey",
+          "Web Design",
+          "Technical Writing",
+          "Public Speaking"
+        ],
+        "education": "Undergraduate"
+      },
+      {
+        "id": "886456",
+        "email": "someone@gmail.com",
+        "skills": [
+          "Leadership",
+          "Animal Survey",
+          "Web Design",
+          "Technical Writing",
+          "Public Speaking"
+        ],
+        "education": "Undergraduate"
+      }
+    ],
+    "match": 4
+  },
+  {
+    "id": 2,
+    "title": "Summer Intern Positions for Wildlife Ecology and Management Students",
+    "dueDate": "03/31/23",
+    "summary": [
+      "The Wildlife Section of the Alabama Division of Wildlife and Freshwater Fisheries is pleased to announce the availability of Nine Summer Internship positions for undergraduate students or recent graduates in the Wildlife Ecology and Management Curriculum.",
+      "This is an excellent opportunity for students interested in gaining career related experience while working with a diverse group of wildlife management professionals."
+    ],
+    "locations": [
+      { "value": "Remote", "label": "Remote" },
+      { "value": "MS", "label": "MS - Mississippi" }
+    ],
+    "keywords": [
+      {
+        "value": "wildlife-conservation-biology",
+        "label": "Wildlife & Conservation Biology"
+      },
+      {
+        "value": "fish-aquatic-conservation",
+        "label": "Fish & Aquatic Conservation"
+      },
+      {
+        "value": "refuge-land-management",
+        "label": "Refuge & Land Management"
+      },
+      {
+        "value": "outreach-education-training",
+        "label": "Outreach / Education / Training"
+      },
+      {
+        "value": "visitor-services-park-ranger",
+        "label": "Visitor Services / Park Ranger"
+      }
+    ],
+    "type": "Full Time",
+    "agency": "Alabama Division of Wildlife and Freshwater Fisheries",
+    "salary": "$7.25 per hour",
+    "start": "05/01/23",
+    "end": "12/14/23",
+    "description": [
+      "Interns will primarily perform field work and land management activities under the supervision of a wildlife biologist on a state operated Wildlife Management Area (WMA) or Special Opportunity Area (SOA). Duties may include activities such as trapping and banding mourning doves and wood ducks; habitat management and manipulation through prescribed fire, bush-hogging, disking, herbicide applications and planting crops; white-tailed deer or wild turkey population censuses; marking timber for commercial sale; alligator population censuses; and other land management duties as assigned."
+    ],
+    "responsibilities": [],
+    "qualifications": [
+      "Must hold a valid driver’s license",
+      "Currently enrolled or recently graduated in a Wildlife Management Curriculum",
+      "Must be able to work 29 hours per week."
+    ],
+    "benefits": [
+      "Provided with housing and utilities while employed",
+      "Provided with a hat and t-shirts (Food, linens, other clothing, and any other personal items required to complete the work assignments are the responsibility of the intern)"
+    ],
+    "website": "",
+    "views": 65,
+    "interest": [
+      {
+        "id": "234155",
+        "email": "someone@gmail.com",
+        "skills": [
+          "Leadership",
+          "Animal Survey",
+          "Web Design",
+          "Technical Writing",
+          "Public Speaking"
+        ],
+        "education": "Undergraduate"
+      },
+      {
+        "id": "234542",
+        "email": "someoneElse@gmail.com",
+        "skills": [
+          "Leadership",
+          "Animal Survey",
+          "Web Design",
+          "Technical Writing",
+          "Public Speaking"
+        ],
+        "education": "Undergraduate"
+      },
+      {
+        "id": "886456",
+        "email": "anotherSomeone@gmail.com",
+        "skills": [
+          "Leadership",
+          "Animal Survey",
+          "Web Design",
+          "Technical Writing",
+          "Public Speaking"
+        ],
+        "education": "Undergraduate"
+      },
+      {
+        "id": "234123",
+        "email": "lastSomeone@gmail.com",
+        "skills": [
+          "Leadership",
+          "Animal Survey",
+          "Web Design",
+          "Technical Writing",
+          "Public Speaking"
+        ],
+        "education": "Undergraduate"
+      }
+    ],
+    "match": 1
+  },
+  {
+    "id": 4,
+    "title": "Field and Lab Research Tech",
+    "dueDate": "ASAP",
+    "summary": [
+      "Research technicians will gain experience collecting experimental and observational field data.",
+      "Other tasks will include vegetation sampling, measuring plant traits, plant identification, data entry, and sample processing in the lab."
+    ],
+    "locations": [{ "value": "AL", "label": "AL - Alabama" }],
+    "keywords": [
+      "Field Technician",
+      "Lab Technician",
+      "Vegitation Biology",
+      "Forest Ecology",
+      "Light Travel"
+    ],
+    "type": "Full Time or Part Time",
+    "agency": "Mississippi State University",
+    "salary": "$12/hour",
+    "start": "ASAP",
+    "end": "12/14/23",
+    "description": [
+      "Research technicians will gain experience collecting experimental and observational field data. Other tasks will include vegetation sampling, measuring plant traits, plant identification, data entry, and sample processing in the lab."
+    ],
+    "responsibilities": [],
+    "qualifications": [
+      "No prior experience necessary",
+      "An interest in forest ecology",
+      "A willingness to learn",
+      "Must have strong work ethic and be dependable",
+      "No prior raptor handling experience necessary",
+      "Able to work long hours outdoors exposed to heat, biting insects, and thorny vegetation",
+      "Must be willing to make occasional overnight trips when visiting field sites outside of Auburn."
+    ],
+    "website": "",
+    "views": 12,
+    "interest": [
+      {
+        "id": "234155",
+        "email": "someone@gmail.com",
+        "skills": [
+          "Leadership",
+          "Animal Survey",
+          "Web Design",
+          "Technical Writing",
+          "Public Speaking"
+        ],
+        "education": "Undergraduate"
+      }
+    ],
+    "match": 0
+  },
+  {
+    "id": 5,
+    "title": "PhD Opportunity in Landscape and Fire Ecology",
+    "dueDate": "04/21/23",
+    "summary": [
+      "Globally, invasive species cause trillions of dollars in damages to ecosystem services, including agricultural production and biodiversity, and these damages will only increase as climate change progresses.",
+      "The Donovan lab is seeking a motivated PhD student to assist with developing a national scale EDRR tool that can predict invasive plant spread and ecosystem service impacts."
+    ],
+    "locations": [{ "value": "FL", "label": "FL - Florida" }],
+    "keywords": [
+      {
+        "value": "fisheries-science",
+        "label": "Fisheries Science"
+      },
+      {
+        "value": "wildlife-science",
+        "label": "Wildlife Science"
+      },
+      {
+        "value": "avian-ecology",
+        "label": "Avian Ecology"
+      },
+      {
+        "value": "large-mammal-ecology",
+        "label": "Large Mammal Ecology"
+      },
+      {
+        "value": "small-mammal-ecology",
+        "label": "Small Mammal Ecology"
+      }
+    ],
+    "type": "Full Time",
+    "agency": "Donovan Lab/University of Florida IFAS West Florida Research and Education Center",
+    "salary": "$25,000 - $30,000 plus tuition waiver",
+    "start": "05/01/23",
+    "end": "12/14/23",
+    "description": [
+      "Globally, invasive species cause trillions of dollars in damages to ecosystem services, including agricultural production and biodiversity, and these damages will only increase as climate change progresses. The U.S. has adopted early detection and rapid response (EDRR) policies to prevent the spread and establishment of invasive species. The Donovan lab is seeking a motivated PhD student to assist with developing a national scale EDRR tool that can predict invasive plant spread and ecosystem service impacts. The student will lead field sampling and subsequent modelling to predict the impacts of cogongrass (Imperata cylindrica) on biodiversity and fire risk across climatic and invasion gradients at multiple scales in the southeastern US. They will use these models to generate national-scale predictions of cogongrass ecosystem service impacts that can be used to prioritize mitigation strategies. The student will be expected to lead field work, conduct quantitative statistical analyses, present their findings at relevant scientific conferences, complete relevant course work, and publish their findings in the peer-reviewed literature. The student will work closely with students and scientists from across the United States including Arkansas and Montana as part of a national team."
+    ],
+    "responsibilities": [],
+    "qualifications": [
+      "BS & MS degre in ecology or related field",
+      "A valid driver’s license",
+      "Experience with R and/or GIS for spatial analysis",
+      "Must have field work experience",
+      "Strong writing, communication, leadership and organization skills",
+      "Ability to work independently and as part of a team"
+    ],
+    "website": "http://www.victoriamdonovan.org/",
+    "views": 3,
+    "interest": ["None Yet"],
+    "match": 3
+  },
+  {
+    "id": 6,
+    "title": "Seasonal Wildlife Technician",
+    "dueDate": "03/31/23",
+    "summary": [
+      "The Seasonal Wildlife Technician is responsible for conducting and supporting shorebird and small mammal surveys in Mobile County.",
+      "This is a full-time, seasonal position (40 hours/week for 4 months) that reports to the Alabama Audubon Science & Conservation Director."
+    ],
+    "locations": [{ "value": "AL", "label": "AL - Alabama" }],
+    "keywords": [
+      "Animal Survey",
+      "Wildlife Biology",
+      "Public Engagement",
+      "Wildlife Track Survey"
+    ],
+    "type": "Full Time",
+    "agency": "Alabama Audubon",
+    "salary": "$18.50/hr",
+    "start": "05/01/23",
+    "end": "08/31/23",
+    "description": [
+      "The Seasonal Wildlife Technician is responsible for conducting and supporting shorebird and small mammal surveys in Mobile County. This is a full-time, seasonal position (40 hours/week for 4 months) that reports to the Alabama Audubon Science & Conservation Director. Alabama Audubon is a staffed chapter of the National Audubon Society with an active membership. It is the state’s leading nonprofit promoting conservation and a greater knowledge of birds, their habitats, and the natural world. As the primary Audubon chapter for most of Alabama, it provides a variety of services to the state’s birds and bird lovers, including field trips, adult courses, support for researchers and educators, scientific research, habitat restoration, and coastal bird stewardship and monitoring."
+    ],
+    "responsibilities": [
+      "Conduct wildlife track surveys along beach habitat",
+      "Deploy and maintain game cameras",
+      "Sort and label camera trap images",
+      "Ensure precise and accurate data collection",
+      "Provide technical assistance to other staff members, volunteers, and interns",
+      "Engage the public through outreach and educational events"
+    ],
+    "qualifications": [
+      "Understanding of and passion for the mission of Alabama Audubon",
+      "A bachelor’s degree (or working towards one) from accredited college or university in biology, ornithology, ecology, or a related discipline",
+      "Experience with, or a willingness to learn more about, North American bird life",
+      "Ability to identify wildlife tracks or to learn them",
+      "Attention to detail and strong organizational and time management skills",
+      "Experience with data entry and Microsoft excel",
+      "Excellent oral and written communication skills",
+      "Self-motivation with the ability to work both independently and as part of a team",
+      "Flexible schedule, with a willingness to work long hours outside in harsh field conditions (sometimes alone) and early mornings, evenings and weekends, and to travel as necessary.",
+      "Experience driving a UTV preferred",
+      "Comfortable lifting, reaching, bending, pushing, pulling, sitting, typing, driving, speaking, and holding and supporting field equipment.",
+      "Must be able to speak for extended periods of time",
+      "Must be able to work outdoors in variable weather conditions and on uneven terrain."
+    ],
+    "website": "",
+    "views": 3,
+    "interest": ["None Yet"],
+    "match": 1
+  },
+  {
+    "id": 7,
+    "title": "My Next Internship",
+    "dueDate": "03/12/23",
+    "summary": [
+      "Here is a cool summary about my awesome internship. You’ll gain experience in doing a lot of things that you haven’t done before but that you’ll need to know for the real world!",
+      "More cool facts about how awesome this opportunity is and how it will allow you to explore things you’re passionate about while also moving conservation initiatives forward."
+    ],
+    "locations": [
+      { "value": "Remote", "label": "Remote" },
+      { "value": "MS", "label": "MS - Mississippi" }
+    ],
+    "keywords": [
+      {
+        "value": "outreach-education-training",
+        "label": "Outreach / Education / Training"
+      },
+      {
+        "value": "visitor-services-park-ranger",
+        "label": "Visitor Services / Park Ranger"
+      },
+      {
+        "value": "communications",
+        "label": "Communications"
+      },
+      {
+        "value": "community-outreach",
+        "label": "Community Outreach"
+      },
+      {
+        "value": "project-management",
+        "label": "Project Management"
+      }
+    ],
+    "type": "Part Time",
+    "agency": "Mississippi State University",
+    "salary": "Unpaid",
+    "start": "05/01/23",
+    "end": "12/14/23",
+    "description": [
+      "River Valley Raptors is a 501(c)3 non-profit organization dedicated to the conservation of the driftless area through educational programming using live birds of prey."
+    ],
+    "responsibilities": [
+      "Clean bird facilities and feed birds daily",
+      "Assist with bird training with both education and falconry raptors",
+      "Handle birds during educational programs",
+      "Present public educational programs",
+      "Present public educational programs",
+      "Provide enrichment",
+      "Raise baby quail",
+      "Provide activities for River Valley Raptor’s outdoor raptor school"
+    ],
+    "qualifications": [
+      "Must be at least 18 years of age and enrolled in or recently graduated from a college or university",
+      "Must be able to lift 50 pounds",
+      "Must be willing to prepare food items for raptors (rats, mice, quail, rabbit, etc.)",
+      "Must have strong work ethic and be dependable",
+      "No prior raptor handling experience necessary"
+    ],
+    "website": "https://www.rivervalleyraptors.org",
+    "views": 3,
+    "interest": ["None Yet"],
+    "match": 1
+  }
+]

@@ -1,0 +1,39 @@
+.input-error {
+  color: red;
+}
+
+.job-form-input {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 90%;
+  align-self: center;
+}
+
+.agency-input {
+  pointer-events: none;
+  padding: 3px;
+  border: solid 1px gray;
+  border-radius: 2px;
+  background-color: #f1f1f2;
+  color: #444444;
+  align-self: center;
+  width: 300px;
+}
+
+.agency-label {
+  width: 300px;
+  align-self: center;
+}
+
+#remote {
+  position: relative;
+  bottom: 17px;
+  right: 08px;
+}
+
+@media (max-width: 450px) {
+  .job-form-input {
+    width: 300px;
+  }
+}

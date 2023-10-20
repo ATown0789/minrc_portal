@@ -1,0 +1,28 @@
+.search-panel {
+  background: rgb(61, 129, 255);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10%;
+  z-index: 2;
+}
+
+.search-input {
+  margin: 10px;
+  width: 60%;
+}
+
+.search-label {
+  margin-left: 10px;
+  font-weight: 600;
+  color: white;
+}
+
+@media (max-width: 450px) {
+  .search-panel {
+    height: 70px;
+    width: 100%;
+    margin: 0;
+  }
+}

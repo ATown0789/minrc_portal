@@ -1,0 +1,250 @@
+[
+  {
+    "value": "biological-sciences",
+    "label": "Biological Sciences"
+  },
+  {
+    "value": "natural-resource-management",
+    "label": "Natural Resource Management"
+  },
+  {
+    "value": "wildlife-conservation-biology",
+    "label": "Wildlife & Conservation Biology"
+  },
+  {
+    "value": "fish-aquatic-conservation",
+    "label": "Fish & Aquatic Conservation"
+  },
+  {
+    "value": "refuge-land-management",
+    "label": "Refuge & Land Management"
+  },
+  {
+    "value": "outreach-education-training",
+    "label": "Outreach / Education / Training"
+  },
+  {
+    "value": "visitor-services-park-ranger",
+    "label": "Visitor Services / Park Ranger"
+  },
+  {
+    "value": "communications",
+    "label": "Communications"
+  },
+  {
+    "value": "community-outreach",
+    "label": "Community Outreach"
+  },
+  {
+    "value": "project-management",
+    "label": "Project Management"
+  },
+  {
+    "value": "environmental-policy-and-law",
+    "label": "Environmental Policy and Law"
+  },
+  {
+    "value": "congressional-affairs",
+    "label": "Congressional Affairs"
+  },
+  {
+    "value": "international-affairs",
+    "label": "International Affairs"
+  },
+  {
+    "value": "law-enforcement",
+    "label": "Law Enforcement"
+  },
+  {
+    "value": "human-dimensions-social-science",
+    "label": "Human Dimensions / Social Science"
+  },
+  {
+    "value": "geospatial-technology",
+    "label": "Geospatial Technology"
+  },
+  {
+    "value": "cartography-modeling",
+    "label": "Cartography / Modeling"
+  },
+  {
+    "value": "computer-science",
+    "label": "Computer science"
+  },
+  {
+    "value": "land-survey",
+    "label": "Land Survey"
+  },
+  {
+    "value": "data-statistical-analysis",
+    "label": "Data & Statistical Analysis"
+  },
+  {
+    "value": "environmental-engineering",
+    "label": "Environmental Engineering"
+  },
+  {
+    "value": "hydrology",
+    "label": "Hydrology"
+  },
+  {
+    "value": "restoration-design",
+    "label": "Restoration Design"
+  },
+  {
+    "value": "native-american-relations",
+    "label": "Native American Relations"
+  },
+  {
+    "value": "graphic-design",
+    "label": "Graphic Design"
+  },
+  {
+    "value": "videography-photography",
+    "label": "Videography & Photography"
+  },
+  {
+    "value": "human-resources",
+    "label": "Human Resources"
+  },
+  {
+    "value": "business-management-and-administration",
+    "label": "Business Management and Administration"
+  },
+  {
+    "value": "safety-and-occupational-health",
+    "label": "Safety and Occupational Health"
+  },
+  {
+    "value": "economics",
+    "label": "Economics"
+  },
+  {
+    "value": "budget-finance",
+    "label": "Budget/Finance"
+  },
+  {
+    "value": "climate-science-field-ecology",
+    "label": "Climate Science Field ecology"
+  },
+  {
+    "value": "natural-resource-policy",
+    "label": "Natural Resource Policy"
+  },
+  {
+    "value": "coastal-systems",
+    "label": "Coastal Systems"
+  },
+  {
+    "value": "interpretation",
+    "label": "Interpretation"
+  },
+  {
+    "value": "youth-outreach",
+    "label": "Youth Outreach"
+  },
+  {
+    "value": "urban-ecology",
+    "label": "Urban Ecology"
+  },
+  {
+    "value": "fisheries-science",
+    "label": "Fisheries Science"
+  },
+  {
+    "value": "wildlife-science",
+    "label": "Wildlife Science"
+  },
+  {
+    "value": "avian-ecology",
+    "label": "Avian Ecology"
+  },
+  {
+    "value": "large-mammal-ecology",
+    "label": "Large Mammal Ecology"
+  },
+  {
+    "value": "small-mammal-ecology",
+    "label": "Small Mammal Ecology"
+  },
+  {
+    "value": "reptiles-amphibians",
+    "label": "Reptiles & Amphibians"
+  },
+  {
+    "value": "inventory-monitoring",
+    "label": "Inventory & Monitoring"
+  },
+  {
+    "value": "zoo-conservation",
+    "label": "Zoo Conservation"
+  },
+  {
+    "value": "captive-rearing",
+    "label": "Captive Rearing"
+  },
+  {
+    "value": "marine-science",
+    "label": "Marine Science"
+  },
+  {
+    "value": "fire-science",
+    "label": "Fire Science"
+  },
+  {
+    "value": "aquatic-systems",
+    "label": "Aquatic Systems"
+  },
+  {
+    "value": "water-quality",
+    "label": "Water Quality"
+  },
+  {
+    "value": "air-quality",
+    "label": "Air Quality"
+  },
+  {
+    "value": "terrestrial-systems",
+    "label": "Terrestrial Systems"
+  },
+  {
+    "value": "entomology",
+    "label": "Entomology"
+  },
+  {
+    "value": "diversity-equity-inclusion",
+    "label": "Diversity, Equity, Inclusion"
+  },
+  {
+    "value": "threatened-endangered-species",
+    "label": "Threatened & Endangered Species"
+  },
+  {
+    "value": "pollinators",
+    "label": "Pollinators"
+  },
+  {
+    "value": "conservation-planning",
+    "label": "Conservation Planning"
+  },
+  {
+    "value": "genetics",
+    "label": "Genetics"
+  },
+  {
+    "value": "r3",
+    "label": "R3"
+  },
+  {
+    "value": "hunter-education",
+    "label": "Hunter Education"
+  },
+  {
+    "value": "invasive-species",
+    "label": "Invasive Species"
+  },
+  {
+    "value": "wildlife-diseases",
+    "label": "Wildlife Diseases"
+  }
+]

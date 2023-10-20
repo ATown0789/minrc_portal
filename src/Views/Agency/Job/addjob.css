@@ -1,0 +1,31 @@
+.job-form-container {
+  margin-top: 30px;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-job-form {
+  padding-bottom: 100px;
+  width: 35%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.new-job-h1 {
+  margin-bottom: 30px;
+}
+
+.text-input {
+  margin-top: 10px;
+}
+
+#remote-job-input {
+  text-align: left;
+  width: 100%;
+}
