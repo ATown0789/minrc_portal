@@ -79,7 +79,7 @@ const EditApplicantProfile = ({ user }) => {
     dispatch(setLoader(true));
     let registrant = {
       ...user,
-      fname: data.fName,
+      fName: data.fName,
       lName: data.lName,
       minrcYear: data.minrcYear,
       education: data.education.label,

@@ -5,7 +5,7 @@ import positionOptions from "../DUMMY_DATA/positionOptions";
 import Select from "react-select";
 import { MultiSelect } from "./MultiSelect";
 import StarRating from "./StarRating";
-
+import skills from "../DUMMY_DATA/skilloptions.json";
 import aois from "../DUMMY_DATA/keywords.json";
 
 const FilterPanel = ({
@@ -14,9 +14,15 @@ const FilterPanel = ({
   setChangedFilter,
   rating,
   setRating,
+  isApplicant,
 }) => {
   const [hover, setHover] = useState(0);
   const [width, setWidth] = useState(window.innerWidth);
+  const edOptions = [
+    { value: "highschool", label: "Highschool" },
+    { value: "undergraduate", label: "Undergraduate" },
+    { value: "graduate", label: "Graduate School" },
+  ];
 
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
@@ -37,16 +43,22 @@ const FilterPanel = ({
   return (
     <div className="filter-panel">
       <h2>Filters</h2>
-      <h4>Match:</h4>
-      <StarRating
-        rating={rating}
-        setRating={setRating}
-        hover={hover}
-        setHover={setHover}
-        setChangedFilter={setChangedFilter}
-      />
-      {!isMobile && <span className="match-span">(double click to reset)</span>}
-      <hr />
+      {!isApplicant && (
+        <>
+          <h4>Match:</h4>
+          <StarRating
+            rating={rating}
+            setRating={setRating}
+            hover={hover}
+            setHover={setHover}
+            setChangedFilter={setChangedFilter}
+          />
+          {!isMobile && (
+            <span className="match-span">(double click to reset)</span>
+          )}
+          <hr />
+        </>
+      )}
       <h4>Location:</h4>
       <Select
         placeholder="Select a state"
@@ -58,18 +70,23 @@ const FilterPanel = ({
         isClearable
         styles={{ menu: (provided) => ({ ...provided, zIndex: 9 }) }}
       />
-      <label>
-        <input
-          id="remote-input"
-          type="checkbox"
-          checked={filterObject.remote}
-          onChange={() => {
-            setChangedFilter("remote");
-            setFilterObject({ ...filterObject, remote: !filterObject.remote });
-          }}
-        />
-        Remote
-      </label>
+      {!isApplicant && (
+        <label>
+          <input
+            id="remote-input"
+            type="checkbox"
+            checked={filterObject.remote}
+            onChange={() => {
+              setChangedFilter("remote");
+              setFilterObject({
+                ...filterObject,
+                remote: !filterObject.remote,
+              });
+            }}
+          />
+          Remote
+        </label>
+      )}
       <hr />
       <h4>Areas of Interest:</h4>
       <MultiSelect
@@ -90,17 +107,40 @@ const FilterPanel = ({
         }}
       />
       <hr />
-      <h4>Position Type:</h4>
-      <Select
-        placeholder="Select a type"
-        styles={{ menu: (provided) => ({ ...provided, zIndex: 9 }) }}
-        options={positionOptions}
-        onChange={(e) => {
-          setChangedFilter("type");
-          setFilterObject({ ...filterObject, type: e?.value });
+      <h4>Skills:</h4>
+      <MultiSelect
+        placeholder="Select skills"
+        options={skills}
+        value={filterObject.skills}
+        onChange={(selectedOption) => {
+          setChangedFilter("skills");
+          let state;
+          if (selectedOption) {
+            state = selectedOption.map((selected) => ({
+              ...selected,
+            }));
+          } else {
+            state = null;
+          }
+          setFilterObject({ ...filterObject, skills: state });
         }}
-        isClearable
       />
+      <hr />
+      {isApplicant && (
+        <>
+          <h4>Education:</h4>
+          <Select
+            placeholder="Select education"
+            options={edOptions}
+            onChange={(e) => {
+              setChangedFilter("location");
+              setFilterObject({ ...filterObject, education: e?.label });
+            }}
+            isClearable
+            styles={{ menu: (provided) => ({ ...provided, zIndex: 9 }) }}
+          />
+        </>
+      )}
     </div>
   );
 };

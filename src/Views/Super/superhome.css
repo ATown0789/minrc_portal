@@ -1,0 +1,29 @@
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.agency-table {
+  width: 80%;
+}
+
+.agency-btn.posted-btn {
+  margin-top: 30px;
+}
+
+.agency-h1 {
+  margin: 50px 0;
+}
+
+.view-apps-btn {
+  position: absolute;
+  top: 70px;
+}
+
+.no-postings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

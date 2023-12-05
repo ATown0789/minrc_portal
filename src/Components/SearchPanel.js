@@ -7,6 +7,7 @@ export default function SearchPanel({
   setFilteredJobs,
   searchText,
   setSearchText,
+  isApplicant,
 }) {
   useEffect(() => {}, [searchText]);
 
@@ -15,7 +16,11 @@ export default function SearchPanel({
       <label className="search-label">Quick Search</label>
       <input
         className="search-input"
-        placeholder="Find openings by location, agency, or keywords"
+        placeholder={
+          isApplicant
+            ? "Find applicants by skill, interest, or state abbreviation"
+            : "Find openings by location, agency, or keywords"
+        }
         type="text"
         onChange={(e) => setSearchText(e.target.value)}
       />

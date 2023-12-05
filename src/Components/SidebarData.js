@@ -61,6 +61,39 @@ export const AgencySidebarData = [
   },
 ];
 
+export const SuperSidebarData = [
+  {
+    title: "Home",
+    path: "/",
+    icon: <AiIcons.AiFillHome />,
+  },
+  {
+    title: "Profile",
+    path: "/agency-profile",
+    icon: <CgIcons.CgProfile />,
+  },
+  {
+    title: "Log Out",
+    path: "logout",
+    icon: <IoIcons.IoMdLogOut />,
+  },
+  {
+    title: "Contact",
+    path: "/contact",
+    icon: <IoIcons.IoMdHelpCircle />,
+  },
+  {
+    title: "+ Job Posting",
+    path: "/add-job",
+    icon: <FaIcons.FaBriefcase />,
+  },
+  {
+    title: "All Applicants",
+    path: "/view-applicants",
+    icon: <SiIcons.SiBookstack />,
+  },
+];
+
 export const defaultSidebarData = [
   {
     title: "Home",

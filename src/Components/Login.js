@@ -57,11 +57,17 @@ const Login = ({ loginType }) => {
       const data = doc.docs[0].data();
       data.loggedIn = true;
       dispatch(editUser(data));
-      data.agency === "applicant"
-        ? navigate("/applicant-home")
-        : data.agency !== "applicant" && data.agency !== "default"
-        ? navigate("/agency-home")
-        : navigate("/");
+      //Not Needed?
+      // console.log("GET  USER DATA", data);
+      // data.agency === "applicant"
+      //   ? navigate("/applicant-home")
+      //   : data.agency === "Super User"
+      //   ? navigate("/super-home")
+      //   : data.agency !== "applicant" &&
+      //     data.agency !== "default" &&
+      //     data.agency !== "Super User"
+      //   ? navigate("/agency-home")
+      //   : navigate("/");
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");
@@ -88,8 +94,12 @@ const Login = ({ loginType }) => {
         if (data.loggedIn)
           data.agency === "applicant"
             ? navigate("/applicant-home")
-            : data.agency !== "applicant" && data.agency !== "default"
+            : data.agency !== "applicant" &&
+              data.agency !== "default" &&
+              data.agency !== "Super User"
             ? navigate("/agency-home")
+            : data.agency === "Super User"
+            ? navigate("/super-home")
             : navigate("/");
       } catch (err) {
         console.error(err);

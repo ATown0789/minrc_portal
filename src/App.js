@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "firebase.config";
@@ -29,9 +29,12 @@ import AppSignupSuccess from "Views/Applicant/AppSignupSuccess";
 import ForgotPassword from "Components/ForgotPassword";
 import ResetPassword from "Components/ResetPassword";
 import ResetSuccess from "Components/ResetSuccess";
+import { Navigate } from "react-router-dom";
+import SuperHome from "Views/Super/SuperHome";
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const jobs = useSelector((state) => state.jobs);
   const user = useSelector((state) => state.user);
   const loading = useSelector((state) => state.loader);
@@ -40,6 +43,18 @@ function App() {
   useEffect(() => {
     getJobs();
     console.log("Jobs updated");
+    console.log(window.sessionStorage.lastRoute);
+    let redirectPath = window.sessionStorage.lastRoute?.replace(/\"/g, "");
+    if (window.sessionStorage.lastRoute !== '"/"') {
+      console.log("redirect");
+      navigate(redirectPath);
+    }
+    window.onbeforeunload = () => {
+      window.sessionStorage.setItem(
+        "lastRoute",
+        JSON.stringify(window.location.pathname)
+      );
+    };
   }, []);
 
   function getJobs() {
@@ -69,13 +84,17 @@ function App() {
       {loading && <Loading />}
       <SeafwaNav />
       <NavBar />
-      {jobs.length !== 10 && (
+      {
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route path="/applicant-home" element={<ApplicantHome />}></Route>
           <Route
             path="/agency-home"
             element={<AgencyHome getJobs={getJobs} />}
+          ></Route>
+          <Route
+            path="/super-home"
+            element={<SuperHome getJobs={getJobs} />}
           ></Route>
           <Route path="/new-applicant" element={<ApplicantSignup />}></Route>
           <Route path="/new-agency" element={<AgencySignup />}></Route>
@@ -158,9 +177,9 @@ function App() {
             element={<EditApplicantProfile user={user} />}
           ></Route>
           {/* Default route to catch non-existent routes */}
-          {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      )}
+      }
       <SeafwaFooter />
     </div>
   );

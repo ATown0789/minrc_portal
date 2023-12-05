@@ -37,7 +37,7 @@ const AgencySignup = () => {
     let agency = {
       email: data.agencyEmail,
       password: data.password,
-      fname: data.fName,
+      fName: data.fName,
       lName: data.lName,
       stateSel: data.location.value,
       agency: data.agencyName,

@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 import "./postedPositions.css";
 import { deleteJob } from "firebase.config";
 
-const PostedPositions = ({ job, setModalToggle, setDeleteJobId }) => {
+const PostedPositions = ({
+  job,
+  setModalToggle,
+  setDeleteJobId,
+  superUser,
+}) => {
   const slugify = (str) =>
     str
       .toLowerCase()
@@ -35,7 +40,8 @@ const PostedPositions = ({ job, setModalToggle, setDeleteJobId }) => {
           <BsIcons.BsTrash />
         </button>
       </td>
-      {/* <td>{job.views}</td> */}
+      {superUser && <td>{!!job.dateCreated}</td>}
+      {superUser && <td>{job.agency}</td>}
       <td className="applicant-col">
         <div className="applicant-container">
           {job.interested?.length > 0 ? (

@@ -18,8 +18,6 @@ const Applicant = ({ applicant }) => {
 
   if (state) job = { ...state.job };
 
-  console.log(job?.declined.includes(applicant.uid));
-
   const declineTemplateParams = {
     agency: user.agency,
     job: job?.title,
@@ -37,7 +35,7 @@ const Applicant = ({ applicant }) => {
     message4: `Thank you again for reaching out, and good luck on your future endeavors.`,
   };
 
-  const contactTemplateParams = {
+  const interestTemplateParams = {
     agency: user.agency,
     job: job?.title,
     from_email: "noreply@mg.minrcportal.com",
@@ -54,7 +52,24 @@ const Applicant = ({ applicant }) => {
     message4: `Thank you again for reaching out, and we look forward to hearing from you soon.`,
   };
 
-  console.log(job);
+  const contactTemplateParams = {
+    agency: user.agency,
+    job: job?.title,
+    from_email: "noreply@mg.minrcportal.com",
+    to_email: applicant.email,
+    from_name: user.agency,
+    to_name: applicant.fName,
+    subject: "You could be a good fit",
+    reply_to: !!job.hiringEmail
+      ? job.hiringEmail
+      : "noreply@mg.minrcportal.com",
+    message1: `We believe you would be a great fit for a position in our agency.`,
+    message2: `We would like to learn more about you and if you are searching for job opportunities.`,
+    message3: `If you would like more information, please send your resume along with any letters of recommendation to ${user.email}.`,
+    message4: `We look forward to hearing from you soon.`,
+  };
+
+  console.log(Object.keys(job).length !== 0);
 
   const sendEmail = (templateParams) => {
     emailjs
@@ -78,7 +93,22 @@ const Applicant = ({ applicant }) => {
     <>
       <div className="applicant-view-container">
         <h2>Applicant {applicant.uid.substring(0, 10)}</h2>
-        {/* <h3>Email: {applicant.email}</h3> */}
+        <div className="applicant-attributes-container">
+          <h3>Educaiton Completed: </h3>
+          <span className="skill-container">
+            <h3>{applicant.education}</h3>
+          </span>
+        </div>
+        <div className="applicant-attributes-container">
+          <h3>Professional Summary: </h3>
+          {applicant.summary.map((paragraph, index) => {
+            return (
+              <p key={index} className="job-description">
+                {paragraph}
+              </p>
+            );
+          })}
+        </div>
         <div className="applicant-attributes-container">
           <h3>Skills:</h3>
           <span className="skill-container">
@@ -95,22 +125,9 @@ const Applicant = ({ applicant }) => {
             ))}
           </span>
         </div>
-        <div className="applicant-attributes-container">
-          <h3>Educaiton Completed: </h3>
-          <span className="skill-container">
-            <h3>{applicant.education}</h3>
-          </span>
-        </div>
-        <div className="applicant-attributes-container">
-          <h3>Professional Summary: </h3>
-          <span className="skill-container">
-            {applicant.summary.map((paragraph) => (
-              <p>{paragraph}</p>
-            ))}
-          </span>
-        </div>
+
         <div className="button-container">
-          {job.declined.includes(applicant.id) && (
+          {job?.declined?.includes(applicant.id) && (
             <Button
               onClick={() => {
                 dispatch(setLoader(true));
@@ -147,23 +164,25 @@ const Applicant = ({ applicant }) => {
             variant="success"
             onClick={() => {
               dispatch(setLoader(true));
-              sendEmail(contactTemplateParams);
+              Object.keys(job).length !== 0
+                ? sendEmail(interestTemplateParams)
+                : sendEmail(contactTemplateParams);
               console.log(job, applicant.uid);
-              let removeIndex = job.interested.findIndex(
+              let removeIndex = job?.interested?.findIndex(
                 (element) => applicant.uid === element
               );
               console.log(removeIndex);
               let newInterested = [];
               let newDeclined = [];
               let removeDeclineIndex = 0;
-              if (!!job.interested) newInterested = [...job.interested];
+              if (!!job?.interested) newInterested = [...job?.interested];
               if (removeIndex !== -1) newInterested.splice(removeIndex, 1);
               else {
-                removeDeclineIndex = job.declined.findIndex(
+                removeDeclineIndex = job.declined?.findIndex(
                   (element) => applicant.uid === element
                 );
                 if (removeDeclineIndex !== -1) {
-                  newDeclined = [...job.declined];
+                  newDeclined = [...job?.declined];
                   newDeclined.splice(removeDeclineIndex, 1);
                 }
               }
@@ -179,7 +198,7 @@ const Applicant = ({ applicant }) => {
               };
 
               console.log(newJob);
-              updateJob(newJob);
+              if (Object.keys(job).length !== 0) updateJob(newJob);
               navigate("/agency-home");
             }}
           >
