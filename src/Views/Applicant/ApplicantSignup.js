@@ -45,7 +45,7 @@ const ApplicantSignup = () => {
     let registrant = {
       email: data.email,
       password: data.password,
-      fname: data.fName,
+      fName: data.fName,
       lName: data.lName,
       minrcYear: data.minrcYear,
       education: data.education.label,

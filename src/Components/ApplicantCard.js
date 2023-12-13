@@ -89,7 +89,9 @@ const ApplicantCard = ({ applicant }) => {
             <MatchLoop times={applicant.match} />
           </span> */}
         </p>
-        <h2 className="job-title">{applicant.uid.substring(0, 10)}</h2>
+        <h2 className="job-title">
+          {applicant.uid.substring(0, 10).toLowerCase()}
+        </h2>
         <p className="job-summary">
           Education completed:
           <span

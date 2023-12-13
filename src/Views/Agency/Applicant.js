@@ -18,6 +18,10 @@ const Applicant = ({ applicant }) => {
 
   if (state) job = { ...state.job };
 
+  const superUser = state.superUser;
+
+  console.log("SuperUSER", superUser);
+
   const declineTemplateParams = {
     agency: user.agency,
     job: job?.title,
@@ -69,8 +73,6 @@ const Applicant = ({ applicant }) => {
     message4: `We look forward to hearing from you soon.`,
   };
 
-  console.log(Object.keys(job).length !== 0);
-
   const sendEmail = (templateParams) => {
     emailjs
       .send(
@@ -92,7 +94,12 @@ const Applicant = ({ applicant }) => {
   return (
     <>
       <div className="applicant-view-container">
-        <h2>Applicant {applicant.uid.substring(0, 10)}</h2>
+        <h2>
+          Applicant Id:
+          <span className="applicant-id-text">{` ${applicant.uid
+            .substring(0, 10)
+            .toLowerCase()}`}</span>
+        </h2>
         <div className="applicant-attributes-container">
           <h3>Educaiton Completed: </h3>
           <span className="skill-container">
@@ -205,7 +212,10 @@ const Applicant = ({ applicant }) => {
             Contact
           </Button>
         </div>
-        <Link className="return-btn" to={"/agency-home"}>
+        <Link
+          className="return-btn"
+          to={superUser ? "/super-home" : "/agency-home"}
+        >
           <BsIcons.BsArrowLeft /> Back to Dashboardoard
         </Link>
       </div>

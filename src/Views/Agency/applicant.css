@@ -8,6 +8,11 @@
   margin-top: 100px;
 }
 
+.applicant-id-text {
+  margin: 0;
+  padding: 0;
+}
+
 .applicant-button {
   width: auto;
   margin: 3px;

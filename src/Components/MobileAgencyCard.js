@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import * as MdIcons from "react-icons/md";
 import * as BsIcons from "react-icons/bs";
-import { Link } from "react-router-dom";
-import "./postedPositions.css";
-import { deleteJob } from "firebase.config";
+import "./jobcard.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { editJob } from "Redux/Jobs/jobSlice";
+import { updateJob } from "firebase.config";
 
-const PostedPositions = ({
+const MobileAgencyCard = ({
   job,
+  user,
   setModalToggle,
   setDeleteJobId,
   superUser,
 }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [myMatch, setMyMatch] = useState(0);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  function toggleCard() {
+    setIsExpanded(!isExpanded);
+  }
+
   const slugify = (str) =>
+    !!str &&
     str
       .toLowerCase()
       .trim()
@@ -21,34 +35,40 @@ const PostedPositions = ({
   const url = slugify(job.title + job.id);
 
   return (
-    <tr>
-      <td>
-        <h3>{job.title}</h3>
-        <Link to={`/view-${url}`} className="posted-btn view-job-button">
-          <BsIcons.BsEye />
-        </Link>
-        <Link to={`/edit-${url}`} className="posted-btn edit-job-button">
-          <BsIcons.BsPencilFill />
-        </Link>
-        <button
-          onClick={() => {
-            setDeleteJobId(job.id);
-            setModalToggle(true);
-          }}
-          className="posted-btn remove-job-button"
-        >
-          <BsIcons.BsTrash />
-        </button>
-      </td>
-      {superUser && <td>{job.dateCreated}</td>}
-      {superUser && <td>{job.agency}</td>}
-      <td className="applicant-col">
+    <div
+      className={
+        isExpanded
+          ? "show-full job-card agency-mobile"
+          : "job-card agency-mobile"
+      }
+    >
+      <div className="inner-job-container">
+        <h2 className="job-title">{job.title}</h2>
+
+        <div className="mobile-agency-buttons-cont">
+          <Link to={`/view-${url}`} className="posted-btn view-job-button">
+            <BsIcons.BsEye />
+          </Link>
+          <Link to={`/edit-${url}`} className="posted-btn edit-job-button">
+            <BsIcons.BsPencilFill />
+          </Link>
+          <button
+            onClick={() => {
+              setDeleteJobId(job.id);
+              setModalToggle(true);
+            }}
+            className="posted-btn remove-job-button"
+          >
+            <BsIcons.BsTrash />
+          </button>
+        </div>
+        <h3>Interested:</h3>
         <div className="applicant-container">
           {job.interested?.length > 0 ? (
             job.interested.map((applicant, index) => {
               return (
                 <Link
-                  className="applicant-btn"
+                  className="applicant-btn agency-mobile-btn"
                   to={`/applicant-${slugify(applicant)}`}
                   state={{
                     job: job,
@@ -66,15 +86,13 @@ const PostedPositions = ({
             <p>None Yet!</p>
           )}
         </div>
-      </td>
-
-      <td className="applicant-col">
+        <h3>Contacted:</h3>
         <div className="applicant-container">
           {job.contacted?.length > 0 ? (
             job.contacted.map((applicant, index) => {
               return (
                 <Link
-                  className="applicant-btn"
+                  className="applicant-btn agency-mobile-btn"
                   to={`/applicant-${slugify(applicant)}`}
                   state={{
                     job: job,
@@ -92,15 +110,13 @@ const PostedPositions = ({
             <p>None Yet!</p>
           )}
         </div>
-      </td>
-
-      <td className="applicant-col">
+        <h3>Declined:</h3>
         <div className="applicant-container">
-          {job.declined?.length > 0 ? (
-            job.declined.map((applicant, index) => {
+          {job.contacted?.length > 0 ? (
+            job.contacted.map((applicant, index) => {
               return (
                 <Link
-                  className="applicant-btn"
+                  className="applicant-btn agency-mobile-btn"
                   to={`/applicant-${slugify(applicant)}`}
                   state={{
                     job: job,
@@ -118,9 +134,17 @@ const PostedPositions = ({
             <p>None Yet!</p>
           )}
         </div>
-      </td>
-    </tr>
+      </div>
+
+      <span
+        onClick={toggleCard}
+        className={isExpanded ? "expanded chevron" : "chevron"}
+        style={{ fontSize: "24px", justifySelf: "flex-end" }}
+      >
+        <BsIcons.BsChevronCompactDown />
+      </span>
+    </div>
   );
 };
 
-export default PostedPositions;
+export default MobileAgencyCard;

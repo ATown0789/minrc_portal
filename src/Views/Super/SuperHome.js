@@ -10,6 +10,7 @@ import { db } from "firebase.config";
 import { loadApplicants } from "Redux/Applicants/applicantSlice";
 import { loadJobs } from "Redux/Jobs/jobSlice";
 import PostedPositions from "Views/Agency/PostedPositions";
+import MobileAgencyCard from "Components/MobileAgencyCard";
 
 const SuperHome = () => {
   const navigate = useNavigate();
@@ -75,8 +76,21 @@ const SuperHome = () => {
         />
       )}
       <h1 className="agency-h1">Dashboard</h1>
+      <div className="mobile">
+        {jobs.map((job) => {
+          console.log(job);
+          return (
+            <MobileAgencyCard
+              key={job.id}
+              job={job}
+              setModalToggle={setModalToggle}
+              setDeleteJobId={setDeleteJobId}
+            />
+          );
+        })}
+      </div>
       {jobs.length ? (
-        <div className="table-container">
+        <div className="table-container desktop">
           <Table striped bordered className="agency-table">
             <thead>
               <tr>

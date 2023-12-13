@@ -252,6 +252,11 @@ span {
 .open .bar:nth-child(3) {
   transform: translateY(-10px) rotate(-45deg);
 }
+@media (min-width: 1010px) {
+  .mobile {
+    display: none !important;
+  }
+}
 
 @media (max-width: 1010px) {
   .hamburger {
@@ -318,5 +323,13 @@ span {
 @media (max-width: 450px) {
   .nav-menu-container {
     width: 100%;
+  }
+
+  .mobile {
+    display: initial;
+  }
+
+  .desktop {
+    display: none !important;
   }
 }

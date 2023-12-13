@@ -74,6 +74,20 @@ a.job-btn {
   animation: fadeIn 0.5s;
 }
 
+.job-card.agency-mobile {
+  width: 90%;
+  margin: 20px auto;
+  height: 150px;
+}
+
+.job-card.agency-mobile::after {
+  content: none;
+}
+
+.mobile-agency-buttons-cont {
+  display: flex;
+}
+
 .location-pin {
   margin-left: 0;
 }
@@ -115,7 +129,7 @@ a.job-btn {
 }
 
 .show-full {
-  height: auto;
+  height: auto !important;
   padding-bottom: 30px;
 }
 

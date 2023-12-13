@@ -31,11 +31,16 @@ import {
   hiringPhoneValidation,
 } from "../../../utils/inputValidations";
 import { Input } from "Components/Input";
+import { current } from "@reduxjs/toolkit";
 
 const AddJob = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const date = new Date();
+  let day = ("0" + date.getDate()).slice(-2);
+  let month = ("0" + (date.getMonth() + 1)).slice(-2);
+  let year = date.getFullYear() - 2000;
+  let currentDate = `${month}/${day}/${year}`;
   const user = useSelector((state) => state.user);
 
   const methods = useForm();
@@ -75,6 +80,7 @@ const AddJob = () => {
       hiringName: data.hiringName,
       hiringEmail: data.hiringEmail,
       hiringNumber: data.hiringNumber,
+      dateCreated: currentDate,
       match: 0,
     };
     console.log(job);
