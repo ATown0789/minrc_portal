@@ -57,17 +57,19 @@ function App() {
     };
   }, []);
 
-  function getJobs() {
+  async function getJobs() {
     const jobsCollection = collection(db, "jobs");
-    getDocs(jobsCollection)
+    const theJobs = await getDocs(jobsCollection)
       .then((response) => {
         const jobsArray = response.docs.map((doc) => ({
           ...doc.data(),
         }));
         dispatch(loadJobs(jobsArray));
         dispatch(setLoader(false));
+        return jobsArray;
       })
       .catch((error) => console.log(error.message));
+    console.log(theJobs);
   }
 
   const slugify = (str) =>
