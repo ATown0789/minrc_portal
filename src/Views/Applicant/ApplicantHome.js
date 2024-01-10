@@ -9,14 +9,15 @@ import { useNavigate } from "react-router-dom";
 import { setLoader } from "Redux/Loader/loaderSlice";
 import * as BsIcons from "react-icons/bs";
 
-const ApplicantHome = () => {
+const ApplicantHome = ({ getJobs }) => {
   const [filterObject, setFilterObject] = useState({
     location: "",
     remote: false,
     aois: [],
-    related: "",
+    skills: "",
     type: "",
     match: "",
+    empty: true,
   });
   const navigate = useNavigate();
   const jobs = useSelector((state) => state.jobs);
@@ -28,32 +29,32 @@ const ApplicantHome = () => {
   const dispatch = useDispatch();
   const [isExpanded, setIsExpanded] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
+  const isMobile = width <= 768;
 
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
   }
+
+  if (!user.loggedIn) navigate("/");
+
   useEffect(() => {
+    getJobs();
+    setFilteredJobs(jobs);
+    window.scrollTo({ top: 0, behavior: "instant" });
     window.addEventListener("resize", handleWindowSizeChange);
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, []);
 
-  const isMobile = width <= 768;
-
-  console.log(isMobile);
-
   function toggleCard() {
     setIsExpanded(!isExpanded);
   }
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-    setTimeout(() => dispatch(setLoader(false)), 1000);
-  }, []);
 
   useEffect(() => {
-    if (!user.loggedIn) navigate("/");
-  }, []);
+    console.log(filterObject.empty);
+    console.log(filterObject.skills);
+  }, [filterObject]);
 
   useEffect(() => {
     setFilteredJobs(
@@ -63,10 +64,14 @@ const ApplicantHome = () => {
           !filterObject.remote &&
           !filterObject.type &&
           filterObject.aois.length === 0 &&
+          filterObject.skills.length === 0 &&
           rating === 0 &&
           searchText.length === 0
-        )
+        ) {
+          if (!filterObject.empty)
+            setFilterObject({ ...filterObject, empty: true });
           return true;
+        }
 
         if (filterObject.type) {
           if (!job.type.toLowerCase().includes(filterObject.type)) {
@@ -76,7 +81,8 @@ const ApplicantHome = () => {
 
         if (filterObject.remote) {
           let doesContain = false;
-
+          if (filterObject.empty)
+            setFilterObject({ ...filterObject, empty: false });
           if (job.remote === true) {
             doesContain = true;
           }
@@ -85,6 +91,8 @@ const ApplicantHome = () => {
 
         if (filterObject.location) {
           let doesContain = false;
+          if (filterObject.empty)
+            setFilterObject({ ...filterObject, empty: false });
           job.location.forEach((location) => {
             if (location.value.includes(filterObject.location)) {
               doesContain = true;
@@ -95,6 +103,8 @@ const ApplicantHome = () => {
 
         if (filterObject.aois.length > 0) {
           let doesContain = false;
+          if (filterObject.empty)
+            setFilterObject({ ...filterObject, empty: false });
           filterObject.aois.forEach((filterAoi) => {
             job.aois.forEach((jobAoi) => {
               if (jobAoi.value)
@@ -110,12 +120,39 @@ const ApplicantHome = () => {
           if (!doesContain) return false;
         }
 
+        console.log(filterObject);
+
+        if (filterObject.skills.length > 0) {
+          let doesContain = false;
+          if (filterObject.empty)
+            setFilterObject({ ...filterObject, empty: false });
+          filterObject.skills.forEach((filterSkill) => {
+            job.skills.forEach((jobSkill) => {
+              if (jobSkill.value)
+                if (
+                  jobSkill.value
+                    .toLowerCase()
+                    .includes(filterSkill.value.toLowerCase())
+                ) {
+                  doesContain = true;
+                }
+            });
+          });
+          if (!doesContain) return false;
+        }
+
         if (rating > 0) {
-          if (job.match < rating) return false;
+          if (job.match < rating) {
+            if (filterObject.empty)
+              setFilterObject({ ...filterObject, empty: false });
+            return false;
+          }
         }
 
         if (searchText.length > 0) {
           let doesContain = false;
+          if (filterObject.empty)
+            setFilterObject({ ...filterObject, empty: false });
           if (
             job.title.toLowerCase().includes(searchText.toLowerCase()) ||
             job.agency.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -144,6 +181,10 @@ const ApplicantHome = () => {
       })
     );
   }, [filterObject, searchText]);
+
+  useEffect(() => {
+    if (jobs.length > 0) setTimeout(() => dispatch(setLoader(false)), 1000);
+  }, [jobs]);
 
   return user.loggedIn ? (
     <>
@@ -179,9 +220,22 @@ const ApplicantHome = () => {
             )}
           </div>
           <div className="job-container">
-            {filteredJobs.map((job) => {
-              return <JobCard key={job.id} job={job} user={user} />;
-            })}
+            {filteredJobs.length > 0 ? (
+              filteredJobs.map((job) => {
+                return <JobCard key={job.id} job={job} user={user} />;
+              })
+            ) : filteredJobs.length === 0 && !filterObject.empty ? (
+              <div>
+                <h3>
+                  No jobs match current filters. Please adjust filters to view
+                  more matches
+                </h3>
+              </div>
+            ) : (
+              jobs.map((job) => {
+                return <JobCard key={job.id} job={job} user={user} />;
+              })
+            )}
           </div>
         </div>
       </div>

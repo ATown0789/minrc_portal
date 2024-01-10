@@ -41,8 +41,8 @@ function App() {
   const applicants = useSelector((state) => state.applicants);
 
   useEffect(() => {
-    getJobs();
-    console.log("Jobs updated");
+    // getJobs();
+    // console.log("Jobs updated");
     console.log(window.sessionStorage.lastRoute);
     let redirectPath = window.sessionStorage.lastRoute?.replace(/\"/g, "");
     if (window.sessionStorage.lastRoute !== '"/"') {
@@ -64,12 +64,13 @@ function App() {
         const jobsArray = response.docs.map((doc) => ({
           ...doc.data(),
         }));
-        dispatch(loadJobs(jobsArray));
-        dispatch(setLoader(false));
+        // dispatch(loadJobs(jobsArray));
+        // dispatch(setLoader(false));
         return jobsArray;
       })
       .catch((error) => console.log(error.message));
-    console.log(theJobs);
+    // console.log(theJobs);
+    dispatch(loadJobs(theJobs));
   }
 
   const slugify = (str) =>
@@ -89,7 +90,10 @@ function App() {
       {
         <Routes>
           <Route path="/" element={<Main />}></Route>
-          <Route path="/applicant-home" element={<ApplicantHome />}></Route>
+          <Route
+            path="/applicant-home"
+            element={<ApplicantHome getJobs={getJobs} />}
+          ></Route>
           <Route
             path="/agency-home"
             element={<AgencyHome getJobs={getJobs} />}
