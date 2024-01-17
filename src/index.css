@@ -1,17 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --primary-blue: #1a428a;
+  --primary-gold: #c8b722;
+  --gradient1-gold: #c0b460;
+  --gradient2-gold: #cfc584;
+  --gradient3-gold: #ded5a6;
+  --menu-item-color: #012c3a;
+  --text-color: #2c2c2c;
+  --neutral-color: #cccccc;
+  --placeholder-color: #555555;
+  --accent-color: #5bc0de;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body {
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .App {
@@ -19,6 +25,7 @@ code {
 }
 
 html {
+  color: var(--text-color) !important;
   max-width: 100vw;
 }
 

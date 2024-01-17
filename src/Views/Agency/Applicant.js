@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./applicant.css";
-import { Button } from "react-bootstrap";
 import * as BsIcons from "react-icons/bs";
 import { auth, updateJob } from "firebase.config";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoader } from "Redux/Loader/loaderSlice";
 import emailjs, { send } from "@emailjs/browser";
+import Button from "Components/Button";
 
 const Applicant = ({ applicant }) => {
   const { state } = useLocation();
@@ -166,6 +166,7 @@ const Applicant = ({ applicant }) => {
               Decline
             </Button>
           )}
+
           <Button
             className="applicant-button "
             variant="success"

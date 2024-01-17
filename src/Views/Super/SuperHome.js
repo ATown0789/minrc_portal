@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import React, { useEffect, useRef, useState } from "react";
 import "./superhome.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +10,8 @@ import { loadApplicants } from "Redux/Applicants/applicantSlice";
 import { loadJobs } from "Redux/Jobs/jobSlice";
 import PostedPositions from "Views/Agency/PostedPositions";
 import MobileAgencyCard from "Components/MobileAgencyCard";
+import { DownloadTableExcel, downloadExcel } from "react-export-table-to-excel";
+import Button from "Components/Button";
 
 const SuperHome = () => {
   const navigate = useNavigate();
@@ -20,6 +21,50 @@ const SuperHome = () => {
   const [deleteJobId, setDeleteJobId] = useState("");
   const [filteredJobs, setFilteredJobs] = useState([]);
   const dispatch = useDispatch();
+  const tableRef = useRef(null);
+  const header = [
+    "Positions Posted",
+    "Date Created",
+    "Agency",
+    "Interested Applicants",
+    "Contacted",
+    "Declined",
+    "Total Applicants",
+  ];
+  const date = new Date();
+  let day = ("0" + date.getDate()).slice(-2);
+  let month = ("0" + (date.getMonth() + 1)).slice(-2);
+  let year = date.getFullYear() - 2000;
+  let currentDate = `${month}/${day}/${year}`;
+  const body = [];
+  jobs.map((job) => {
+    const jobArray = [
+      job.title,
+      job.dateCreated,
+      job.agency,
+      job.interested?.length > 0 ? job.interested?.length : 0,
+      job.contacted?.length > 0 ? job.contacted?.length : 0,
+      job.declined?.length > 0 ? job.declined?.length : 0,
+      (job.interested?.length > 0 ? job.interested?.length : 0) +
+        (job.contacted?.length > 0 ? job.contacted?.length : 0) +
+        (job.declined?.length > 0 ? job.declined?.length : 0),
+    ];
+
+    console.log(jobArray);
+
+    body.push(jobArray);
+  });
+
+  function handleDownloadExcel() {
+    console.log(body);
+    downloadExcel({
+      fileName: `MINRC_Job_Portal_Data_${currentDate}`,
+      tablePayload: {
+        header,
+        body: body,
+      },
+    });
+  }
 
   function getApplicants() {
     const applicantsCollection = collection(db, "users");
@@ -76,6 +121,10 @@ const SuperHome = () => {
         />
       )}
       <h1 className="agency-h1">Dashboard</h1>
+      <Button variant="login-btn" onClick={handleDownloadExcel}>
+        Eport Table as Excel
+      </Button>
+
       <div className="mobile">
         {jobs.map((job) => {
           console.log(job);
@@ -91,7 +140,7 @@ const SuperHome = () => {
       </div>
       {jobs.length ? (
         <div className="table-container desktop">
-          <Table striped bordered className="agency-table">
+          {/* <Table ref={tableRef} striped bordered className="agency-table">
             <thead>
               <tr>
                 <th>Positions Posted</th>
@@ -115,7 +164,7 @@ const SuperHome = () => {
                 );
               })}
             </tbody>
-          </Table>
+          </Table> */}
         </div>
       ) : (
         <div className="no-postings">

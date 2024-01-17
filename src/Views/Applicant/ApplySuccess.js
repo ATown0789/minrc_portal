@@ -1,7 +1,6 @@
 import React from "react";
 import "./applysuccess.css";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
 
 const ApplySuccess = () => {
   return (

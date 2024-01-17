@@ -7,11 +7,11 @@ import {
   logInWithEmailAndPassword,
   signInWithGoogle,
   db,
-} from "../firebase.config";
+} from "../../firebase.config";
 import { query, getDocs, collection, where } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./login.css";
-import Loading from "./Loading";
+import Loading from "../../Components/Loading";
 import {
   browserSessionPersistence,
   onAuthStateChanged,

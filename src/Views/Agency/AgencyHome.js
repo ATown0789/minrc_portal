@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
 import "./agencyhome.css";
 import PostedPositions from "./PostedPositions";
 import { useNavigate, Link } from "react-router-dom";
@@ -91,7 +90,7 @@ const AgencyHome = () => {
       </div>
       {filteredJobs.length ? (
         <div className="table-container desktop">
-          <Table striped bordered className="agency-table ">
+          {/* <Table striped bordered className="agency-table ">
             <thead>
               <tr>
                 <th>Positions Posted</th>
@@ -112,7 +111,7 @@ const AgencyHome = () => {
                 );
               })}
             </tbody>
-          </Table>
+          </Table> */}
         </div>
       ) : (
         <div className="no-postings">

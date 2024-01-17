@@ -1,4 +1,4 @@
-import Login from "Components/Login";
+import Login from "Views/Login/Login";
 import React, { useEffect } from "react";
 import "./main.css";
 

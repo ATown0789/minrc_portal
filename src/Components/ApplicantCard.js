@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoader } from "Redux/Loader/loaderSlice";
 import emailjs, { send } from "@emailjs/browser";
-import { Button } from "react-bootstrap";
+import Button from "./Button";
 
 const ApplicantCard = ({ applicant }) => {
   const [isExpanded, setIsExpanded] = useState(false);
