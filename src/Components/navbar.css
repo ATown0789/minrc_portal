@@ -75,10 +75,10 @@
 .minrc-title-container h1 {
   color: #2c2c2c;
   font-weight: 700;
-  font-size: 50px;
-  line-height: 60px;
+  font-size: 40px;
+  line-height: 50px;
   border-bottom: none;
-  font-family: "Merriweather", serif;
+  font-family: "Merriweather", sans-serif;
   text-align: left;
 }
 
@@ -236,10 +236,10 @@ span {
   position: fixed;
 }
 
-/* .open,
+.open,
 .active {
   transform: translateX(0) !important;
-} */
+}
 
 .open .bar:nth-child(1) {
   transform: translateY(10px) rotate(45deg);
@@ -280,6 +280,13 @@ span {
     width: 200px;
     background-color: whitesmoke;
     flex-direction: column;
+  }
+}
+
+@media (min-width: 451px) {
+  .minrc-title-container h1 {
+    font-size: 50px;
+    line-height: 60px;
   }
 }
 

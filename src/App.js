@@ -26,9 +26,9 @@ import EditApplicantProfile from "Views/Applicant/EditApplicantProfile";
 import { setLoader } from "Redux/Loader/loaderSlice";
 import Loading from "Components/Loading";
 import AppSignupSuccess from "Views/Applicant/AppSignupSuccess";
-import ForgotPassword from "Components/ForgotPassword";
-import ResetPassword from "Components/ResetPassword";
-import ResetSuccess from "Components/ResetSuccess";
+import ForgotPassword from "Views/Login/ForgotPassword";
+import ResetPassword from "Views/Login/ResetPassword";
+import ResetSuccess from "Views/Login/ResetSuccess";
 import { Navigate } from "react-router-dom";
 import SuperHome from "Views/Super/SuperHome";
 

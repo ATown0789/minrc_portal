@@ -22,18 +22,16 @@ const Main = () => {
         <p>Welcome to the MINRC Job Portal.</p>
       </div>
 
-      <div>
-        <NavTabs
-          setActive={setActive}
-          active={active}
-          options={LoginNavTabOptions}
-        />
-        {active.title === "Agencies" ? (
-          <Login loginType="agency" />
-        ) : (
-          <Login loginType="applicant" />
-        )}
-      </div>
+      <NavTabs
+        setActive={setActive}
+        active={active}
+        options={LoginNavTabOptions}
+      />
+      {active.title === "Agencies" ? (
+        <Login loginType="agency" />
+      ) : (
+        <Login loginType="applicant" />
+      )}
     </div>
   );
 };

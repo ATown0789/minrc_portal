@@ -32,10 +32,6 @@
     flex-wrap: wrap;
   }
 
-  .form-container {
-    height: auto;
-  }
-
   .form-container.agency-container {
     border-top: solid black 1px;
     margin-left: 10px;

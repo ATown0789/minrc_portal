@@ -96,87 +96,84 @@ const Login = ({ loginType }) => {
   const id = useId();
 
   return (
-    <div
-      className={`form-container ${
-        loginType === "agency" ? "agency-container" : "applicant-container"
-      }`}
-    >
-      <h2>{`For ${loginType === "agency" ? "Agencies" : "Applicants"}`}</h2>
-      <div className="form-group">
-        <span className="login-element">
-          <label className="nowrap" htmlFor={`username-${id}`}>
-            Username:
-          </label>
-          <input
-            type="text"
-            id={`username-${id}`}
-            placeholder="Email Address"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-        </span>
-        <span className="login-element">
-          <label className="nowrap" htmlFor={`password-${id}`}>
-            Password:
-          </label>
-          <input
-            type="password"
-            id={`password-${id}`}
-            placeholder="Enter Password"
-            value={password}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
-        </span>
-      </div>
-      <p className="input-error">{errorMessage}</p>
-      <button
-        className="login-btn"
-        type="button"
-        onClick={async (e) => {
-          dispatch(setLoader(true));
-          e.preventDefault();
-          const isLoadCheck = await setPersistence(
-            auth,
-            browserSessionPersistence
-          )
-            .then(() => {
-              return logInWithEmailAndPassword(auth, email, password);
-            })
-            .then();
-          userRef.current = isLoadCheck;
-          // if (isLoadCheck) fetchUserName();
-        }}
-      >
-        Login
-      </button>
-
-      {/*
-      Login with Google functions as expected, but I'm not sure it's desired at this point.
-
-      {loginType === "applicant" && (
+    <div className={`form-container`}>
+      <div className="form-inner-cont tab-content">
+        <h2>{`${loginType === "agency" ? "Agency" : "Applicant"} Login`}</h2>
+        <div className="form-group">
+          <span className="login-element">
+            <label className="nowrap" htmlFor={`username-${id}`}>
+              Email:
+            </label>
+            <input
+              type="text"
+              id={`username-${id}`}
+              placeholder="Email Address"
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            ></input>
+          </span>
+          <span className="login-element">
+            <label className="nowrap" htmlFor={`password-${id}`}>
+              Password:
+            </label>
+            <input
+              type="password"
+              id={`password-${id}`}
+              placeholder="Enter Password"
+              value={password}
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            ></input>
+          </span>
+          <p className="forgot-pass">
+            <Link to="/forgot-password">Forgot Password</Link>
+          </p>
+        </div>
+        <p className="input-error">{errorMessage}</p>
         <button
-          className="login-btn google"
+          className="login-btn"
           type="button"
           onClick={async (e) => {
+            dispatch(setLoader(true));
             e.preventDefault();
-            const isLoadCheck = await signInWithGoogle();
+            const isLoadCheck = await setPersistence(
+              auth,
+              browserSessionPersistence
+            )
+              .then(() => {
+                return logInWithEmailAndPassword(auth, email, password);
+              })
+              .then();
             userRef.current = isLoadCheck;
-            if (isLoadCheck) fetchUserName();
+            // if (isLoadCheck) fetchUserName();
           }}
         >
-          Login with Google
+          Login
         </button>
-      )} */}
-      <p>
-        <Link to="/forgot-password">Forgot Password</Link>
-      </p>
 
-      <p>
-        New to MINRC Job Portal?{" "}
-        <Link to={`new-${loginType}`}>Create a profile.</Link>
-      </p>
+        {/*
+        Login with Google functions as expected, but I'm not sure it's desired at this point.
+  
+        {loginType === "applicant" && (
+          <button
+            className="login-btn google"
+            type="button"
+            onClick={async (e) => {
+              e.preventDefault();
+              const isLoadCheck = await signInWithGoogle();
+              userRef.current = isLoadCheck;
+              if (isLoadCheck) fetchUserName();
+            }}
+          >
+            Login with Google
+          </button>
+        )} */}
+
+        <p className="bottom-text">
+          Not a MINRC student? <Link to={`new-${loginType}`}>Learn More.</Link>
+        </p>
+      </div>
     </div>
   );
 };
