@@ -236,10 +236,10 @@ span {
   position: fixed;
 }
 
-.open,
+/* .open,
 .active {
   transform: translateX(0) !important;
-}
+} */
 
 .open .bar:nth-child(1) {
   transform: translateY(10px) rotate(45deg);

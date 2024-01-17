@@ -29,26 +29,6 @@ const Login = ({ loginType }) => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    // getJobs();
-    // console.log("Jobs updated");
-    setTimeout(() => dispatch(setLoader(false)), 1000);
-  }, []);
-
-  // function getJobs() {
-  //   const jobsCollection = collection(db, "jobs");
-  //   getDocs(jobsCollection)
-  //     .then((response) => {
-  //       const jobsArray = response.docs.map((doc) => ({
-  //         ...doc.data(),
-  //       }));
-  //       dispatch(loadJobs(jobsArray));
-
-  //       setTimeout(() => dispatch(setLoader(false)), 1000);
-  //     })
-  //     .catch((error) => console.log(error.message));
-  // }
-
   const userRef = useRef(user);
 
   const getUserData = async (user) => {
