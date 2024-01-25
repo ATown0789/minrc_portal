@@ -7,7 +7,6 @@ import SearchPanel from "Components/SearchPanel";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setLoader } from "Redux/Loader/loaderSlice";
-import * as BsIcons from "react-icons/bs";
 
 const ApplicantHome = ({ getJobs }) => {
   const [filterObject, setFilterObject] = useState({
@@ -189,6 +188,7 @@ const ApplicantHome = ({ getJobs }) => {
   return user.loggedIn ? (
     <div className="tab-content">
       <h2>Job Board</h2>
+
       <div className="job-wrap">
         <SearchPanel
           filteredJobs={filteredJobs}

@@ -21,7 +21,7 @@ function ApplicantProfile() {
   return user.loggedIn ? (
     <div className="tab-content">
       <h1>{user.fName}'s Profile</h1>
-      <div className="inner-tab-content">
+      <div className="inner-tab-content flex-column">
         <h4>
           Name: {user.fName} {user.lName}
         </h4>

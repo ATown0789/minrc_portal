@@ -2,7 +2,8 @@ button {
   font-family: "Source Sans Pro", sans-serif !important;
 }
 
-.primary {
+.primary,
+.secondary {
   text-decoration: none;
   font-family: "Source Sans Pro", sans-serif !important;
   background-color: var(--primary-blue);
@@ -33,7 +34,7 @@ button {
 }
 .nav-tab-inner-cont {
   margin-left: 10px;
-  width: 80%;
+  width: 90%;
 }
 
 .nav-tab {
@@ -53,6 +54,11 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
+}
+
+.last-tab {
+  margin-left: auto;
 }
 
 .nav-tab.active {

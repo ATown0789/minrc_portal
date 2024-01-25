@@ -15,7 +15,9 @@ const Button = ({
       style={style}
       id={id}
       className={
-        active ? `active primary ${variant}` : `${className} primary ${variant}`
+        active
+          ? `active ${variant ? variant : ""}`
+          : `${className ? className : ""} ${variant ? variant : ""}`
       }
       onClick={onClick}
     >

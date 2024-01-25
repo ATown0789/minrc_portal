@@ -40,6 +40,7 @@ const Login = ({ loginType }) => {
       const data = doc.docs[0].data();
       data.loggedIn = true;
       dispatch(editUser(data));
+      console.log("Logged IN!");
       //Not Needed?
       // console.log("GET  USER DATA", data);
       // data.agency === "applicant"
@@ -57,11 +58,12 @@ const Login = ({ loginType }) => {
     }
   };
 
-  useEffect(() => {
-    if (user) {
-      getUserData(user);
-    }
-  }, []);
+  // useEffect(() => {
+  //   console.log("Login Get User");
+  //   if (user) {
+  //     getUserData(user);
+  //   }
+  // }, []);
 
   const logInWithEmailAndPassword = async (auth, email, password) => {
     try {
@@ -108,50 +110,58 @@ const Login = ({ loginType }) => {
       )}
       <div className={`form-container`}>
         <div className="form-inner-cont tab-content">
-          <h2>{`${loginType === "agency" ? "Agency" : "Applicant"} Login`}</h2>
-          <div className="form-group">
-            <span className="login-element">
-              <label className="nowrap" htmlFor={`username-${id}`}>
-                Email:
-              </label>
-              <input
-                type="text"
-                id={`username-${id}`}
-                placeholder="Email Address"
-                value={email}
-                required
-                onChange={(e) => setEmail(e.target.value)}
-              ></input>
-            </span>
-            <span className="login-element">
-              <label className="nowrap" htmlFor={`password-${id}`}>
-                Password:
-              </label>
-              <input
-                type="password"
-                id={`password-${id}`}
-                placeholder="Enter Password"
-                value={password}
-                required
-                onChange={(e) => setPassword(e.target.value)}
-              ></input>
-            </span>
-            <p className="forgot-pass">
-              <a onClick={() => setModalToggle(true)}>Forgot Password</a>
-            </p>
-          </div>
-          <p className="input-error">{errorMessage}</p>
-          <Button
-            variant="login-btn"
-            type="button"
-            onClick={async (e) => {
-              dispatch(setLoader(true));
-              e.preventDefault();
-              logInWithEmailAndPassword(auth, email, password);
-            }}
-          >
-            Login
-          </Button>
+          <h2>{`Login`}</h2>
+          <form>
+            <div className="form-group">
+              <span className="login-element">
+                <label className="nowrap" htmlFor={`username-${id}`}>
+                  Email:
+                </label>
+                <input
+                  type="text"
+                  id={`username-${id}`}
+                  placeholder="Email Address"
+                  value={email}
+                  required
+                  onChange={(e) => setEmail(e.target.value)}
+                ></input>
+              </span>
+              <span className="login-element">
+                <label className="nowrap" htmlFor={`password-${id}`}>
+                  Password:
+                </label>
+                <input
+                  type="password"
+                  autoComplete="on"
+                  id={`password-${id}`}
+                  placeholder="Enter Password"
+                  value={password}
+                  required
+                  onChange={(e) => setPassword(e.target.value)}
+                ></input>
+              </span>
+              <p className="forgot-pass">
+                <span
+                  style={{ textDecoration: "underline" }}
+                  onClick={() => setModalToggle(true)}
+                >
+                  Forgot Password
+                </span>
+              </p>
+            </div>
+            <p className="input-error">{errorMessage}</p>
+            <Button
+              type="submit"
+              variant="login-btn"
+              onClick={async (e) => {
+                dispatch(setLoader(true));
+                e.preventDefault();
+                logInWithEmailAndPassword(auth, email, password);
+              }}
+            >
+              Login
+            </Button>
+          </form>
 
           {/*
           Login with Google functions as expected, but I'm not sure it's desired at this point.

@@ -46,22 +46,22 @@ function App() {
   const applicants = useSelector((state) => state.applicants);
   const [active, setActive] = useState(ApplicantTabOptions[0]);
 
-  useEffect(() => {
-    // getJobs();
-    // console.log("Jobs updated");
-    console.log(window.sessionStorage.lastRoute);
-    let redirectPath = window.sessionStorage.lastRoute?.replace(/\"/g, "");
-    if (window.sessionStorage.lastRoute !== '"/"') {
-      console.log("redirect");
-      navigate(redirectPath);
-    }
-    window.onbeforeunload = () => {
-      window.sessionStorage.setItem(
-        "lastRoute",
-        JSON.stringify(window.location.pathname)
-      );
-    };
-  }, []);
+  // useEffect(() => {
+  //   // getJobs();
+  //   // console.log("Jobs updated");
+  //   console.log(window.sessionStorage.lastRoute);
+  //   let redirectPath = window.sessionStorage.lastRoute?.replace(/\"/g, "");
+  //   if (window.sessionStorage.lastRoute !== '"/"') {
+  //     console.log("redirect");
+  //     navigate(redirectPath);
+  //   }
+  //   window.onbeforeunload = () => {
+  //     window.sessionStorage.setItem(
+  //       "lastRoute",
+  //       JSON.stringify(window.location.pathname)
+  //     );
+  //   };
+  // }, []);
 
   async function getJobs() {
     const jobsCollection = collection(db, "jobs");
