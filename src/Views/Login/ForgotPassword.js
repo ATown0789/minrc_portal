@@ -1,3 +1,4 @@
+import Button from "Components/Button";
 import { auth, sendPasswordReset } from "firebase.config";
 import React, { useId, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -14,12 +15,11 @@ function ForgotPassword() {
   const id = useId();
 
   return (
-    <div className="form-container">
-      <h2>Forgot Password</h2>
-      <div className="form-group">
+    <div className="center-flex-column">
+      <div>
         <span className="login-element">
           <label className="nowrap" htmlFor={`username-${id}`}>
-            Username:
+            Email:
           </label>
           <input
             type="text"
@@ -32,16 +32,14 @@ function ForgotPassword() {
         </span>
       </div>
       <p className="input-error">{errorMessage}</p>
-      <button
-        className="login-btn"
-        type="button"
+      <Button
         onClick={async (e) => {
           e.preventDefault();
           sendPasswordReset(email);
         }}
       >
         Send Password Reset Email
-      </button>
+      </Button>
     </div>
   );
 }

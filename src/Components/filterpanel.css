@@ -1,39 +1,122 @@
-button {
+.on {
+  color: var(--primary-gold);
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
-  width: 20px;
-  padding: 0px;
-}
-.on {
-  color: gold;
+  width: 30px;
+  height: 22px;
+  padding: 0 0 0 0;
 }
 .off {
-  color: #ffffff;
+  color: transparent;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 30px;
+  height: 22px;
+  padding: 0 0 0 0;
 }
 
 .star {
-  font-size: 18px;
+  font-size: 24px;
   padding: 0;
   margin: 0;
-  line-height: 0;
+}
+
+.off .star {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #989898;
+}
+
+.on .star {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--primary-gold);
+}
+
+.match-p {
+  margin-bottom: 0;
 }
 
 .filter-panel {
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  align-self: flex-start;
   width: 100%;
 }
 
+.star-rating {
+  margin-bottom: 20px;
+}
+
+/* .my-aoi-container,
+.my-skill-container,
+.my-ed-container {
+  margin: 8px 0 8px 0;
+}
+
+.my-state-container {
+  margin: 5px 0 2px 0;
+}
+
+.my-state__placeholder,
+.my-state__input-container,
+.my-state__input,
+.my-aoi__placeholder,
+.my-aoi__input-container,
+.my-aoi__input,
+.my-skill__placeholder,
+.my-skill__input-container,
+.my-skill__input,
+.my-ed__placeholder,
+.my-ed__input-container,
+.my-ed__input {
+  padding-left: 0px !important;
+}
+
+.my-state__value-container,
+.my-aoi__value-container,
+.my-skill__value-container,
+.my-ed__value-container {
+  padding-left: 25px !important;
+} */
+
+#location-icon,
+#skill-icon,
+#aoi-icon,
+#ed-icon {
+  font-size: 20px;
+  color: var(--primary-gold);
+}
+
+/* #skill-icon {
+  top: 196px;
+}
+
+#aoi-icon {
+  top: 141px;
+}
+
+#ed-icon {
+  top: 96px;
+} */
+
 #remote-input {
-  margin-right: 5px;
+  height: 20px;
+  width: 30px;
+}
+
+#remote-label {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  margin-top: 8px;
 }
 
 hr {
   width: 100%;
-  border-top: 2px solid;
+  border-top: 2px solid var(--neutral-color);
 }
 
 h4 {

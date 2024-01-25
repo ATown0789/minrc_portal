@@ -17,21 +17,12 @@
   text-align: center;
 }
 
-.login-container {
-  justify-content: space-around;
-  min-width: 60%;
-}
-
 .form-container.applicant-container {
   align-items: center;
   flex-wrap: nowrap;
 }
 
 @media (max-width: 450px) {
-  .login-container {
-    flex-wrap: wrap;
-  }
-
   .form-container.agency-container {
     border-top: solid black 1px;
     margin-left: 10px;

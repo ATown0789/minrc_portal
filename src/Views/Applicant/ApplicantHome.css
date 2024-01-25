@@ -1,6 +1,5 @@
 h1 {
-  margin-top: 20px;
-  text-align: center;
+  margin-top: 0;
 }
 
 .job-container {
@@ -11,17 +10,15 @@ h1 {
 }
 
 .filter-container {
-  position: sticky;
-  top: 60px;
   display: flex;
   margin-top: 20px;
   width: 30%;
   margin-right: 50px;
   margin-left: 50px;
-  height: 80vh;
+  /* height: 80vh; */
   background-color: rgb(239, 239, 239);
-  height: 600px;
-  box-shadow: 5px 5px 5px silver;
+  /* height: 600px; */
+  /* box-shadow: 5px 5px 5px silver; */
 }
 
 .job-view {
@@ -39,9 +36,9 @@ h1 {
   .filter-container {
     width: 90%;
     margin: 10px 0 10px 0;
-    height: 60px;
+    /* height: 60px; */
     transition: all ease 0.5s;
-    overflow: hidden;
+    /* overflow: hidden; */
     z-index: 9;
   }
 
@@ -49,7 +46,7 @@ h1 {
     width: 90%;
   }
 
-  .filter-container::after {
+  /* .filter-container::after {
     content: "";
     position: absolute;
     top: 0;
@@ -113,5 +110,35 @@ h1 {
     animation: fadeOut 0.5s;
     opacity: 0;
     height: 0;
+  } */
+}
+
+@media (min-width: 750px) {
+  .filter-container {
+    width: 90%;
+  }
+
+  .filter-panel {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+  }
+
+  .search-input {
+    padding: 0 !important;
+    height: 25px !important;
+    align-self: center;
+    margin: 0 !important;
+    width: 100% !important;
   }
 }
+/* 
+.test-select-class {
+  background: red;
+  margin-left: 20px;
+}
+
+.search-div {
+  background-color: blue;
+  width: 30%;
+  height: 
+} */

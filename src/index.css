@@ -11,6 +11,7 @@
   --neutral-color: #cccccc;
   --placeholder-color: #555555;
   --accent-color: #5bc0de;
+  --secondary-gray: #989898;
 }
 
 body {
@@ -18,20 +19,40 @@ body {
   font-family: "Source Sans Pro", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--text-color);
 }
 h1,
 h2,
 h3 {
   font-family: "Merriweather", sans-serif !important;
+  margin: 1rem 0.25rem;
+}
+
+p {
+  margin: 1rem 0.25rem;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
 .App {
   max-width: 100vw;
 }
 
+.App h1 {
+  margin-left: 20px;
+}
+
 html {
   color: var(--text-color) !important;
   max-width: 100vw;
+}
+
+input {
+  width: 100%;
 }
 
 a.job-btn {
@@ -74,6 +95,9 @@ a.job-btn {
 .tab-content {
   background-color: #ededed;
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.348);
+  width: 94%;
+  margin-left: 10px;
+  padding: 10px 0 40px 8px;
 }
 
 .form-inner-cont {
@@ -82,9 +106,6 @@ a.job-btn {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 90%;
-  margin-left: 10px;
-  padding-top: 10px;
 }
 
 .form-container {
@@ -97,8 +118,31 @@ a.job-btn {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 100%;
 }
 
-@media (min-width: 451px) {
+.center-flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 750px) {
+  .main-title {
+    margin-left: 7% !important;
+  }
+
+  .form-inner-cont {
+    justify-content: center;
+  }
+
+  .tab-content {
+    width: 80%;
+    margin-left: 7%;
+    padding: 50px;
+  }
+
+  .nav-tab-container {
+    margin-left: 6.8%;
+  }
 }

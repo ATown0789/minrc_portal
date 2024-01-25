@@ -23,7 +23,6 @@ import AgencyProfile from "Views/Agency/AgencyProfile";
 import JobPostSuccess from "Views/Agency/Job/JobPostSuccess";
 import EditJob from "Views/Agency/Job/EditJob";
 import EditApplicantProfile from "Views/Applicant/EditApplicantProfile";
-import { setLoader } from "Redux/Loader/loaderSlice";
 import Loading from "Components/Loading";
 import AppSignupSuccess from "Views/Applicant/AppSignupSuccess";
 import ForgotPassword from "Views/Login/ForgotPassword";
@@ -31,6 +30,12 @@ import ResetPassword from "Views/Login/ResetPassword";
 import ResetSuccess from "Views/Login/ResetSuccess";
 import { Navigate } from "react-router-dom";
 import SuperHome from "Views/Super/SuperHome";
+import NavTabs from "Components/NavTabs";
+import {
+  AgencyTabOptions,
+  ApplicantTabOptions,
+  SuperTabOptions,
+} from "Components/NavOptoins";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +44,7 @@ function App() {
   const user = useSelector((state) => state.user);
   const loading = useSelector((state) => state.loader);
   const applicants = useSelector((state) => state.applicants);
+  const [active, setActive] = useState(ApplicantTabOptions[0]);
 
   useEffect(() => {
     // getJobs();
@@ -86,7 +92,21 @@ function App() {
     <div className="App">
       {loading && <Loading />}
       <SeafwaNav />
-      <NavBar />
+      {/* <NavBar /> */}
+      {user.loggedIn && <h1 className="main-title">MINRC Job Portal</h1>}
+      {user.loggedIn && (
+        <NavTabs
+          setActive={setActive}
+          active={active}
+          options={
+            user?.agency === "applicant"
+              ? ApplicantTabOptions
+              : user?.agency === "Super User"
+              ? SuperTabOptions
+              : AgencyTabOptions
+          }
+        />
+      )}
       {
         <Routes>
           <Route path="/" element={<Main />}></Route>

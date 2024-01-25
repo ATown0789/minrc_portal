@@ -72,7 +72,7 @@ const EditApplicantProfile = ({ user }) => {
   const errors = methods.formState.errors;
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
+    // window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
   const onSubmit = methods.handleSubmit(async (data) => {
@@ -98,7 +98,7 @@ const EditApplicantProfile = ({ user }) => {
   });
 
   return (
-    <div className="applicant-form-container">
+    <div className="tab-content">
       <div>
         <h1 className="signup-h1">Applicant Registration</h1>
       </div>

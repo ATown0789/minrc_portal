@@ -40,7 +40,7 @@ const ApplicantHome = ({ getJobs }) => {
   useEffect(() => {
     getJobs();
     setFilteredJobs(jobs);
-    window.scrollTo({ top: 0, behavior: "instant" });
+    // window.scrollTo({ top: 0, behavior: "instant" });
     window.addEventListener("resize", handleWindowSizeChange);
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
@@ -187,8 +187,8 @@ const ApplicantHome = ({ getJobs }) => {
   }, [jobs]);
 
   return user.loggedIn ? (
-    <>
-      <h1>MINRC Job Board</h1>
+    <div className="tab-content">
+      <h2>Job Board</h2>
       <div className="job-wrap">
         <SearchPanel
           filteredJobs={filteredJobs}
@@ -196,7 +196,7 @@ const ApplicantHome = ({ getJobs }) => {
           searchText={searchText}
           setSearchText={setSearchText}
         />
-        <div className="job-view">
+        <div className="panel-view">
           <div
             className={
               isExpanded ? "show-full filter-container" : "filter-container"
@@ -208,8 +208,10 @@ const ApplicantHome = ({ getJobs }) => {
               setChangedFilter={setChangedFilter}
               rating={rating}
               setRating={setRating}
+              filteredJobs={filteredJobs}
+              setSearchText={setSearchText}
             />
-            {isMobile && (
+            {/* {isMobile && (
               <span
                 onClick={toggleCard}
                 className={isExpanded ? "expanded chevron" : "chevron"}
@@ -217,7 +219,7 @@ const ApplicantHome = ({ getJobs }) => {
               >
                 <BsIcons.BsChevronCompactDown />
               </span>
-            )}
+            )} */}
           </div>
           <div className="job-container">
             {filteredJobs.length > 0 ? (
@@ -239,7 +241,7 @@ const ApplicantHome = ({ getJobs }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   ) : (
     <div> YOU'RE NOT LOGGED IN! </div>
   );

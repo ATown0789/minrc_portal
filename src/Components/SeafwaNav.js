@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "./logo.svg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouseChimney } from "@fortawesome/free-solid-svg-icons";
+import * as BsIcons from "react-icons/bs";
 import "./navbar.css";
 
-const home = <FontAwesomeIcon color="#012c3a" icon={faHouseChimney} />;
+const home = <BsIcons.BsHouseDoorFill />;
 
 const SeafwaNav = () => {
   const [open, setOpen] = useState(false);

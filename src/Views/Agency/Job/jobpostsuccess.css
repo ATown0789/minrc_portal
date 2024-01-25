@@ -7,10 +7,6 @@
   align-items: center;
 }
 
-h2 {
-  margin-bottom: 30px;
-}
-
 .return-btn {
   display: inline-block;
   background-color: rgb(77, 93, 116);

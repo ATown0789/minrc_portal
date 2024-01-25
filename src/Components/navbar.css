@@ -3,6 +3,7 @@
   margin: 2px auto;
   display: flex;
   flex-direction: column;
+  padding-bottom: 20px;
 }
 
 .seafwa-logo-container {
@@ -69,8 +70,13 @@
 
 .minrc-title-container {
   width: 60%;
-  margin: 30px auto 30px 10%;
+  margin: 0 0 0 8%;
 }
+
+/* .minrc-title-container {
+  width: 60%;
+  margin: 30px auto 30px 10%;
+} */
 
 .minrc-title-container h1 {
   color: #2c2c2c;
@@ -339,4 +345,7 @@ span {
   .desktop {
     display: none !important;
   }
+}
+
+@media (min-width: 600px) {
 }

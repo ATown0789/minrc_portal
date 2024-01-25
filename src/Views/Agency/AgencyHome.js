@@ -72,6 +72,7 @@ const AgencyHome = () => {
           modalToggle={modalToggle}
           setModalToggle={setModalToggle}
           deleteJobId={deleteJobId}
+          modalType={"delete"}
         />
       )}
       <h1 className="agency-h1">{user.agency}'s Dashboard</h1>

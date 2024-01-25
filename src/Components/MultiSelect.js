@@ -1,5 +1,9 @@
 import React, { useRef } from "react";
-import ReactSelect from "react-select";
+import Select, { components } from "react-select";
+import { IoLocationOutline } from "react-icons/io5";
+import { PiBriefcaseMetalLight } from "react-icons/pi";
+import { BsGearWideConnected } from "react-icons/bs";
+import { FaGraduationCap } from "react-icons/fa6";
 
 export const MultiSelect = (props) => {
   // isOptionSelected sees previous props.value after onChange
@@ -54,13 +58,46 @@ export const MultiSelect = (props) => {
     }
   };
 
+  const ICONS = [
+    <IoLocationOutline />,
+    <PiBriefcaseMetalLight />,
+    <BsGearWideConnected />,
+    <FaGraduationCap />,
+  ];
+
+  let currentIcon = ICONS[props.icon];
+
+  const Control = ({ children, ...props }) => {
+    const style = { margin: "0", fontSize: "20px", color: "#c8b722" };
+
+    return (
+      <components.Control {...props}>
+        <span style={style}>{currentIcon}</span>
+        {children}
+      </components.Control>
+    );
+  };
+
+  const styles = {
+    control: (css) => ({
+      ...css,
+      paddingLeft: "5px",
+      marginTop: "15px",
+      zIndex: "9",
+    }),
+  };
+
   return (
-    <ReactSelect
+    <Select
+      {...props}
+      className={props.className}
+      components={{ Control }}
+      classNamePrefix={props.classNamePrefix}
       isOptionSelected={isOptionSelected}
       isOptionDisabled={() =>
         maxSelect ? getValue()?.length >= maxSelect : false
       }
-      styles={{ menu: (provided) => ({ ...provided, zIndex: 9 }) }}
+      styles={styles}
       options={getOptions()}
       value={getValue()}
       onChange={onChange}

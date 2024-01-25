@@ -1,10 +1,22 @@
 import React from "react";
 import "./button.css";
 
-const Button = ({ variant, onClick, children, style, active }) => {
+const Button = ({
+  variant,
+  onClick,
+  children,
+  style,
+  active,
+  id,
+  className,
+}) => {
   return (
     <button
-      className={active ? `active ${variant}` : variant}
+      style={style}
+      id={id}
+      className={
+        active ? `active primary ${variant}` : `${className} primary ${variant}`
+      }
       onClick={onClick}
     >
       {children}

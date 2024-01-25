@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import "./filterpanel.css";
 import { stateOptions } from "./stateOptions";
 import positionOptions from "../DUMMY_DATA/positionOptions";
-import Select from "react-select";
+
+import Select, { components } from "react-select";
 import { MultiSelect } from "./MultiSelect";
 import StarRating from "./StarRating";
 import skills from "../DUMMY_DATA/skilloptions.json";
 import aois from "../DUMMY_DATA/keywords.json";
+import { IoLocationOutline } from "react-icons/io5";
+import { PiBriefcaseMetalLight } from "react-icons/pi";
+import { BsGearWideConnected } from "react-icons/bs";
+import { FaGraduationCap } from "react-icons/fa6";
+import { BsSearch } from "react-icons/bs";
 
 const FilterPanel = ({
   filterObject,
@@ -15,6 +21,7 @@ const FilterPanel = ({
   rating,
   setRating,
   isApplicant,
+  setSearchText,
 }) => {
   const [hover, setHover] = useState(0);
   const [width, setWidth] = useState(window.innerWidth);
@@ -40,38 +47,55 @@ const FilterPanel = ({
     setFilterObject({ ...filterObject, matchRate: rating });
   }, [rating]);
 
+  const Control = ({ children, ...props }) => {
+    const style = { margin: "0", fontSize: "20px", color: "#c8b722" };
+
+    return (
+      <components.Control {...props}>
+        <span style={style}>{<IoLocationOutline />}</span>
+        {children}
+      </components.Control>
+    );
+  };
+
+  const styles = {
+    control: (css) => ({
+      ...css,
+      paddingLeft: "5px",
+      marginTop: "5px",
+      zIndex: "9",
+    }),
+  };
+
   return (
     <div className="filter-panel">
-      <h2>Filters</h2>
-      {!isApplicant && (
-        <>
-          <h4>Match:</h4>
-          <StarRating
-            rating={rating}
-            setRating={setRating}
-            hover={hover}
-            setHover={setHover}
-            setChangedFilter={setChangedFilter}
-          />
-          {!isMobile && (
-            <span className="match-span">(double click to reset)</span>
-          )}
-          <hr />
-        </>
-      )}
-      <h4>Location:</h4>
+      <span id="search-icon">
+        <BsSearch />
+      </span>
+      <input
+        className="search-input"
+        placeholder={
+          isApplicant
+            ? `Find applicants by skill, interest, or state abbreviation`
+            : `Find openings by location, agency, or keywords`
+        }
+        type="text"
+        onChange={(e) => setSearchText(e.target.value)}
+      />
       <Select
-        placeholder="Select a state"
+        placeholder="Filter by state"
+        components={{ Control }}
         options={stateOptions}
         onChange={(e) => {
           setChangedFilter("location");
           setFilterObject({ ...filterObject, location: e?.value });
         }}
         isClearable
-        styles={{ menu: (provided) => ({ ...provided, zIndex: 9 }) }}
+        styles={styles}
       />
+
       {!isApplicant && (
-        <label>
+        <label id="remote-label">
           <input
             id="remote-input"
             type="checkbox"
@@ -87,10 +111,9 @@ const FilterPanel = ({
           Remote
         </label>
       )}
-      <hr />
-      <h4>Areas of Interest:</h4>
       <MultiSelect
-        placeholder="Select areas of interest"
+        placeholder="Filter by interest"
+        icon={1}
         options={aois}
         value={filterObject.aois}
         onChange={(selectedOption) => {
@@ -106,10 +129,10 @@ const FilterPanel = ({
           setFilterObject({ ...filterObject, aois: state });
         }}
       />
-      <hr />
-      <h4>Skills:</h4>
+
       <MultiSelect
-        placeholder="Select skills"
+        placeholder="Filter by skill"
+        icon={2}
         options={skills}
         value={filterObject.skills}
         onChange={(selectedOption) => {
@@ -125,12 +148,11 @@ const FilterPanel = ({
           setFilterObject({ ...filterObject, skills: state });
         }}
       />
-      <hr />
       {isApplicant && (
         <>
-          <h4>Education:</h4>
           <Select
-            placeholder="Select education"
+            placeholder="Filter by education"
+            icon={3}
             options={edOptions}
             onChange={(e) => {
               setChangedFilter("location");
@@ -139,6 +161,21 @@ const FilterPanel = ({
             isClearable
             styles={{ menu: (provided) => ({ ...provided, zIndex: 9 }) }}
           />
+        </>
+      )}
+      {!isApplicant && (
+        <>
+          <p className="match-p">Match at least:</p>
+          <StarRating
+            rating={rating}
+            setRating={setRating}
+            hover={hover}
+            setHover={setHover}
+            setChangedFilter={setChangedFilter}
+          />
+          {!isMobile && (
+            <span className="match-span">(double click to reset)</span>
+          )}
         </>
       )}
     </div>

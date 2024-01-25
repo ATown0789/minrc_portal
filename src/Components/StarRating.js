@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { IoIosStarOutline } from "react-icons/io";
 
 const StarRating = ({
   rating,
@@ -9,7 +10,6 @@ const StarRating = ({
 }) => {
   return (
     <div className="star-rating">
-      At Least:
       {[...Array(5)].map((star, index) => {
         index += 1;
         return (

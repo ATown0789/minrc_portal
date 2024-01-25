@@ -1,11 +1,3 @@
-.jobpost-container {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
-}
-
 .job-description {
   line-height: 1.5;
   margin: 5px;
@@ -23,6 +15,38 @@ a.job-btn.edit.sticky {
   right: 100px;
   z-index: 99;
 }
+
+.job-details-container {
+  background-color: whitesmoke;
+  width: 80%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px 20px 10px 15px;
+  margin: 25px 0px 20px 5px;
+  border-radius: 10px;
+}
+
+.job-detail-icon {
+  font-size: 20px;
+  margin: 0 8px 0 2px;
+}
+
+p.job-detail-text {
+  color: var(--placeholder-color);
+  margin: 10px 0 0 30px;
+}
+
+.job-detail-text.parenthesis-text {
+  font-size: 12px;
+  margin-top: 0;
+}
+
+.sticky-button {
+  position: sticky;
+  top: 5px;
+  z-index: 999;
+}
+
+/* 
 
 @media (max-width: 450px) {
   a.job-btn.success.sticky,
@@ -47,4 +71,4 @@ a.job-btn.edit.sticky {
     right: 10px;
     z-index: 999;
   }
-}
+} */

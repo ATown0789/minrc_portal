@@ -6,10 +6,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { editJob } from "Redux/Jobs/jobSlice";
 import { updateJob } from "firebase.config";
+import positionOptions from "../DUMMY_DATA/positionOptions.json";
+import Button from "./Button";
 
 const JobCard = ({ job, user }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [myMatch, setMyMatch] = useState(0);
+  const [positionType, setPositionType] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -64,30 +67,64 @@ const JobCard = ({ job, user }) => {
     return (
       <>
         {keys.map((item) => (
-          <span key={item} className="job-star">
+          <p key={item} className="star on">
             &#9733;
-          </span>
+          </p>
         ))}
       </>
     );
   }
 
+  useEffect(() => {
+    switch (job.type) {
+      case "full":
+        setPositionType(positionOptions[0].label);
+        break;
+      case "part":
+        setPositionType(positionOptions[1].label);
+        break;
+      case "internship":
+        setPositionType(positionOptions[2].label);
+        break;
+      case "seasonal":
+        setPositionType(positionOptions[3].label);
+        break;
+      default:
+        setPositionType(null);
+    }
+  }, []);
+
+  const MAX_CHARS = 200;
+  const MAX_AOIS = 3;
+
+  function truncateText(text, length) {
+    if (text.length <= length) {
+      return text;
+    }
+
+    return text.substr(0, length) + "\u2026";
+  }
+
+  function truncateAois(aois, length) {
+    if (aois.length <= length) {
+      return aois;
+    }
+
+    return aois.slice(0, length);
+  }
+
   return (
     <div className={isExpanded ? "show-full job-card" : "job-card"}>
       <div className="inner-job-container">
-        <p className="due-date">
-          Applications due by {job.dueDate}
-          <span style={{ float: "right" }}>
-            <MatchLoop times={myMatch} />
-          </span>
-        </p>
-
+        <div className="star-container">
+          <MatchLoop times={myMatch} />
+        </div>
+        <p className="due-date">Applications due by {job.dueDate}</p>
         <h2 className="job-title">{job.title}</h2>
-        {!!job.summary &&
-          job.summary.map((paragraph, index) => {
-            return <p key={index}>{paragraph}</p>;
-          })}
-
+        <div className="type-container">
+          {job.remote && <span className="job-type card-remote">Remote</span>}
+          <span className={`${job.type}-type job-type`}>{positionType}</span>
+        </div>
         <span className="location-pin">
           {!!job.location && !job.location.length ? (
             <p>No Locations Listed</p>
@@ -102,12 +139,14 @@ const JobCard = ({ job, user }) => {
             })
           )}
         </span>
+        {!!job.summary && <p>{truncateText(job.summary[0], MAX_CHARS)}</p>}
+
         <div className="job-keyword-cont">
           {!!job.aois && !job.aois.length ? (
             <p>No Areas of Interest Listed</p>
           ) : (
             !!job.aois &&
-            job.aois.map((keyword, index) => {
+            truncateAois(job.aois, MAX_AOIS).map((keyword, index) => {
               return (
                 <span className="job-keyword" key={index}>
                   {typeof keyword != "object" ? keyword : keyword.label}
@@ -115,12 +154,18 @@ const JobCard = ({ job, user }) => {
               );
             })
           )}
+          <span className="end-elispes">&#8230;</span>
         </div>
         <div className="card-btn-container">
-          <Link className="job-btn" to={`/${slugify(job.title + job.id)}`}>
+          <Link
+            className="primary card-btn"
+            to={`/${slugify(job.title + job.id)}`}
+          >
             Learn More
           </Link>
-          <button
+          <Button
+            className="card-btn"
+            variant="secondary"
             onClick={() => {
               let newJob = {
                 ...job,
@@ -133,19 +178,18 @@ const JobCard = ({ job, user }) => {
               updateJob(newJob);
               navigate("/apply-success");
             }}
-            className="job-btn success"
           >
             I'm Interested
-          </button>
+          </Button>
         </div>
       </div>
-      <span
+      {/* <span
         onClick={toggleCard}
         className={isExpanded ? "expanded chevron" : "chevron"}
         style={{ fontSize: "24px", justifySelf: "flex-end" }}
       >
         <BsIcons.BsChevronCompactDown />
-      </span>
+      </span> */}
     </div>
   );
 };

@@ -14,14 +14,14 @@ function ApplicantProfile() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
+    // window.scrollTo({ top: 0, behavior: "instant" });
     setTimeout(() => dispatch(setLoader(false)), 1000);
   }, []);
 
   return user.loggedIn ? (
-    <div>
+    <div className="tab-content">
       <h1>{user.fName}'s Profile</h1>
-      <div className="profile-content">
+      <div className="inner-tab-content">
         <h4>
           Name: {user.fName} {user.lName}
         </h4>
@@ -45,7 +45,10 @@ function ApplicantProfile() {
         {user.summary.map((summary, index) => {
           return <p key={index}>{summary}</p>;
         })}
-        <button onClick={() => navigate("/edit-profile")} className="edit-btn">
+        <button
+          onClick={() => navigate("/edit-profile")}
+          className="primary secondary edit-btn"
+        >
           Edit
         </button>
       </div>
