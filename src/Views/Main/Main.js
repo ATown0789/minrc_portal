@@ -31,7 +31,11 @@ const Main = () => {
       data.loggedIn = true;
       dispatch(editUser(data));
       console.log("Logged IN!");
-      data.agency === "applicant" ? navigate("/applicant-home") : navigate("/");
+      data.agency === "applicant"
+        ? navigate("/applicant-home")
+        : data.agency === "Super User"
+        ? navigate("/super-home")
+        : navigate("/agency-home");
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");

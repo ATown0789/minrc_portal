@@ -31,11 +31,14 @@ const NavTabs = ({ setActive, active, options }) => {
           return (
             <Link
               to={tab.path}
-              className="nav-tab"
+              className={`nav-tab ${
+                active.title === tab.title ? "active" : ""
+              }`}
               onClick={() => setActive(tab)}
               key={index}
               active={active.title === tab.title}
             >
+              {console.log(active.title, tab.title)}
               {!isMobile && tab.icon}
               {isMobile ? tab.icon : <span>{tab.title}</span>}
             </Link>

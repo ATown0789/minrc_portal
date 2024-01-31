@@ -22,6 +22,7 @@ const FilterPanel = ({
   setRating,
   isApplicant,
   setSearchText,
+  id,
 }) => {
   const [hover, setHover] = useState(0);
   const [width, setWidth] = useState(window.innerWidth);
@@ -48,27 +49,38 @@ const FilterPanel = ({
   }, [rating]);
 
   const Control = ({ children, ...props }) => {
-    const style = { margin: "0", fontSize: "20px", color: "#c8b722" };
+    const style = {
+      margin: "0",
+      marginLeft: "5px",
+      fontSize: "20px",
+      color: "#c8b722",
+    };
 
     return (
       <components.Control {...props}>
-        <span style={style}>{<IoLocationOutline />}</span>
+        <span style={style}>
+          {props.options.length === 3 ? (
+            <FaGraduationCap />
+          ) : (
+            <IoLocationOutline />
+          )}
+        </span>
         {children}
       </components.Control>
     );
   };
 
-  const styles = {
+  const styles = !isMobile && {
     control: (css) => ({
       ...css,
       paddingLeft: "5px",
-      marginTop: "5px",
       zIndex: "9",
+      height: "45px",
     }),
   };
 
   return (
-    <div className="filter-panel">
+    <div className="filter-panel" id={id}>
       <span id="search-icon">
         <BsSearch />
       </span>
@@ -82,36 +94,40 @@ const FilterPanel = ({
         type="text"
         onChange={(e) => setSearchText(e.target.value)}
       />
-      <Select
-        placeholder="Filter by state"
-        components={{ Control }}
-        options={stateOptions}
-        onChange={(e) => {
-          setChangedFilter("location");
-          setFilterObject({ ...filterObject, location: e?.value });
-        }}
-        isClearable
-        styles={styles}
-      />
+      <div className="state-container">
+        <Select
+          classNamePrefix="stevei-select"
+          placeholder="Filter by state"
+          components={{ Control }}
+          options={stateOptions}
+          onChange={(e) => {
+            setChangedFilter("location");
+            setFilterObject({ ...filterObject, location: e?.value });
+          }}
+          isClearable
+          styles={styles}
+        />
 
-      {!isApplicant && (
-        <label id="remote-label">
-          <input
-            id="remote-input"
-            type="checkbox"
-            checked={filterObject.remote}
-            onChange={() => {
-              setChangedFilter("remote");
-              setFilterObject({
-                ...filterObject,
-                remote: !filterObject.remote,
-              });
-            }}
-          />
-          Remote
-        </label>
-      )}
+        {!isApplicant && (
+          <label id="remote-label">
+            <input
+              id="remote-input"
+              type="checkbox"
+              checked={filterObject.remote}
+              onChange={() => {
+                setChangedFilter("remote");
+                setFilterObject({
+                  ...filterObject,
+                  remote: !filterObject.remote,
+                });
+              }}
+            />
+            Remote
+          </label>
+        )}
+      </div>
       <MultiSelect
+        className="multi-select"
         placeholder="Filter by interest"
         icon={1}
         options={aois}
@@ -131,6 +147,7 @@ const FilterPanel = ({
       />
 
       <MultiSelect
+        className="multi-select"
         placeholder="Filter by skill"
         icon={2}
         options={skills}
@@ -151,20 +168,22 @@ const FilterPanel = ({
       {isApplicant && (
         <>
           <Select
+            classNamePrefix="stevei-select"
             placeholder="Filter by education"
             icon={3}
+            components={{ Control }}
             options={edOptions}
             onChange={(e) => {
-              setChangedFilter("location");
+              setChangedFilter("education");
               setFilterObject({ ...filterObject, education: e?.label });
             }}
             isClearable
-            styles={{ menu: (provided) => ({ ...provided, zIndex: 9 }) }}
+            styles={styles}
           />
         </>
       )}
       {!isApplicant && (
-        <>
+        <div className="match-container">
           <p className="match-p">Match at least:</p>
           <StarRating
             rating={rating}
@@ -176,7 +195,7 @@ const FilterPanel = ({
           {!isMobile && (
             <span className="match-span">(double click to reset)</span>
           )}
-        </>
+        </div>
       )}
     </div>
   );

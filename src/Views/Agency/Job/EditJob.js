@@ -123,86 +123,88 @@ const EditJob = ({ job }) => {
   });
 
   return (
-    <div className="job-form-container">
-      <div>
-        <h1 className="new-job-h1">Edit {`${job.title}`} Job Posting</h1>
-      </div>
+    <div className="tab-content">
+      <div className="job-form-container">
+        <div>
+          <h1 className="new-job-h1">Edit {`${job.title}`} Job Posting</h1>
+        </div>
 
-      <FormProvider {...methods}>
-        <form
-          className="new-job-form"
-          onSubmit={(e) => e.preventDefault()}
-          noValidate
-          autoComplete="off"
-        >
-          <Input {...titleValidation} />
-          <Input {...dueDateValidation} />
-          <Input {...summaryValidation} />
-          <Input
-            {...locationsValidation}
-            options={stateOptions}
-            control={control}
-          />
-          <Input {...remoteValidation} />
-          <Input {...aoisValidation} options={keywords} control={control} />
-          <Input
-            {...skillsValidation}
-            options={skilloptions}
-            control={control}
-          />
-          <Input
-            {...typeValidation}
-            options={positionOptions}
-            control={control}
-          />
+        <FormProvider {...methods}>
+          <form
+            className="new-job-form"
+            onSubmit={(e) => e.preventDefault()}
+            noValidate
+            autoComplete="off"
+          >
+            <Input {...titleValidation} />
+            <Input {...dueDateValidation} />
+            <Input {...summaryValidation} />
+            <Input
+              {...locationsValidation}
+              options={stateOptions}
+              control={control}
+            />
+            <Input {...remoteValidation} />
+            <Input {...aoisValidation} options={keywords} control={control} />
+            <Input
+              {...skillsValidation}
+              options={skilloptions}
+              control={control}
+            />
+            <Input
+              {...typeValidation}
+              options={positionOptions}
+              control={control}
+            />
 
-          {user?.agency && !!user?.agency ? (
-            <div className="job-form-input">
-              <label className="label">Agency</label>
-              <input
-                defaultValue={job.agency}
-                className="agency-input"
-                type="text"
-                readOnly
-                placeholder="Hiring agency"
-                {...register("agency", { required: true })}
-              />
+            {user?.agency && !!user?.agency ? (
+              <div className="job-form-input">
+                <label className="label">Agency</label>
+                <input
+                  defaultValue={job.agency}
+                  className="agency-input"
+                  type="text"
+                  readOnly
+                  placeholder="Hiring agency"
+                  {...register("agency", { required: true })}
+                />
+              </div>
+            ) : (
+              <Input {...agencyValidation} />
+            )}
+
+            <Input {...salaryValidation} />
+            <Input {...startDateValidation} />
+            <Input {...endDateValidation} />
+            <Input {...descriptionValidation} />
+            <Input {...responsibilitiesValidation} />
+            <Input {...qualificationsValidation} />
+            <Input {...websiteValidation} />
+            <Input {...hiringNameValidation} />
+            <Input {...hiringEmailValidation} />
+            <Input {...hiringPhoneValidation} />
+
+            <div className="btn-container">
+              <button
+                onClick={() => {
+                  navigate(`/view-${originalURL}`);
+                }}
+                className="cancel-btn"
+              >
+                Cancel
+              </button>
+
+              <button
+                onClick={onSubmit}
+                className="submit-btn job-submit"
+                type="submit"
+              >
+                Submit
+              </button>
             </div>
-          ) : (
-            <Input {...agencyValidation} />
-          )}
-
-          <Input {...salaryValidation} />
-          <Input {...startDateValidation} />
-          <Input {...endDateValidation} />
-          <Input {...descriptionValidation} />
-          <Input {...responsibilitiesValidation} />
-          <Input {...qualificationsValidation} />
-          <Input {...websiteValidation} />
-          <Input {...hiringNameValidation} />
-          <Input {...hiringEmailValidation} />
-          <Input {...hiringPhoneValidation} />
-
-          <div className="btn-container">
-            <button
-              onClick={() => {
-                navigate(`/view-${originalURL}`);
-              }}
-              className="cancel-btn"
-            >
-              Cancel
-            </button>
-
-            <button
-              onClick={onSubmit}
-              className="submit-btn job-submit"
-              type="submit"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      </FormProvider>
+          </form>
+        </FormProvider>
+      </div>
     </div>
   );
 };

@@ -3,7 +3,6 @@ import "./ApplicantHome.css";
 import aois from "../../DUMMY_DATA/keywords.json";
 import JobCard from "Components/JobCard";
 import FilterPanel from "Components/FilterPanel";
-import SearchPanel from "Components/SearchPanel";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setLoader } from "Redux/Loader/loaderSlice";
@@ -37,8 +36,12 @@ const ApplicantHome = ({ getJobs }) => {
   if (!user.loggedIn) navigate("/");
 
   useEffect(() => {
-    getJobs();
-    setFilteredJobs(jobs);
+    if (jobs?.length === 0) {
+      console.log("Jobs", jobs);
+      getJobs();
+      console.log("get jobs");
+      setFilteredJobs(jobs);
+    }
     // window.scrollTo({ top: 0, behavior: "instant" });
     window.addEventListener("resize", handleWindowSizeChange);
     return () => {
@@ -72,11 +75,11 @@ const ApplicantHome = ({ getJobs }) => {
           return true;
         }
 
-        if (filterObject.type) {
-          if (!job.type.toLowerCase().includes(filterObject.type)) {
-            return false;
-          }
-        }
+        // if (filterObject.type) {
+        //   if (!job.type.toLowerCase().includes(filterObject.type)) {
+        //     return false;
+        //   }
+        // }
 
         if (filterObject.remote) {
           let doesContain = false;
@@ -119,8 +122,6 @@ const ApplicantHome = ({ getJobs }) => {
           if (!doesContain) return false;
         }
 
-        console.log(filterObject);
-
         if (filterObject.skills.length > 0) {
           let doesContain = false;
           if (filterObject.empty)
@@ -142,6 +143,8 @@ const ApplicantHome = ({ getJobs }) => {
 
         if (rating > 0) {
           if (job.match < rating) {
+            console.log("job.match: ", job.match);
+            console.log("rating: ", rating);
             if (filterObject.empty)
               setFilterObject({ ...filterObject, empty: false });
             return false;
@@ -190,18 +193,8 @@ const ApplicantHome = ({ getJobs }) => {
       <h2>Job Board</h2>
 
       <div className="job-wrap">
-        <SearchPanel
-          filteredJobs={filteredJobs}
-          setFilteredJobs={setFilteredJobs}
-          searchText={searchText}
-          setSearchText={setSearchText}
-        />
         <div className="panel-view">
-          <div
-            className={
-              isExpanded ? "show-full filter-container" : "filter-container"
-            }
-          >
+          <div className="filter-container">
             <FilterPanel
               filterObject={filterObject}
               setFilterObject={setFilterObject}

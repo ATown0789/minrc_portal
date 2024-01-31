@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import NavBar from "Components/NavBar";
 import data from "../../DUMMY_DATA/applicantdata.json";
 import FilterPanel from "Components/FilterPanel";
-import SearchPanel from "Components/SearchPanel";
 import { useSelector, useDispatch } from "react-redux";
 import ApplicantCard from "Components/ApplicantCard";
+import "../../Components/filterpanel.css";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "firebase.config";
 import * as BsIcons from "react-icons/bs";
@@ -149,50 +149,27 @@ const ViewApplicants = () => {
   }, [filterObject, searchText]);
 
   return (
-    <>
+    <div className="tab-content">
       <h1>MINRC applicant Board</h1>
       <div className="job-wrap">
-        <SearchPanel
-          filteredJobs={filteredApplicants}
-          setFilteredJobs={setFilteredApplicants}
-          searchText={searchText}
-          setSearchText={setSearchText}
-          isApplicant={true}
-        />
-        <div className="job-view">
-          <div
-            className={
-              isExpanded ? "show-full filter-container" : "filter-container"
-            }
-          >
-            <FilterPanel
-              filterObject={filterObject}
-              setFilterObject={setFilterObject}
-              setChangedFilter={setChangedFilter}
-              rating={rating}
-              setRating={setRating}
-              isApplicant={true}
-            />
-            {isMobile && (
-              <span
-                onClick={toggleCard}
-                className={isExpanded ? "expanded chevron" : "chevron"}
-                style={{ fontSize: "24px", justifySelf: "flex-end" }}
-              >
-                <BsIcons.BsChevronCompactDown />
-              </span>
-            )}
-          </div>
-          <div className="job-container">
-            {filteredApplicants.map((applicant) => {
-              return (
-                <ApplicantCard key={applicant.uid} applicant={applicant} />
-              );
-            })}
-          </div>
+        <div className="filter-container">
+          <FilterPanel
+            id="applicant-filter"
+            filterObject={filterObject}
+            setFilterObject={setFilterObject}
+            setChangedFilter={setChangedFilter}
+            rating={rating}
+            setRating={setRating}
+            isApplicant={true}
+          />
+        </div>
+        <div className="job-container">
+          {filteredApplicants.map((applicant) => {
+            return <ApplicantCard key={applicant.uid} applicant={applicant} />;
+          })}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

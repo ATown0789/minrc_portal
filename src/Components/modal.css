@@ -65,9 +65,16 @@
 .modal-container .modal-footer {
   display: flex;
   justify-content: center;
+  gap: 30px;
   align-items: center;
 }
 
 #delete-btn {
   background-color: crimson;
+}
+
+@media (min-width: 750px) {
+  .modal-container {
+    width: 50%;
+  }
 }

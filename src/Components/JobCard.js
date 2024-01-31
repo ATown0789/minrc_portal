@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as MdIcons from "react-icons/md";
 import * as BsIcons from "react-icons/bs";
 import "./jobcard.css";
@@ -21,37 +21,37 @@ const JobCard = ({ job, user }) => {
   }
 
   const matchAois = () => {
-    let numMatch = 0;
+    let aoiMatch = 0;
     !!job.aois &&
       job.aois.forEach((aoi) => {
         user.interests.forEach((interest) => {
-          if (aoi.value === interest.value) numMatch = numMatch + 1;
+          if (aoi.value === interest.value) aoiMatch = aoiMatch + 1;
         });
       });
-    return numMatch;
+
+    return aoiMatch;
   };
 
   const matchSkills = () => {
-    let numMatch = 0;
+    let skillMatch = 0;
     job.skills.forEach((skill) => {
       user.skills.forEach((uSkill) => {
-        if (skill.value === uSkill.value) numMatch = numMatch + 1;
+        if (skill.value === uSkill.value) skillMatch = skillMatch + 1;
       });
     });
-    return numMatch;
-  };
 
-  const updateJobMatch = () => {
-    dispatch(editJob({ ...job, match: myMatch }));
+    return skillMatch;
   };
 
   useEffect(() => {
     const skillsNum = matchSkills();
+    console.log("SKILL NUM", skillsNum);
     const interestNum = matchAois();
     const starRate = (skillsNum + interestNum) / 2;
+    console.log(starRate);
     setMyMatch(Math.round(starRate));
-    updateJobMatch();
-  }, [myMatch]);
+    dispatch(editJob({ ...job, match: Math.round(starRate) }));
+  }, []);
 
   const slugify = (str) =>
     !!str &&

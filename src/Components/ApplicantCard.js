@@ -8,6 +8,8 @@ import { setLoader } from "Redux/Loader/loaderSlice";
 import emailjs, { send } from "@emailjs/browser";
 import Button from "./Button";
 
+import { FaGraduationCap } from "react-icons/fa6";
+
 const ApplicantCard = ({ applicant }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const dispatch = useDispatch();
@@ -92,41 +94,42 @@ const ApplicantCard = ({ applicant }) => {
         <h2 className="job-title">
           {applicant.uid.substring(0, 10).toLowerCase()}
         </h2>
-        <p className="job-summary">
-          Education completed:
-          <span
-            style={{
-              fontWeight: "bold",
-            }}
-          >
-            {applicant.education}
-          </span>
-        </p>
+        <div>
+          <p className="job-summary">
+            <span>
+              <span style={{ marginRight: "3px" }}>
+                <FaGraduationCap />
+              </span>
+              {applicant.education}
+            </span>
+            <span>
+              <MdIcons.MdLocationPin /> {applicant.stateSel}
+            </span>
+          </p>
+        </div>
         <p className="job-summary">
           {truncateSummary(applicant.summary.join(" "))}
         </p>
 
-        <span className="location-pin">
-          <span>
-            <MdIcons.MdLocationPin /> {applicant.stateSel}
-          </span>
-        </span>
+        <span className="location-pin"></span>
         <div className="job-keyword-cont">
           {applicant.skills.map((skill, index) => {
             return (
-              <span className="job-keyword" key={index}>
+              <span className="applicant-skill" key={index}>
                 {skill.label}
               </span>
             );
           })}
         </div>
         <div className="card-btn-container">
-          <Link className="job-btn" to={`/applicant-${slugify(applicant.uid)}`}>
+          <Link
+            className="primary secondary"
+            to={`/applicant-${slugify(applicant.uid)}`}
+          >
             Learn More
           </Link>
           <Button
-            className="job-btn success"
-            variant="success"
+            variant="primary"
             onClick={() => {
               dispatch(setLoader(true));
               sendEmail(contactTemplateParams);
@@ -137,13 +140,6 @@ const ApplicantCard = ({ applicant }) => {
           </Button>
         </div>
       </div>
-      <span
-        onClick={toggleCard}
-        className={isExpanded ? "expanded chevron" : "chevron"}
-        style={{ fontSize: "24px", justifySelf: "flex-end" }}
-      >
-        <BsIcons.BsChevronCompactDown />
-      </span>
     </div>
   );
 };

@@ -5,8 +5,8 @@ h1 {
 .job-container {
   display: flex;
   justify-content: space-evenly;
-  width: 70%;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
 .filter-container {
@@ -16,7 +16,6 @@ h1 {
   margin-right: 50px;
   margin-left: 50px;
   /* height: 80vh; */
-  background-color: rgb(239, 239, 239);
   /* height: 600px; */
   /* box-shadow: 5px 5px 5px silver; */
 }
@@ -113,24 +112,6 @@ h1 {
   } */
 }
 
-@media (min-width: 750px) {
-  .filter-container {
-    width: 90%;
-  }
-
-  .filter-panel {
-    flex-direction: row !important;
-    flex-wrap: wrap;
-  }
-
-  .search-input {
-    padding: 0 !important;
-    height: 25px !important;
-    align-self: center;
-    margin: 0 !important;
-    width: 100% !important;
-  }
-}
 /* 
 .test-select-class {
   background: red;

@@ -6,7 +6,7 @@ function AgencyProfile() {
   const user = useSelector((state) => state.user);
 
   return (
-    <div>
+    <div className="tab-content">
       <h1>{user.agency}'s Profile</h1>
       <div className="profile-content">
         <h4>

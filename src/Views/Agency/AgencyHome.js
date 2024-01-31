@@ -10,6 +10,7 @@ import { db } from "firebase.config";
 import { loadApplicants } from "Redux/Applicants/applicantSlice";
 import { loadJobs } from "Redux/Jobs/jobSlice";
 import MobileAgencyCard from "Components/MobileAgencyCard";
+import Table from "Components/Table";
 
 const AgencyHome = () => {
   const navigate = useNavigate();
@@ -62,6 +63,7 @@ const AgencyHome = () => {
   }, [jobs]);
 
   useEffect(() => {
+    setTimeout(() => dispatch(setLoader(false)), 1000);
     if (!user.loggedIn) navigate("/");
   });
 
@@ -75,53 +77,59 @@ const AgencyHome = () => {
           modalType={"delete"}
         />
       )}
-      <h1 className="agency-h1">{user.agency}'s Dashboard</h1>
-      <div className="mobile">
-        {filteredJobs.map((job) => {
-          console.log(job);
-          return (
-            <MobileAgencyCard
-              key={job.id}
-              job={job}
-              setModalToggle={setModalToggle}
-              setDeleteJobId={setDeleteJobId}
-            />
-          );
-        })}
+      <div className="tab-content">
+        <h1>Dashboard</h1>
+        <div className="mobile">
+          {filteredJobs.map((job) => {
+            console.log(job);
+            return (
+              <MobileAgencyCard
+                key={job.id}
+                job={job}
+                setModalToggle={setModalToggle}
+                setDeleteJobId={setDeleteJobId}
+              />
+            );
+          })}
+        </div>
+        {filteredJobs.length ? (
+          <Table
+            jobs={filteredJobs}
+            setDeleteJobId={setDeleteJobId}
+            setModalToggle={setModalToggle}
+          />
+        ) : (
+          /* <Table striped bordered className="agency-table ">
+              <thead>
+                <tr>
+                  <th>Positions Posted</th>
+                  <th>Interested Applicants</th>
+                  <th>Contacted</th>
+                  <th>Declined Applicants</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredJobs.map((job) => {
+                  return (
+                    <PostedPositions
+                      key={job.id}
+                      job={job}
+                      setModalToggle={setModalToggle}
+                      setDeleteJobId={setDeleteJobId}
+                    />
+                  );
+                })}
+              </tbody>
+            </Table> */
+
+          <div className="no-postings">
+            <h1>No Positions Posted</h1>
+            <Link className="agency-btn posted-btn" to={"/add-job"}>
+              Create New Posting
+            </Link>
+          </div>
+        )}
       </div>
-      {filteredJobs.length ? (
-        <div className="table-container desktop">
-          {/* <Table striped bordered className="agency-table ">
-            <thead>
-              <tr>
-                <th>Positions Posted</th>
-                <th>Interested Applicants</th>
-                <th>Contacted</th>
-                <th>Declined Applicants</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredJobs.map((job) => {
-                return (
-                  <PostedPositions
-                    key={job.id}
-                    job={job}
-                    setModalToggle={setModalToggle}
-                    setDeleteJobId={setDeleteJobId}
-                  />
-                );
-              })}
-            </tbody>
-          </Table> */}
-        </div>
-      ) : (
-        <div className="no-postings">
-          <h1>No Positions Posted</h1>
-          <Link className="agency-btn posted-btn" to={"/add-job"}>
-            Create New Posting
-          </Link>
-        </div>
-      )}
     </>
   ) : (
     <div>Please log in to view this page</div>

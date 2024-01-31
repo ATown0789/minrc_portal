@@ -13,10 +13,22 @@ import { FaBriefcase, FaRegCalendarAlt } from "react-icons/fa";
 
 const JobPost = ({ job }) => {
   const [type, setType] = useState();
+  const [width, setWidth] = useState(window.innerWidth);
   const dispatch = useDispatch();
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
   }, []);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+
+  const isMobile = width <= 768;
 
   const slugify = (str) =>
     str
@@ -72,76 +84,179 @@ const JobPost = ({ job }) => {
       <Link>Job Board</Link> <span>{`>`}</span> <span>Job Details</span>
       <h2 style={{ marginTop: "20px" }}>Job Details</h2>
       <div className="job-details-container">
-        <p className="due-date">Applications due: {job.dueDate}</p>
-        <h2 style={{ marginLeft: "0" }}>{job.title}</h2>
+        {!isMobile && (
+          <div className="job-head-container">
+            <div className="top-job-head">
+              <p className="due-date">Applications due: {job.dueDate}</p>
+              <h2 style={{ marginLeft: "0" }}>{job.title}</h2>{" "}
+              {user.agency === "applicant" ? (
+                <Link
+                  style={{
+                    width: "20%",
+                    margin: "5px",
+                    lineHeight: "2",
+                    textAlign: "center",
+                    justifySelf: "flex-end",
+                  }}
+                  className="primary secondary interest-btn"
+                  to={"/apply-success"}
+                >
+                  I'm Interested
+                </Link>
+              ) : (
+                <div className="sticky-job-btn-container">
+                  <Link className="job-btn edit sticky" to={`/edit-${url}`}>
+                    Edit Job
+                  </Link>
+                </div>
+              )}
+            </div>
 
-        <h4>
-          <span className="job-detail-icon">
-            <FaLocationDot />
-          </span>
-          Location
-        </h4>
-        <p className="job-detail-text">
-          {job.location &&
-            job.location.map((location, index) => {
-              let stateName = location?.label.slice(5);
-              return stateName + ", ";
-            })}
-        </p>
-        {job.remote && (
-          <p className="job-detail-text parenthesis-text">
-            (Remote work possible)
-          </p>
-        )}
-        <h4>
-          <span className="job-detail-icon">
-            <BsBuildings />
-          </span>
-          Agency
-        </h4>
-        <p className="job-detail-text"> {job.agency}</p>
-        <h4>
-          <span className="job-detail-icon">
-            <FaMoneyBills />
-          </span>
-          Salary
-        </h4>
-        <p className="job-detail-text">{job.salary}</p>
-        <h4>
-          <h4>
-            <span className="job-detail-icon">
-              <FaBriefcase />
-            </span>
-            Employment Type
-          </h4>
-          <div className="type-container">
-            {job.remote && <span className="card-remote">Remote</span>}
-            <p className={`${job.type}-type job-type job-detail-text`}>
-              {type}
-            </p>
+            <div className="bottom-job-head">
+              <div className="flex-column">
+                <h4>
+                  <span className="job-detail-icon">
+                    <FaLocationDot />
+                  </span>
+                  Location
+                </h4>
+                <p className="job-detail-text">
+                  {job.location &&
+                    job.location.map((location, index) => {
+                      let comma = ", ";
+                      let stateName = location?.label.slice(5);
+                      index === job.location.length - 1
+                        ? (comma = "")
+                        : (comma = ", ");
+                      return stateName + comma;
+                    })}
+                </p>
+              </div>
+              <div className="flex-column">
+                {job.remote && (
+                  <p className="job-detail-text parenthesis-text">
+                    (Remote work possible)
+                  </p>
+                )}
+                <h4>
+                  <span className="job-detail-icon">
+                    <BsBuildings />
+                  </span>
+                  Agency
+                </h4>
+                <p className="job-detail-text"> {job.agency}</p>
+              </div>
+              <div className="flex-column">
+                <h4>
+                  <span className="job-detail-icon">
+                    <FaMoneyBills />
+                  </span>
+                  Salary
+                </h4>
+                <p className="job-detail-text">{job.salary}</p>
+              </div>
+
+              <div className="flex-column">
+                <h4>
+                  <span className="job-detail-icon">
+                    <FaBriefcase />
+                  </span>
+                  Employment Type
+                </h4>
+                <div className="type-container">
+                  {job.remote && <span className="card-remote">Remote</span>}
+                  <p className={`${job.type}-type job-type job-detail-text`}>
+                    {type}
+                  </p>
+                </div>
+              </div>
+              <div className="flex-column">
+                <h4>
+                  <span className="job-detail-icon">
+                    <FaRegCalendarAlt />
+                  </span>
+                  Estimated position dates
+                </h4>
+                <p className="job-detail-text">
+                  {dateFormat(job.start)} - {dateFormat(job.end)}
+                </p>
+              </div>
+            </div>
           </div>
-          <span className="job-detail-icon">
-            <FaRegCalendarAlt />
-          </span>
-          Estimated position dates
-        </h4>
-        <p className="job-detail-text">
-          {dateFormat(job.start)} - {dateFormat(job.end)}
-        </p>
+        )}
+        {isMobile && (
+          <div>
+            <p className="due-date">Applications due: {job.dueDate}</p>
+            <h2 style={{ marginLeft: "0" }}>{job.title}</h2>
+            <h4>
+              <span className="job-detail-icon">
+                <FaLocationDot />
+              </span>
+              Location
+            </h4>
+            <p className="job-detail-text">
+              {job.location &&
+                job.location.map((location, index) => {
+                  let stateName = location?.label.slice(5);
+                  return stateName + ", ";
+                })}
+            </p>
+            {job.remote && (
+              <p className="job-detail-text parenthesis-text">
+                (Remote work possible)
+              </p>
+            )}
+            <h4>
+              <span className="job-detail-icon">
+                <BsBuildings />
+              </span>
+              Agency
+            </h4>
+            <p className="job-detail-text"> {job.agency}</p>
+            <h4>
+              <span className="job-detail-icon">
+                <FaMoneyBills />
+              </span>
+              Salary
+            </h4>
+            <p className="job-detail-text">{job.salary}</p>
+            <h4>
+              <h4>
+                <span className="job-detail-icon">
+                  <FaBriefcase />
+                </span>
+                Employment Type
+              </h4>
+              <div className="type-container">
+                {job.remote && <span className="card-remote">Remote</span>}
+                <p className={`${job.type}-type job-type job-detail-text`}>
+                  {type}
+                </p>
+              </div>
+              <span className="job-detail-icon">
+                <FaRegCalendarAlt />
+              </span>
+              Estimated position dates
+            </h4>
+            <p className="job-detail-text">
+              {dateFormat(job.start)} - {dateFormat(job.end)}
+            </p>
 
-        {user.agency === "applicant" ? (
-          <Link
-            style={{ margin: "5px", lineHeight: "4.5" }}
-            className="primary secondary sticky-button"
-            to={"/apply-success"}
-          >
-            I'm Interested
-          </Link>
-        ) : (
-          <div className="sticky-job-btn-container">
-            <Link className="job-btn edit sticky" to={`/edit-${url}`}>
-              Edit Job
-            </Link>
+            {user.agency === "applicant" ? (
+              <Link
+                style={{ margin: "5px", lineHeight: "4.5" }}
+                className="primary secondary sticky-button"
+                to={"/apply-success"}
+              >
+                I'm Interested
+              </Link>
+            ) : (
+              <div className="sticky-job-btn-container">
+                <Link className="job-btn edit sticky" to={`/edit-${url}`}>
+                  Edit Job
+                </Link>
+              </div>
+            )}
           </div>
         )}
 

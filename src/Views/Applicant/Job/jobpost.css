@@ -46,10 +46,41 @@ p.job-detail-text {
   z-index: 999;
 }
 
-/* 
+@media (min-width: 700px) {
+  .job-details-container {
+    width: 97%;
+  }
 
-@media (max-width: 450px) {
-  a.job-btn.success.sticky,
+  .job-head-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .interest-btn {
+    width: 20%;
+    margin: 5px;
+    line-height: 2;
+    text-align: center;
+    justify-self: flex-end;
+    position: absolute;
+    top: 700px;
+    right: 200px;
+  }
+
+  .bottom-job-head {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 90%;
+    justify-self: flex-end;
+    padding-bottom: 10px;
+    gap: 25px;
+  }
+
+  .bottom-job-head .flex-column {
+  }
+  /* a.job-btn.success.sticky,
   a.job-btn.edit.sticky {
     position: sticky;
     top: 5px;
@@ -70,5 +101,11 @@ p.job-detail-text {
     top: 5px;
     right: 10px;
     z-index: 999;
+  } */
+}
+
+@media (min-width: 1373px) {
+  .interest-btn {
+    top: 630px;
   }
-} */
+}

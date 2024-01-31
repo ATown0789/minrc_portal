@@ -82,8 +82,8 @@ export const MultiSelect = (props) => {
     control: (css) => ({
       ...css,
       paddingLeft: "5px",
-      marginTop: "15px",
-      zIndex: "9",
+      height: "41px",
+      marginBottom: "0",
     }),
   };
 
@@ -92,7 +92,7 @@ export const MultiSelect = (props) => {
       {...props}
       className={props.className}
       components={{ Control }}
-      classNamePrefix={props.classNamePrefix}
+      classNamePrefix="multi-select"
       isOptionSelected={isOptionSelected}
       isOptionDisabled={() =>
         maxSelect ? getValue()?.length >= maxSelect : false

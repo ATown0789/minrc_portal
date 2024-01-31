@@ -14,7 +14,7 @@ function Modal({ setModalToggle, deleteJobId, modalType }) {
       {modalType === "delete" ? (
         <div className="modal-container">
           <button className="close-btn" onClick={() => setModalToggle(false)}>
-            X
+            &#x2715;
           </button>
           <div className="modal-title">
             <h1>WAIT! Are You Sure?</h1>
@@ -27,7 +27,10 @@ function Modal({ setModalToggle, deleteJobId, modalType }) {
           </div>
 
           <div className="modal-footer">
-            <Button variant="tertiary" onClick={() => setModalToggle(false)}>
+            <Button
+              variant="primary tertiary"
+              onClick={() => setModalToggle(false)}
+            >
               Cancel
             </Button>
             <Button
@@ -36,7 +39,7 @@ function Modal({ setModalToggle, deleteJobId, modalType }) {
                 dispatch(removeJob(deleteJobId));
                 setModalToggle(false);
               }}
-              variant="danger"
+              variant="primary delete"
               id="delete-btn"
             >
               Delete

@@ -20,6 +20,7 @@ import {
 } from "utils/inputValidations";
 import { Input } from "Components/Input";
 import { setLoader } from "Redux/Loader/loaderSlice";
+import Button from "Components/Button";
 
 const EditApplicantProfile = ({ user }) => {
   const navigate = useNavigate();
@@ -137,18 +138,18 @@ const EditApplicantProfile = ({ user }) => {
           <Input {...professionalSummaryValidation} />
 
           <div className="btn-container">
-            <button
+            <Button
               onClick={() => {
                 navigate("/applicant-profile");
               }}
-              className="cancel-btn"
+              className="primary secondary"
             >
               Cancel
-            </button>
+            </Button>
 
-            <button onClick={onSubmit} className="submit-btn" type="submit">
+            <Button onClick={onSubmit} className="primary" type="submit">
               Submit
-            </button>
+            </Button>
           </div>
         </form>
       </FormProvider>

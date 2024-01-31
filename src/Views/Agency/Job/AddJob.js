@@ -5,7 +5,7 @@ import positionOptions from "../../../DUMMY_DATA/positionOptions.json";
 import { addJob } from "Redux/Jobs/jobSlice";
 import { stateOptions } from "Components/stateOptions";
 import "./addjob.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addJobPosting, auth } from "firebase.config";
 import skilloptions from "../../../DUMMY_DATA/skilloptions.json";
 import { FormProvider, useForm } from "react-hook-form";
@@ -32,6 +32,7 @@ import {
 } from "../../../utils/inputValidations";
 import { Input } from "Components/Input";
 import { current } from "@reduxjs/toolkit";
+import Button from "Components/Button";
 
 const AddJob = () => {
   const dispatch = useDispatch();
@@ -93,75 +94,80 @@ const AddJob = () => {
   });
 
   return (
-    <div className="job-form-container">
-      <div>
-        <h1 className="new-job-h1">Create New Job Posting</h1>
+    <div className="tab-content">
+      <div style={{ marginTop: "0", marginBottom: "20px" }}>
+        <Link>Dashboard</Link> <span>{`>`}</span> <span>New Job Posting</span>
       </div>
-
-      <FormProvider {...methods}>
-        <form
-          className="new-job-form"
-          onSubmit={(e) => e.preventDefault()}
-          noValidate
-          autoComplete="off"
-        >
-          <Input {...titleValidation} />
-          <Input {...dueDateValidation} />
-          <Input {...summaryValidation} />
-          <Input
-            {...locationsValidation}
-            options={stateOptions}
-            control={control}
-          />
-          <Input {...remoteValidation} />
-          <Input {...aoisValidation} options={keywords} control={control} />
-          <Input
-            {...skillsValidation}
-            options={skilloptions}
-            control={control}
-          />
-          <Input
-            {...typeValidation}
-            options={positionOptions}
-            control={control}
-          />
-
-          {user?.agency && !!user?.agency ? (
-            <>
-              <label className="agency-label label">Agency</label>
-              <input
-                defaultValue={initialValues.agency}
-                className="agency-input"
-                type="text"
-                readOnly
-                placeholder="Hiring agency"
-                {...register("agency", { required: true })}
-              />
-            </>
-          ) : (
-            <Input {...agencyValidation} />
-          )}
-
-          <Input {...salaryValidation} />
-          <Input {...startDateValidation} />
-          <Input {...endDateValidation} />
-          <Input {...descriptionValidation} />
-          <Input {...responsibilitiesValidation} />
-          <Input {...qualificationsValidation} />
-          <Input {...websiteValidation} />
-          <Input {...hiringNameValidation} />
-          <Input {...hiringEmailValidation} />
-          <Input {...hiringPhoneValidation} />
-
-          <button
-            onClick={onSubmit}
-            className="submit-btn job-submit"
-            type="submit"
+      <div>
+        <h1 className="new-job-h1">New Job Posting</h1>
+      </div>
+      <div className="job-form-container">
+        <FormProvider {...methods}>
+          <form
+            className="new-job-form"
+            onSubmit={(e) => e.preventDefault()}
+            noValidate
+            autoComplete="off"
           >
-            Submit
-          </button>
-        </form>
-      </FormProvider>
+            <Input {...titleValidation} />
+            <Input {...dueDateValidation} />
+            <Input {...summaryValidation} />
+            <Input
+              {...locationsValidation}
+              options={stateOptions}
+              control={control}
+            />
+            <Input {...remoteValidation} />
+            <Input {...aoisValidation} options={keywords} control={control} />
+            <Input
+              {...skillsValidation}
+              options={skilloptions}
+              control={control}
+            />
+            <Input
+              {...typeValidation}
+              options={positionOptions}
+              control={control}
+            />
+
+            {user?.agency && !!user?.agency ? (
+              <>
+                <label className="agency-label label">Agency</label>
+                <input
+                  defaultValue={initialValues.agency}
+                  className="agency-input"
+                  type="text"
+                  readOnly
+                  placeholder="Hiring agency"
+                  {...register("agency", { required: true })}
+                />
+              </>
+            ) : (
+              <Input {...agencyValidation} />
+            )}
+
+            <Input {...salaryValidation} />
+            <Input {...startDateValidation} />
+            <Input {...endDateValidation} />
+            <Input {...descriptionValidation} />
+            <Input {...responsibilitiesValidation} />
+            <Input {...qualificationsValidation} />
+            <Input {...websiteValidation} />
+            <Input {...hiringNameValidation} />
+            <Input {...hiringEmailValidation} />
+            <Input {...hiringPhoneValidation} />
+
+            <Button
+              style={{ marginTop: "30px" }}
+              onClick={onSubmit}
+              className="primary"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </form>
+        </FormProvider>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./superhome.css";
+// import "./superhome.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "Components/Modal";
@@ -12,6 +12,8 @@ import PostedPositions from "Views/Agency/PostedPositions";
 import MobileAgencyCard from "Components/MobileAgencyCard";
 import { DownloadTableExcel, downloadExcel } from "react-export-table-to-excel";
 import Button from "Components/Button";
+import Table from "Components/Table";
+import { TbFileDownload } from "react-icons/tb";
 
 const SuperHome = () => {
   const navigate = useNavigate();
@@ -49,8 +51,6 @@ const SuperHome = () => {
         (job.contacted?.length > 0 ? job.contacted?.length : 0) +
         (job.declined?.length > 0 ? job.declined?.length : 0),
     ];
-
-    console.log(jobArray);
 
     body.push(jobArray);
   });
@@ -118,62 +118,57 @@ const SuperHome = () => {
           modalToggle={modalToggle}
           setModalToggle={setModalToggle}
           deleteJobId={deleteJobId}
+          modalType={"delete"}
         />
       )}
-      <h1 className="agency-h1">Dashboard</h1>
-      <Button variant="login-btn" onClick={handleDownloadExcel}>
-        Eport Table as Excel
-      </Button>
+      <div className="tab-content">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <h1>Dashboard</h1>
+          <Button variant="primary download" onClick={handleDownloadExcel}>
+            Eport Table
+            <span style={{ fontSize: "32px" }}>
+              <TbFileDownload />
+            </span>
+          </Button>
+        </div>
 
-      <div className="mobile">
-        {jobs.map((job) => {
-          console.log(job);
-          return (
-            <MobileAgencyCard
-              key={job.id}
-              job={job}
-              setModalToggle={setModalToggle}
+        <div className="mobile">
+          {jobs.map((job) => {
+            console.log(job);
+            return (
+              <MobileAgencyCard
+                key={job.id}
+                job={job}
+                setModalToggle={setModalToggle}
+                setDeleteJobId={setDeleteJobId}
+              />
+            );
+          })}
+        </div>
+        {jobs.length ? (
+          <div className="table-wrap">
+            <Table
+              jobs={jobs}
               setDeleteJobId={setDeleteJobId}
+              setModalToggle={setModalToggle}
+              superUser={true}
             />
-          );
-        })}
+          </div>
+        ) : (
+          <div className="no-postings">
+            <h1>No Positions Posted</h1>
+            <Link className="agency-btn posted-btn" to={"/add-job"}>
+              Create New Posting
+            </Link>
+          </div>
+        )}
       </div>
-      {jobs.length ? (
-        <div className="table-container desktop">
-          {/* <Table ref={tableRef} striped bordered className="agency-table">
-            <thead>
-              <tr>
-                <th>Positions Posted</th>
-                <th>Created</th>
-                <th>Agency</th>
-                <th>Interested Applicants</th>
-                <th>Contacted</th>
-                <th>Declined Applicants</th>
-              </tr>
-            </thead>
-            <tbody>
-              {jobs.map((job) => {
-                return (
-                  <PostedPositions
-                    key={job.id}
-                    job={job}
-                    setModalToggle={setModalToggle}
-                    setDeleteJobId={setDeleteJobId}
-                    superUser={true}
-                  />
-                );
-              })}
-            </tbody>
-          </Table> */}
-        </div>
-      ) : (
-        <div className="no-postings">
-          <h1>No Positions Posted</h1>
-          <Link className="agency-btn posted-btn" to={"/add-job"}>
-            Create New Posting
-          </Link>
-        </div>
-      )}
     </>
   ) : (
     <div>Please log in to view this page</div>

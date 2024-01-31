@@ -21,6 +21,7 @@ import {
 import { Input } from "Components/Input";
 import { useDispatch } from "react-redux";
 import { setLoader } from "Redux/Loader/loaderSlice";
+import Button from "Components/Button";
 
 const ApplicantSignup = () => {
   const navigate = useNavigate();
@@ -111,9 +112,9 @@ const ApplicantSignup = () => {
           />
           <Input {...professionalSummaryValidation} />
 
-          <button onClick={onSubmit} className="submit-btn" type="submit">
+          <Button onClick={onSubmit} className="primary" type="submit">
             Register
-          </button>
+          </Button>
 
           <div className="login-text">
             Already have an account? <Link to="/">Login</Link> now.

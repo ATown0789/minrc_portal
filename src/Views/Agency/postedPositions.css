@@ -7,7 +7,9 @@
 .posted-btn {
   margin: 3px;
   margin: 3px;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgb(29, 123, 255);
   letter-spacing: 1.5px;
   color: whitesmoke;
@@ -16,10 +18,12 @@
   font-weight: 800;
   padding: 6px 12px;
   border: none;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.348);
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.348);
   cursor: pointer;
   transition: all ease 0.3s;
   text-decoration: none;
+  width: 20px;
+  height: 25px;
 }
 
 .view-job-button:hover,
@@ -29,29 +33,20 @@
 }
 
 .view-job-button {
-  background-color: green;
+  background-color: var(--primary-blue);
 }
 .edit-job-button {
-  background-color: darkgray;
+  background-color: var(--primary-gold);
 }
 .remove-job-button {
-  background-color: red;
+  background-color: #a30d11;
 }
 
 .view-job-button:hover,
 .edit-job-button:hover,
 .remove-job-button:hover {
   color: whitesmoke;
-}
-
-.view-job-button:hover {
-  background-color: darkgreen;
-}
-.edit-job-button:hover {
-  background-color: rgb(128, 128, 128);
-}
-.remove-job-button:hover {
-  background-color: darkred;
+  filter: brightness(75%);
 }
 
 .applicant-container {
@@ -61,18 +56,21 @@
 }
 
 .applicant-btn {
-  width: auto;
-  margin: 3px;
-  display: inline-block;
-  background-color: rgb(29, 123, 255);
+  width: 95px;
+  height: 22px;
+  margin: 10px 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--neutral-color);
   letter-spacing: 1.5px;
-  color: whitesmoke;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 7px;
+  color: var(--text-color);
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: normal;
+  padding: 4px;
   border: none;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.348);
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.348);
   cursor: pointer;
   transition: all ease 0.3s;
   text-decoration: none;
@@ -83,7 +81,7 @@
 }
 
 .applicant-btn:hover {
-  background-color: rgb(15, 66, 137);
+  background-color: var(--secondary-gray);
   color: white;
 }
 

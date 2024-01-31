@@ -18,7 +18,7 @@ const Applicant = ({ applicant }) => {
 
   if (state) job = { ...state.job };
 
-  const superUser = state.superUser;
+  const superUser = !!state?.superUser;
 
   console.log("SuperUSER", superUser);
 
@@ -92,7 +92,7 @@ const Applicant = ({ applicant }) => {
   };
 
   return (
-    <>
+    <div className="tab-content">
       <div className="applicant-view-container">
         <h2>
           Applicant Id:
@@ -103,7 +103,7 @@ const Applicant = ({ applicant }) => {
         <div className="applicant-attributes-container">
           <h3>Educaiton Completed: </h3>
           <span className="skill-container">
-            <h3>{applicant.education}</h3>
+            <h4>{applicant.education}</h4>
           </span>
         </div>
         <div className="applicant-attributes-container">
@@ -134,6 +134,17 @@ const Applicant = ({ applicant }) => {
         </div>
 
         <div className="button-container">
+          <Link
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            className="primary secondary"
+            to={superUser ? "/super-home" : "/agency-home"}
+          >
+            <BsIcons.BsArrowLeft /> Back
+          </Link>
           {job?.declined?.includes(applicant.id) && (
             <Button
               onClick={() => {
@@ -166,10 +177,8 @@ const Applicant = ({ applicant }) => {
               Decline
             </Button>
           )}
-
           <Button
-            className="applicant-button "
-            variant="success"
+            variant="primary"
             onClick={() => {
               dispatch(setLoader(true));
               Object.keys(job).length !== 0
@@ -213,14 +222,8 @@ const Applicant = ({ applicant }) => {
             Contact
           </Button>
         </div>
-        <Link
-          className="return-btn"
-          to={superUser ? "/super-home" : "/agency-home"}
-        >
-          <BsIcons.BsArrowLeft /> Back to Dashboardoard
-        </Link>
       </div>
-    </>
+    </div>
   );
 };
 

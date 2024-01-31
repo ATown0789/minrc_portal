@@ -1,11 +1,15 @@
 .applicant-view-container {
   display: flex;
   flex-direction: column;
-  width: 60%;
   justify-content: center;
   align-items: center;
   margin: auto;
-  margin-top: 100px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.348);
+  margin-top: 20px;
+  width: 92%;
 }
 
 .applicant-id-text {
@@ -21,23 +25,27 @@
 }
 
 .button-container {
-  margin-top: 30px;
+  margin-top: 70px;
+  margin-bottom: 30px;
   display: flex;
-  width: 300px;
-  justify-content: space-around;
+  width: 80%;
+  justify-content: center;
+  gap: 20%;
 }
 
 .applicant-skill {
-  background: rgb(191, 242, 191);
+  background: var(--neutral-color);
+  color: var(--placeholder-color);
   margin: 2px;
-  padding: 3px;
-  border: 1px solid black;
-  font-size: 22px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
 }
 
 .skill-container {
   display: inline-flex;
   flex-wrap: wrap;
+  gap: 20px;
   width: 100%;
 }
 
@@ -51,7 +59,7 @@
   padding: 10px;
   font-weight: bold;
   border: none;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.348);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.348);
   cursor: pointer;
   transition: all ease 0.3s;
   text-decoration: none;
@@ -71,4 +79,11 @@
   flex-direction: column;
   width: 100%;
   margin: 10px;
+}
+
+@media (min-width: 750px) {
+  .applicant-view-container {
+    width: 60%;
+    margin-top: 0;
+  }
 }

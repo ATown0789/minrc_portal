@@ -37,6 +37,7 @@
 
 .match-p {
   margin-bottom: 0;
+  margin-top: 0;
 }
 
 .filter-panel {
@@ -44,43 +45,28 @@
   flex-direction: column;
   align-self: flex-start;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .star-rating {
   margin-bottom: 20px;
 }
 
-/* .my-aoi-container,
-.my-skill-container,
-.my-ed-container {
-  margin: 8px 0 8px 0;
+.search-input {
+  width: 91%;
+  padding-left: 25px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
 }
 
-.my-state-container {
-  margin: 5px 0 2px 0;
+#search-icon {
+  font-size: 18px;
+  position: absolute;
+  left: -10px;
+  top: 10px;
+  color: var(--primary-gold);
 }
-
-.my-state__placeholder,
-.my-state__input-container,
-.my-state__input,
-.my-aoi__placeholder,
-.my-aoi__input-container,
-.my-aoi__input,
-.my-skill__placeholder,
-.my-skill__input-container,
-.my-skill__input,
-.my-ed__placeholder,
-.my-ed__input-container,
-.my-ed__input {
-  padding-left: 0px !important;
-}
-
-.my-state__value-container,
-.my-aoi__value-container,
-.my-skill__value-container,
-.my-ed__value-container {
-  padding-left: 25px !important;
-} */
 
 #location-icon,
 #skill-icon,
@@ -89,18 +75,6 @@
   font-size: 20px;
   color: var(--primary-gold);
 }
-
-/* #skill-icon {
-  top: 196px;
-}
-
-#aoi-icon {
-  top: 141px;
-}
-
-#ed-icon {
-  top: 96px;
-} */
 
 #remote-input {
   height: 20px;
@@ -111,7 +85,8 @@
   display: flex;
   height: 30px;
   align-items: center;
-  margin-top: 8px;
+  margin-top: -3px;
+  margin-bottom: 8px;
 }
 
 hr {
@@ -126,4 +101,97 @@ h4 {
 .match-span {
   font-size: 10px;
   margin-left: 0px;
+}
+
+.stevei-select__control {
+  margin-bottom: 10px !important;
+}
+
+.multi-select {
+  margin-bottom: 10px;
+}
+
+@media (min-width: 750px) {
+  .filter-container {
+    width: 90%;
+  }
+
+  .filter-panel {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+  }
+
+  .search-input {
+    padding: 0;
+    height: 40px;
+    align-self: center;
+    margin: 0 20px 40px 0;
+    width: 40%;
+    padding-left: 40px;
+  }
+
+  #search-icon {
+    top: 13px;
+    left: 45px;
+  }
+
+  #remote-label {
+    margin: 12px 20px;
+    width: 200px;
+  }
+
+  .state-container {
+    display: flex;
+    margin-right: 50px;
+  }
+
+  .stevei-select__menu {
+    top: inherit !important;
+  }
+
+  .stevei-select__control {
+    margin-top: 0px !important;
+  }
+
+  .multi-select__control {
+    margin-bottom: 0px !important;
+    margin-right: 50px;
+    height: 45px !important;
+  }
+
+  .multi-select {
+    height: 50px;
+  }
+
+  .star-rating {
+    margin-bottom: 3px;
+  }
+
+  .star-container {
+    justify-content: flex-end;
+    width: 93%;
+  }
+
+  p.star.on {
+    width: initial;
+  }
+
+  .job-container {
+    width: 100%;
+    gap: 30px;
+  }
+
+  .inner-job-container p {
+    width: 60%;
+  }
+
+  .inner-job-container {
+    padding: 20px;
+    width: 93%;
+  }
+
+  .card-btn-container {
+    justify-content: flex-end;
+    width: 93%;
+  }
 }
