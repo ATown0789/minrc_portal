@@ -93,35 +93,14 @@ const AgencyHome = () => {
           })}
         </div>
         {filteredJobs.length ? (
-          <Table
-            jobs={filteredJobs}
-            setDeleteJobId={setDeleteJobId}
-            setModalToggle={setModalToggle}
-          />
+          <div className="desktop ">
+            <Table
+              jobs={filteredJobs}
+              setDeleteJobId={setDeleteJobId}
+              setModalToggle={setModalToggle}
+            />
+          </div>
         ) : (
-          /* <Table striped bordered className="agency-table ">
-              <thead>
-                <tr>
-                  <th>Positions Posted</th>
-                  <th>Interested Applicants</th>
-                  <th>Contacted</th>
-                  <th>Declined Applicants</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredJobs.map((job) => {
-                  return (
-                    <PostedPositions
-                      key={job.id}
-                      job={job}
-                      setModalToggle={setModalToggle}
-                      setDeleteJobId={setDeleteJobId}
-                    />
-                  );
-                })}
-              </tbody>
-            </Table> */
-
           <div className="no-postings">
             <h1>No Positions Posted</h1>
             <Link className="agency-btn posted-btn" to={"/add-job"}>

@@ -6,7 +6,7 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.241);
   z-index: 99;
-  font-size: 54px;
+  font-size: 32px;
   color: white;
   display: flex;
   flex-direction: column;

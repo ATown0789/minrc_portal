@@ -156,11 +156,11 @@ h4 {
   .multi-select__control {
     margin-bottom: 0px !important;
     margin-right: 50px;
-    height: 45px !important;
+    /* min-height: 45px !important; */
   }
 
   .multi-select {
-    height: 50px;
+    /* height: 50px; */
   }
 
   .star-rating {

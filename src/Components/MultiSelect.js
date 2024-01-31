@@ -82,7 +82,7 @@ export const MultiSelect = (props) => {
     control: (css) => ({
       ...css,
       paddingLeft: "5px",
-      height: "41px",
+      // height: "41px",
       marginBottom: "0",
     }),
   };
@@ -104,6 +104,7 @@ export const MultiSelect = (props) => {
       hideSelectedOptions={false}
       isDisabled={disabled}
       closeMenuOnSelect={false}
+      closeMenuOnScroll={true}
       isMulti
       placeholder={props.placeholder}
     />

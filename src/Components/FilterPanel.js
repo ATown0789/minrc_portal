@@ -75,7 +75,7 @@ const FilterPanel = ({
       ...css,
       paddingLeft: "5px",
       zIndex: "9",
-      height: "45px",
+      // height: "45px",
     }),
   };
 

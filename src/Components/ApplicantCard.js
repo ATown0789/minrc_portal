@@ -84,7 +84,7 @@ const ApplicantCard = ({ applicant }) => {
   }
 
   return (
-    <div className={isExpanded ? "show-full job-card" : "job-card"}>
+    <div className="job-card applicant-card">
       <div className="inner-job-container">
         <p className="due-date">
           {/* <span style={{ float: "right" }}>

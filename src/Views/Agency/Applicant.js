@@ -134,17 +134,7 @@ const Applicant = ({ applicant }) => {
         </div>
 
         <div className="button-container">
-          <Link
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            className="primary secondary"
-            to={superUser ? "/super-home" : "/agency-home"}
-          >
-            <BsIcons.BsArrowLeft /> Back
-          </Link>
+          {console.log(job.declined)}
           {job?.declined?.includes(applicant.id) && (
             <Button
               onClick={() => {

@@ -152,7 +152,7 @@ const SuperHome = () => {
           })}
         </div>
         {jobs.length ? (
-          <div className="table-wrap">
+          <div className="desktop">
             <Table
               jobs={jobs}
               setDeleteJobId={setDeleteJobId}

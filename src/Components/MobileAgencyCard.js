@@ -35,24 +35,20 @@ const MobileAgencyCard = ({
   const url = slugify(job.title + job.id);
 
   return (
-    <div
-      className={
-        isExpanded
-          ? "show-full job-card agency-mobile"
-          : "job-card agency-mobile"
-      }
-    >
-      <div className="inner-job-container">
-        <h2 className="job-title">{job.title}</h2>
-
-        <div className="mobile-agency-buttons-cont">
+    <div className="table-container mobile-agency">
+      <div className="table-header mobile-agency">
+        <p>Position</p>
+      </div>
+      <div className="first-cell-container mobile-agency">
+        {job.title}
+        <div className="table-btn-container">
           <Link to={`/view-${url}`} className="posted-btn view-job-button">
             <BsIcons.BsEye />
           </Link>
           <Link to={`/edit-${url}`} className="posted-btn edit-job-button">
             <BsIcons.BsPencilFill />
           </Link>
-          <button
+          <Link
             onClick={() => {
               setDeleteJobId(job.id);
               setModalToggle(true);
@@ -60,89 +56,89 @@ const MobileAgencyCard = ({
             className="posted-btn remove-job-button"
           >
             <BsIcons.BsTrash />
-          </button>
-        </div>
-        <h3>Interested:</h3>
-        <div className="applicant-container">
-          {job.interested?.length > 0 ? (
-            job.interested.map((applicant, index) => {
-              return (
-                <Link
-                  className="applicant-btn agency-mobile-btn"
-                  to={`/applicant-${slugify(applicant)}`}
-                  state={{
-                    job: job,
-                    superUser: superUser,
-                  }}
-                >
-                  Applicant ID:
-                  <span className="applicant-id-text">
-                    {` ${applicant.substring(0, 10).toLowerCase()}`}
-                  </span>
-                </Link>
-              );
-            })
-          ) : (
-            <p>None Yet!</p>
-          )}
-        </div>
-        <h3>Contacted:</h3>
-        <div className="applicant-container">
-          {job.contacted?.length > 0 ? (
-            job.contacted.map((applicant, index) => {
-              return (
-                <Link
-                  className="applicant-btn agency-mobile-btn"
-                  to={`/applicant-${slugify(applicant)}`}
-                  state={{
-                    job: job,
-                    superUser: superUser,
-                  }}
-                >
-                  Applicant ID:
-                  <span className="applicant-id-text">
-                    {` ${applicant.substring(0, 10).toLowerCase()}`}
-                  </span>
-                </Link>
-              );
-            })
-          ) : (
-            <p>None Yet!</p>
-          )}
-        </div>
-        <h3>Declined:</h3>
-        <div className="applicant-container">
-          {job.contacted?.length > 0 ? (
-            job.contacted.map((applicant, index) => {
-              return (
-                <Link
-                  className="applicant-btn agency-mobile-btn"
-                  to={`/applicant-${slugify(applicant)}`}
-                  state={{
-                    job: job,
-                    superUser: superUser,
-                  }}
-                >
-                  Applicant ID:
-                  <span className="applicant-id-text">
-                    {` ${applicant.substring(0, 10).toLowerCase()}`}
-                  </span>
-                </Link>
-              );
-            })
-          ) : (
-            <p>None Yet!</p>
-          )}
+          </Link>
         </div>
       </div>
+      <div className="table-header mobile-agency">
+        <p>Interested Applicants</p>
+      </div>
+      <div className="applicant-container mobile-agency">
+        {job.interested?.length > 0 ? (
+          job.interested.map((applicant, index) => {
+            console.log(applicant);
+            return (
+              <Link
+                className="applicant-btn mobile-agency"
+                to={`/applicant-${slugify(applicant)}`}
+                state={{
+                  job: job,
+                  superUser: superUser,
+                }}
+              >
+                <span style={{ fontWeight: "bold", marginLeft: "0" }}>ID:</span>
 
-      <span
-        onClick={toggleCard}
-        className={isExpanded ? "expanded chevron" : "chevron"}
-        style={{ fontSize: "24px", justifySelf: "flex-end" }}
-      >
-        <BsIcons.BsChevronCompactDown />
-      </span>
+                <span className="applicant-id-text">
+                  {` ${applicant.substring(0, 10).toLowerCase()}`}
+                </span>
+              </Link>
+            );
+          })
+        ) : (
+          <p>None Yet!</p>
+        )}
+      </div>
+      <div className="table-header mobile-agency">
+        <p>Contacted Applicants</p>
+      </div>
+      <div className="applicant-container mobile-agency">
+        {job.contacted?.length > 0 ? (
+          job.contacted.map((applicant, index) => {
+            return (
+              <Link
+                className="applicant-btn mobile-agency"
+                to={`/applicant-${slugify(applicant)}`}
+                state={{
+                  job: job,
+                  superUser: superUser,
+                }}
+              >
+                <span style={{ fontWeight: "bold", marginLeft: "0" }}>ID:</span>
+                <span className="applicant-id-text">
+                  {` ${applicant.substring(0, 10).toLowerCase()}`}
+                </span>
+              </Link>
+            );
+          })
+        ) : (
+          <p>None Yet!</p>
+        )}
+      </div>
+      <div className="table-header mobile-agency">
+        <p>Declined Applicants</p>
+      </div>
+      <div className="applicant-container mobile-agency">
+        {job.declined?.length > 0 ? (
+          job.declined.map((applicant, index) => {
+            return (
+              <Link
+                className="applicant-btn mobile-agency"
+                to={`/applicant-${slugify(applicant)}`}
+                state={{
+                  job: job,
+                  superUser: superUser,
+                }}
+              >
+                <span style={{ fontWeight: "bold", marginLeft: "0" }}>ID:</span>
+                <span className="applicant-id-text">
+                  {` ${applicant.substring(0, 10).toLowerCase()}`}
+                </span>
+              </Link>
+            );
+          })
+        ) : (
+          <p>None Yet!</p>
+        )}
+      </div>
     </div>
   );
 };
