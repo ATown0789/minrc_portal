@@ -36,6 +36,7 @@ import {
   ApplicantTabOptions,
   SuperTabOptions,
 } from "Components/NavOptoins";
+import AddUser from "Views/Agency/AddUser";
 
 function App() {
   const dispatch = useDispatch();
@@ -141,6 +142,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
           <Route path="/reset-password" element={<ResetPassword />}></Route>
           <Route path="/success-reset" element={<ResetSuccess />}></Route>
+          <Route path="/add-user" element={<AddUser />}></Route>
           {!!jobs &&
             jobs.map((job) => {
               const url = slugify(job.title + job.id);

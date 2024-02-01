@@ -131,7 +131,7 @@ const SuperHome = () => {
         >
           <h1>Dashboard</h1>
           <Button variant="primary download" onClick={handleDownloadExcel}>
-            Eport Table
+            Export Table
             <span style={{ fontSize: "32px" }}>
               <TbFileDownload />
             </span>

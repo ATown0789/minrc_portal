@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./applysuccess.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ApplySuccess = () => {
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(user);
+    if (!user.loggedIn) navigate("/");
+  }, []);
+
   return (
     <>
       <div className="tab-content">

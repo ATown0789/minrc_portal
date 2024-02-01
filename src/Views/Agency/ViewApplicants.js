@@ -8,6 +8,7 @@ import "../../Components/filterpanel.css";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "firebase.config";
 import * as BsIcons from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const ViewApplicants = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,14 @@ const ViewApplicants = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [isExpanded, setIsExpanded] = useState(false);
   const [changedFilter, setChangedFilter] = useState("");
+
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(user);
+    if (!user.loggedIn) navigate("/");
+  }, []);
 
   function toggleCard() {
     setIsExpanded(!isExpanded);

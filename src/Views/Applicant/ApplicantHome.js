@@ -33,9 +33,14 @@ const ApplicantHome = ({ getJobs }) => {
     setWidth(window.innerWidth);
   }
 
-  if (!user.loggedIn) navigate("/");
-
   useEffect(() => {
+    if (!user.loggedIn) navigate("/");
+
+    if (!user.education) {
+      console.log(!user.education);
+      navigate("/edit-profile");
+    }
+
     if (jobs?.length === 0) {
       console.log("Jobs", jobs);
       getJobs();

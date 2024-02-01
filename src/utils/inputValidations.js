@@ -192,8 +192,8 @@ export const titleValidation = {
       message: "required",
     },
     maxLength: {
-      value: 30,
-      message: "30 characters max",
+      value: 90,
+      message: "90 characters max",
     },
   },
 };
@@ -536,6 +536,80 @@ export const agencyLocationValidation = {
     required: {
       value: true,
       message: "required",
+    },
+  },
+};
+
+export const newUserFNameValidation = {
+  name: "fName",
+  label: "New User's First Name",
+  type: "text",
+  id: "fName",
+  className: "input",
+  placeholder: "New users first name",
+  columns: "35",
+  validation: {
+    required: {
+      value: true,
+      message: "required",
+    },
+    maxLength: {
+      value: 30,
+      message: "30 characters max",
+    },
+  },
+};
+
+export const newUserLNameValidation = {
+  name: "lName",
+  label: "New User's Last Name",
+  type: "text",
+  id: "lName",
+  className: "input",
+  placeholder: "New user's last name",
+  validation: {
+    required: {
+      value: true,
+      message: "required",
+    },
+    maxLength: {
+      value: 30,
+      message: "30 characters max",
+    },
+  },
+};
+
+export const newUserPasswordValidation = {
+  name: "password",
+  label: "Temporary Password",
+  type: "password",
+  id: "password",
+  autoComplete: "off",
+  placeholder: "Set a temporary password",
+  validation: {
+    required: {
+      value: true,
+      message: "required",
+    },
+  },
+};
+
+export const newUserEmailValidation = {
+  name: "email",
+  label: "New Uer's Email",
+  type: "email",
+  id: "email",
+  placeholder: "New user's email address",
+  autoComplete: "off",
+  validation: {
+    required: {
+      value: true,
+      message: "required",
+    },
+    pattern: {
+      value:
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      message: "enter a valid email address",
     },
   },
 };

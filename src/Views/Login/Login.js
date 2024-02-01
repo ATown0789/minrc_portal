@@ -33,30 +33,30 @@ const Login = ({ loginType }) => {
   const [modalToggle, setModalToggle] = useState(false);
   const userRef = useRef(user);
 
-  const getUserData = async (user) => {
-    try {
-      const q = query(collection(db, "users"), where("uid", "==", user.uid));
-      const doc = await getDocs(q);
-      const data = doc.docs[0].data();
-      data.loggedIn = true;
-      dispatch(editUser(data));
-      console.log("Logged IN!");
-      //Not Needed?
-      // console.log("GET  USER DATA", data);
-      // data.agency === "applicant"
-      //   ? navigate("/applicant-home")
-      //   : data.agency === "Super User"
-      //   ? navigate("/super-home")
-      //   : data.agency !== "applicant" &&
-      //     data.agency !== "default" &&
-      //     data.agency !== "Super User"
-      //   ? navigate("/agency-home")
-      //   : navigate("/");
-    } catch (err) {
-      console.error(err);
-      alert("An error occured while fetching user data");
-    }
-  };
+  // const getUserData = async (user) => {
+  //   try {
+  //     const q = query(collection(db, "users"), where("uid", "==", user.uid));
+  //     const doc = await getDocs(q);
+  //     const data = doc.docs[0].data();
+  //     data.loggedIn = true;
+  //     dispatch(editUser(data));
+  //     console.log("Logged IN!");
+  //     //Not Needed?
+  //     // console.log("GET  USER DATA", data);
+  //     // data.agency === "applicant"
+  //     //   ? navigate("/applicant-home")
+  //     //   : data.agency === "Super User"
+  //     //   ? navigate("/super-home")
+  //     //   : data.agency !== "applicant" &&
+  //     //     data.agency !== "default" &&
+  //     //     data.agency !== "Super User"
+  //     //   ? navigate("/agency-home")
+  //     //   : navigate("/");
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("An error occured while fetching user data");
+  //   }
+  // };
 
   // useEffect(() => {
   //   console.log("Login Get User");

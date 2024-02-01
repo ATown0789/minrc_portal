@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as BsIcons from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./postedPositions.css";
 import { deleteJob } from "firebase.config";
+import { useSelector } from "react-redux";
 
 const PostedPositions = ({
   job,
@@ -19,6 +20,14 @@ const PostedPositions = ({
       .replace(/^-+|-+$/g, "");
 
   const url = slugify(job.title + job.id);
+
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(user);
+    if (!user.loggedIn) navigate("/");
+  }, []);
 
   return (
     <tr>

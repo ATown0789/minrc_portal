@@ -49,6 +49,11 @@ const AddJob = () => {
   const register = methods.register;
   const errors = methods.formState.errors;
 
+  useEffect(() => {
+    console.log(user);
+    if (!user.loggedIn) navigate("/");
+  }, []);
+
   const initialValues = {
     agency: user?.agency,
   };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./applicant.css";
 import * as BsIcons from "react-icons/bs";
@@ -13,6 +13,10 @@ const Applicant = ({ applicant }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (!user.loggedIn) navigate("/");
+  }, []);
 
   let job = {};
 

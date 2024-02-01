@@ -52,11 +52,11 @@ function Modal({ setModalToggle, deleteJobId, modalType }) {
             &#x2715;
           </button>
           <div className="modal-title">
-            <h2>Forgot Your Password?</h2>
+            <h2>Password Reset</h2>
           </div>
           <div className="modal-body">
             <p>Enter your email. </p>
-            <p>
+            <p style={{ width: "60%" }}>
               If the email has an associated account, a link to reset your
               password will be sent to your inbox.
             </p>

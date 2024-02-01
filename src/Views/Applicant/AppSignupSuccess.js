@@ -10,10 +10,10 @@ const AppSignupSuccess = () => {
   return (
     <>
       <div className="success-container">
-        <h2>You have successfully registerd</h2>
+        <h2>You have successfully registered a new Applicant User</h2>
 
         <Link className="return-btn" to={"/"}>
-          Return to Login
+          Return to Dashboard
         </Link>
       </div>
     </>

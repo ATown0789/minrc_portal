@@ -78,6 +78,11 @@ a.job-btn {
 
 .star-container {
   display: flex;
+  justify-content: space-between;
+}
+
+.inner-star-container {
+  display: flex;
 }
 
 .due-date {

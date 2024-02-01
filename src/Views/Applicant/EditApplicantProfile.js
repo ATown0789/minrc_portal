@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import skilloptions from "../../DUMMY_DATA/skilloptions.json";
 import keywords from "../../DUMMY_DATA/keywords.json";
 import { stateOptions } from "Components/stateOptions";
@@ -21,10 +21,11 @@ import {
 import { Input } from "Components/Input";
 import { setLoader } from "Redux/Loader/loaderSlice";
 import Button from "Components/Button";
-
+import Modal from "Components/Modal";
 const EditApplicantProfile = ({ user }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [modalToggle, setModalToggle] = useState(false);
 
   const edOptions = [
     {
@@ -59,20 +60,25 @@ const EditApplicantProfile = ({ user }) => {
     }
   };
 
+  const defaultFormValues = !user.education
+    ? { ...user }
+    : {
+        ...user,
+        applicantAois: user.interests,
+        applicantSkills: user.skills,
+        professionalSummary: user.summary.join("\n\n"),
+        location: stateSelFunction(user.stateSel),
+        education: educationFunction(user.education),
+      };
+
   const methods = useForm({
-    defaultValues: {
-      ...user,
-      applicantAois: user.interests,
-      applicantSkills: user.skills,
-      professionalSummary: user.summary.join("\n\n"),
-      location: stateSelFunction(user.stateSel),
-      education: educationFunction(user.education),
-    },
+    defaultValues: defaultFormValues,
   });
   const control = methods.control;
   const errors = methods.formState.errors;
 
   useEffect(() => {
+    setTimeout(() => dispatch(setLoader(false)), 1000);
     // window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
@@ -99,61 +105,95 @@ const EditApplicantProfile = ({ user }) => {
   });
 
   return (
-    <div className="tab-content">
-      <div>
-        <h1 className="signup-h1">Applicant Registration</h1>
+    <>
+      {modalToggle && (
+        <Modal
+          modalToggle={modalToggle}
+          setModalToggle={setModalToggle}
+          type={"forgotPass"}
+        />
+      )}
+      <div className="tab-content">
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <h1 className="signup-h1">Edit Profile</h1>
+          <Button
+            onClick={() => setModalToggle(true)}
+            style={{ height: "40px" }}
+            variant="delete primary"
+          >
+            Reset Password
+          </Button>
+        </div>
+
+        <FormProvider {...methods}>
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            noValidate
+            autoComplete="off"
+            className="new-applicant-form"
+          >
+            <Input {...fNameValidation} />
+            <Input {...lNameValidation} />
+
+            <Input {...minrcYearValidation} />
+            <Input
+              {...applicantLocationValidation}
+              control={control}
+              options={stateOptions}
+            />
+            <Input
+              {...educationValidation}
+              control={control}
+              options={edOptions}
+            />
+            <Input
+              {...applicantSkillsValidation}
+              control={control}
+              options={skilloptions}
+            />
+            <Input
+              {...applicantAoisValidation}
+              control={control}
+              options={keywords}
+            />
+            <Input {...professionalSummaryValidation} />
+
+            <div className="btn-container">
+              {/* <Button
+                type="button"
+                onClick={() => {
+                  const values = methods.getValues();
+                  // navigate("/applicant-profile");
+                  if (
+                    !values.applicantAois &&
+                    !values.applicantSkills &&
+                    !values.education &&
+                    !values.fName &&
+                    !values.lName &&
+                    !values.locaiton &&
+                    !values.minrcYear &&
+                    !values.professionalSummar
+                  ) {
+                    navigate("/applicant-profile");
+                    console.log(values);
+                  } else
+                    alert(
+                      "Please fill out all form fields to continue or logout to exit"
+                    );
+                }}
+                className="primary secondary"
+              >
+                Cancel
+              </Button> */}
+
+              <Button onClick={onSubmit} className="primary" type="submit">
+                Update Profile
+              </Button>
+            </div>
+          </form>
+        </FormProvider>
       </div>
-
-      <FormProvider {...methods}>
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          noValidate
-          autoComplete="off"
-          className="new-applicant-form"
-        >
-          <Input {...fNameValidation} />
-          <Input {...lNameValidation} />
-
-          <Input {...minrcYearValidation} />
-          <Input
-            {...applicantLocationValidation}
-            control={control}
-            options={stateOptions}
-          />
-          <Input
-            {...educationValidation}
-            control={control}
-            options={edOptions}
-          />
-          <Input
-            {...applicantSkillsValidation}
-            control={control}
-            options={skilloptions}
-          />
-          <Input
-            {...applicantAoisValidation}
-            control={control}
-            options={keywords}
-          />
-          <Input {...professionalSummaryValidation} />
-
-          <div className="btn-container">
-            <Button
-              onClick={() => {
-                navigate("/applicant-profile");
-              }}
-              className="primary secondary"
-            >
-              Cancel
-            </Button>
-
-            <Button onClick={onSubmit} className="primary" type="submit">
-              Submit
-            </Button>
-          </div>
-        </form>
-      </FormProvider>
-    </div>
+    </>
   );
 };
 export default EditApplicantProfile;

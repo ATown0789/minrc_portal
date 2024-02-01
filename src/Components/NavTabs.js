@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { logout } from "firebase.config";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ const NavTabs = ({ setActive, active, options }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
@@ -32,13 +33,11 @@ const NavTabs = ({ setActive, active, options }) => {
             <Link
               to={tab.path}
               className={`nav-tab ${
-                active.title === tab.title ? "active" : ""
+                location.pathname === tab.path ? "active" : ""
               }`}
               onClick={() => setActive(tab)}
               key={index}
-              active={active.title === tab.title}
             >
-              {console.log(active.title, tab.title)}
               {!isMobile && tab.icon}
               {isMobile ? tab.icon : <span>{tab.title}</span>}
             </Link>

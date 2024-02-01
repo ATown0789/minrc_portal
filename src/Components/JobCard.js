@@ -117,9 +117,12 @@ const JobCard = ({ job, user }) => {
     <div className={isExpanded ? "show-full job-card" : "job-card"}>
       <div className="inner-job-container">
         <div className="star-container">
-          <MatchLoop times={myMatch} />
+          <p className="due-date">Applications due by {job.dueDate}</p>
+          <div className="inner-star-container">
+            <MatchLoop times={myMatch} />
+          </div>
         </div>
-        <p className="due-date">Applications due by {job.dueDate}</p>
+
         <h2 className="job-title">{job.title}</h2>
         <div className="type-container">
           {job.remote && <span className="job-type card-remote">Remote</span>}

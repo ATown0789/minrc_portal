@@ -33,12 +33,13 @@ function ForgotPassword() {
       </div>
       <p className="input-error">{errorMessage}</p>
       <Button
+        variant="primary"
         onClick={async (e) => {
           e.preventDefault();
           sendPasswordReset(email);
         }}
       >
-        Send Password Reset Email
+        Reset Password
       </Button>
     </div>
   );

@@ -81,8 +81,8 @@ export const SuperTabOptions = [
   },
 
   {
-    title: "Contact",
-    path: "/contact",
+    title: "New User",
+    path: "/add-user",
     icon: <IoIcons.IoMdHelpCircle />,
   },
   {
