@@ -25,7 +25,6 @@ const PostedPositions = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(user);
     if (!user.loggedIn) navigate("/");
   }, []);
 

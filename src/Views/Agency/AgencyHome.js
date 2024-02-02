@@ -52,7 +52,6 @@ const AgencyHome = () => {
   useEffect(() => {
     getApplicants();
     getJobs();
-    console.log("Jobs updated");
   }, []);
 
   useEffect(() => {
@@ -81,7 +80,6 @@ const AgencyHome = () => {
         <h1>Dashboard</h1>
         <div className="mobile">
           {filteredJobs.map((job) => {
-            console.log(job);
             return (
               <MobileAgencyCard
                 key={job.id}
@@ -103,7 +101,7 @@ const AgencyHome = () => {
         ) : (
           <div className="no-postings">
             <h1>No Positions Posted</h1>
-            <Link className="agency-btn posted-btn" to={"/add-job"}>
+            <Link className="primary" to={"/add-job"}>
               Create New Posting
             </Link>
           </div>

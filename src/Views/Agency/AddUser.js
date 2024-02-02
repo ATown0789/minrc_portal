@@ -1,34 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import skilloptions from "../../DUMMY_DATA/skilloptions.json";
 import keywords from "../../DUMMY_DATA/keywords.json";
 import { stateOptions } from "Components/stateOptions";
-import { auth, registerWithEmailAndPassword } from "firebase.config";
+import {
+  auth,
+  logout,
+  registerNewUser,
+  registerWithEmailAndPassword,
+} from "firebase.config";
 import { Link, useNavigate } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
 import {
+  agencyEmailValidation,
+  agencyLocationValidation,
+  agencyValidation,
   newUserEmailValidation,
   newUserFNameValidation,
   newUserLNameValidation,
   newUserPasswordValidation,
+  newUserTypeSelectValidation,
 } from "utils/inputValidations";
 import { Input } from "Components/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoader } from "Redux/Loader/loaderSlice";
 import Button from "Components/Button";
 import emailjs, { send } from "@emailjs/browser";
+import { logOutUser } from "Redux/User/userSlice";
 
 const AddUser = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const edOptions = [
-    { value: "highschool", label: "Highschool" },
-    { value: "undergraduate", label: "Undergraduate" },
-    { value: "graduate", label: "Graduate School" },
+  const typeOptions = [
+    { value: "agency", label: "Agency" },
+    { value: "applicant", label: "Applicant" },
   ];
 
   const registerApplicant = async (registrant) => {
-    const response = await registerWithEmailAndPassword(registrant);
+    const response = await registerNewUser(registrant);
     return response;
   };
 
@@ -54,25 +63,37 @@ const AddUser = () => {
   const control = methods.control;
   const errors = methods.formState.errors;
 
+  const userTypeValue = methods.watch("userType");
+  const testValue = methods.watch("agency");
   const onSubmit = methods.handleSubmit(async (data) => {
     dispatch(setLoader(true));
 
     const newUserTemplateParams = {
       agency: user.agency,
       from_email: "noreply@mg.minrcportal.com",
-      to_email: data.email,
+      to_email:
+        data.userType.value === "applicant" ? data.email : data.agencyEmail,
       from_name: user.agency,
       to_name: data.fName,
       subject: "MINRC Job Portal Registration",
       reply_to: !!user.email ? user.email : "noreply@mg.minrcportal.com",
       message1: `Thank you for being a part of MINRC`,
-      message2: `One of the many benifits of being a member of MINRC is access to our job portal. Please go to www.minrcportal.com/ to log in and get started.`,
-      message3: `Your username is your email (${data.email}) and your temporary password is ${data.password}. For your security your password and profile should be updated upon your first login.`,
+      message2: `${
+        data.userType.value === "applicant"
+          ? `One of the many benifits of being a member of MINRC is access to our job portal. `
+          : ""
+      }Please go to www.minrcportal.com/ to log in and get started.`,
+      message3: `Your username is your email (${
+        data.userType.value === "applicant" ? data.email : data.agencyEmail
+      }) and your temporary password is "${
+        data.password
+      }" (without quotations). For your security your password should be updated upon your first login by navigating to the profile tab and clicking the reset password button.`,
       message4: `If you would like more information, or believe you got this messgae in errer please contact us at ${user.email}.`,
     };
 
     let registrant = {
-      email: data.email,
+      email:
+        data.userType.value === "applicant" ? data.email : data.agencyEmail,
       password: data.password,
       fName: data.fName,
       lName: data.lName,
@@ -84,34 +105,29 @@ const AddUser = () => {
       //   summary: data.professionalSummary
       //     .split("\n")
       //     .filter((str) => str.trim() !== ""),
-      agency: "applicant",
+      agency: data.userType.value === "applicant" ? "applicant" : data.agency,
     };
-    console.log(registrant);
     registerApplicant(registrant).then((response) => {
-      console.log(response);
+      dispatch(setLoader(true));
       if (response === true) {
         sendEmail(newUserTemplateParams);
-        setTimeout(() => {
-          dispatch(setLoader(false));
-          navigate("/applicant-signup-success");
-        }, 2000);
+        navigate("/user-signup-success");
       } else {
         alert(response);
-        dispatch(setLoader(false));
       }
     });
   });
 
   useEffect(() => {
-    console.log(user);
+    if (!user.loggedIn) navigate("/");
     setTimeout(() => dispatch(setLoader(false)), 1000);
   }, []);
 
   return (
     <div className="tab-content">
-      <div className="applicant-form-container">
+      <div className="applicant-form-container add-user-container">
         <div>
-          <h1 className="signup-h1">Add Applicant User</h1>
+          <h1 className="signup-h1">Add User</h1>
         </div>
         <FormProvider {...methods}>
           <form
@@ -120,10 +136,41 @@ const AddUser = () => {
             autoComplete="off"
             className="new-applicant-form"
           >
-            <Input autoComplete="off" {...newUserFNameValidation} />
-            <Input autoComplete="off" {...newUserLNameValidation} />
-            <Input autoComplete="off" {...newUserEmailValidation} />
-            <Input autoComplete="off" {...newUserPasswordValidation} />
+            <Input
+              {...newUserTypeSelectValidation}
+              options={typeOptions}
+              control={control}
+            />
+
+            {userTypeValue?.value === "agency" && (
+              <Input autoComplete="off" {...agencyEmailValidation} />
+            )}
+            {userTypeValue?.value === "applicant" && (
+              <Input autoComplete="off" {...newUserEmailValidation} />
+            )}
+
+            {userTypeValue?.value && (
+              <Input autoComplete="off" {...newUserPasswordValidation} />
+            )}
+
+            {userTypeValue?.value === "agency" && (
+              <Input autoComplete="off" {...agencyValidation} />
+            )}
+            {userTypeValue?.value && (
+              <Input autoComplete="off" {...newUserFNameValidation} />
+            )}
+            {userTypeValue?.value && (
+              <Input autoComplete="off" {...newUserLNameValidation} />
+            )}
+
+            {userTypeValue?.value === "agency" && (
+              <Input
+                autoComplete="off"
+                {...agencyLocationValidation}
+                options={stateOptions}
+                control={control}
+              />
+            )}
             {/* <Input {...minrcYearValidation} />
             <Input
               {...applicantLocationValidation}

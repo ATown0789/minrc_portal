@@ -43,9 +43,7 @@ const AgencySignup = () => {
       stateSel: data.location.value,
       agency: data.agencyName,
     };
-    console.log(agency);
     registerAgency(agency).then((response) => {
-      console.log(response);
       if (response === true) {
         setTimeout(() => {
           dispatch(setLoader(false));
@@ -63,88 +61,6 @@ const AgencySignup = () => {
       <div>
         <h1 className="signup-h1">Agency Registration</h1>
       </div>
-
-      {/* <form onSubmit={register} className="new-applicant-form">
-        <label className="label">
-          First Name
-          <input
-            onChange={(e) => {
-              setFName(e.target.value);
-            }}
-            className="input"
-            value={fName}
-            type="text"
-            placeholder="Full name"
-          />
-        </label>
-        <label className="label">
-          Last Name
-          <input
-            onChange={(e) => {
-              setLName(e.target.value);
-            }}
-            className="input"
-            value={lName}
-            type="text"
-            placeholder="Full name"
-          />
-        </label>
-
-        <label className="label">
-          Agency Name
-          <input
-            onChange={(e) => {
-              setAgency(e.target.value);
-            }}
-            className="input"
-            value={agency}
-            type="text"
-            placeholder="Agency name"
-          />
-        </label>
-
-        <label className="label">
-          Agency Contact Email
-          <input
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            className="input"
-            value={email}
-            type="email"
-            placeholder="Best email address"
-          />
-        </label>
-
-        <label className="label">
-          Password
-          <input
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            className="input"
-            value={password}
-            type="password"
-            placeholder="Password"
-          />
-        </label>
-
-        <label className="label">
-          Location
-          <Select
-            className="select-input"
-            placeholder="Select a state"
-            options={stateOptions}
-            onChange={(e) => {
-              setStateSel(e.value);
-            }}
-          />
-        </label>
-
-        <button className="submit-btn" type="submit">
-          Submit
-        </button>
-      </form> */}
 
       <FormProvider {...methods}>
         <form

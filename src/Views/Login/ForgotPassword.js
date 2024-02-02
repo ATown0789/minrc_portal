@@ -37,6 +37,7 @@ function ForgotPassword() {
         onClick={async (e) => {
           e.preventDefault();
           sendPasswordReset(email);
+          navigate("/");
         }}
       >
         Reset Password

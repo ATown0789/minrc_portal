@@ -32,6 +32,7 @@ import {
 } from "../../../utils/inputValidations";
 import { Input } from "Components/Input";
 import { setLoader } from "Redux/Loader/loaderSlice";
+import Button from "Components/Button";
 
 const EditJob = ({ job }) => {
   const dispatch = useDispatch();
@@ -116,7 +117,6 @@ const EditJob = ({ job }) => {
       match: 0,
     };
     const url = slugify(newJob.title + newJob.id);
-    console.log(newJob);
     dispatch(editJob(newJob));
     updateJob(newJob);
     navigate(`/view-${url}`);
@@ -185,22 +185,22 @@ const EditJob = ({ job }) => {
             <Input {...hiringPhoneValidation} />
 
             <div className="btn-container">
-              <button
+              <Button
                 onClick={() => {
                   navigate(`/view-${originalURL}`);
                 }}
-                className="cancel-btn"
+                className="tertiary primary small"
               >
                 Cancel
-              </button>
+              </Button>
 
-              <button
+              <Button
                 onClick={onSubmit}
-                className="submit-btn job-submit"
-                type="submit"
+                className="primary small"
+                type="submit "
               >
                 Submit
-              </button>
+              </Button>
             </div>
           </form>
         </FormProvider>

@@ -56,7 +56,6 @@ const SuperHome = () => {
   });
 
   function handleDownloadExcel() {
-    console.log(body);
     downloadExcel({
       fileName: `MINRC_Job_Portal_Data_${currentDate}`,
       tablePayload: {
@@ -127,9 +126,10 @@ const SuperHome = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            marginRight: "10px",
           }}
         >
-          <h1>Dashboard</h1>
+          <h1 style={{ marginLeft: "10px" }}>Dashboard</h1>
           <Button variant="primary download" onClick={handleDownloadExcel}>
             Export Table
             <span style={{ fontSize: "32px" }}>
@@ -140,7 +140,6 @@ const SuperHome = () => {
 
         <div className="mobile">
           {jobs.map((job) => {
-            console.log(job);
             return (
               <MobileAgencyCard
                 key={job.id}
@@ -163,7 +162,7 @@ const SuperHome = () => {
         ) : (
           <div className="no-postings">
             <h1>No Positions Posted</h1>
-            <Link className="agency-btn posted-btn" to={"/add-job"}>
+            <Link className="primary" to={"/add-job"}>
               Create New Posting
             </Link>
           </div>

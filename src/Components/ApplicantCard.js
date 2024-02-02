@@ -94,18 +94,16 @@ const ApplicantCard = ({ applicant }) => {
         <h2 className="job-title">
           {applicant.uid.substring(0, 10).toLowerCase()}
         </h2>
-        <div>
-          <p className="job-summary">
-            <span>
-              <span style={{ marginRight: "3px" }}>
-                <FaGraduationCap />
-              </span>
-              {applicant.education}
+        <div className="applicant-card-p-span">
+          <span style={{ marginLeft: "0px" }}>
+            <span style={{ marginRight: "3px" }}>
+              <FaGraduationCap />
             </span>
-            <span>
-              <MdIcons.MdLocationPin /> {applicant.stateSel}
-            </span>
-          </p>
+            {applicant.education}
+          </span>
+          <span>
+            <MdIcons.MdLocationPin /> {applicant.stateSel}
+          </span>
         </div>
         <p className="job-summary">
           {truncateSummary(applicant.summary.join(" "))}

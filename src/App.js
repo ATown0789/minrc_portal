@@ -37,6 +37,8 @@ import {
   SuperTabOptions,
 } from "Components/NavOptoins";
 import AddUser from "Views/Agency/AddUser";
+import EditAgencyProfile from "Views/Agency/EditAgencyProfile";
+import LearnMore from "Views/Main/LearnMore";
 
 function App() {
   const dispatch = useDispatch();
@@ -134,15 +136,21 @@ function App() {
             element={<ApplicantProfile />}
           ></Route>
           <Route path="/agency-profile" element={<AgencyProfile />}></Route>
+          <Route
+            path="/edit-agency-profile"
+            element={<EditAgencyProfile user={user} />}
+          ></Route>
           <Route path="/job-post-success" element={<JobPostSuccess />}></Route>
           <Route
-            path="/applicant-signup-success"
+            path="/user-signup-success"
             element={<AppSignupSuccess />}
           ></Route>
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>
           <Route path="/reset-password" element={<ResetPassword />}></Route>
           <Route path="/success-reset" element={<ResetSuccess />}></Route>
           <Route path="/add-user" element={<AddUser />}></Route>
+          <Route path="/learn-more" element={<LearnMore />}></Route>
+
           {!!jobs &&
             jobs.map((job) => {
               const url = slugify(job.title + job.id);

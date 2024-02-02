@@ -65,9 +65,9 @@ const MobileAgencyCard = ({
       <div className="applicant-container mobile-agency">
         {job.interested?.length > 0 ? (
           job.interested.map((applicant, index) => {
-            console.log(applicant);
             return (
               <Link
+                key={index}
                 className="applicant-btn mobile-agency"
                 to={`/applicant-${slugify(applicant)}`}
                 state={{
@@ -95,6 +95,7 @@ const MobileAgencyCard = ({
           job.contacted.map((applicant, index) => {
             return (
               <Link
+                key={index}
                 className="applicant-btn mobile-agency"
                 to={`/applicant-${slugify(applicant)}`}
                 state={{
@@ -121,6 +122,7 @@ const MobileAgencyCard = ({
           job.declined.map((applicant, index) => {
             return (
               <Link
+                key={index}
                 className="applicant-btn mobile-agency"
                 to={`/applicant-${slugify(applicant)}`}
                 state={{

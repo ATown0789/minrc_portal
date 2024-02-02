@@ -66,7 +66,7 @@ const EditApplicantProfile = ({ user }) => {
         ...user,
         applicantAois: user.interests,
         applicantSkills: user.skills,
-        professionalSummary: user.summary.join("\n\n"),
+        professionalSummary: user.summary ? user.summary.join("\n\n") : "",
         location: stateSelFunction(user.stateSel),
         education: educationFunction(user.education),
       };
@@ -78,8 +78,9 @@ const EditApplicantProfile = ({ user }) => {
   const errors = methods.formState.errors;
 
   useEffect(() => {
+    if (!user.loggedIn) navigate("/");
     setTimeout(() => dispatch(setLoader(false)), 1000);
-    // window.scrollTo({ top: 0, behavior: "instant" });
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
   const onSubmit = methods.handleSubmit(async (data) => {
@@ -98,7 +99,6 @@ const EditApplicantProfile = ({ user }) => {
         .filter((str) => str.trim() !== ""),
       agency: "applicant",
     };
-    console.log(registrant);
     updateUser(registrant);
     dispatch(editUser(registrant));
     navigate("/applicant-profile");

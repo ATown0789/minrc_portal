@@ -21,7 +21,11 @@ const ViewApplicants = () => {
     match: "",
     education: "",
   });
-  const applicants = useSelector((state) => state.applicants);
+  const applicants = useSelector((state) =>
+    state.applicants.filter((applicant) => {
+      return applicant.education;
+    })
+  );
   const [rating, setRating] = useState(0);
   const [searchText, setSearchText] = useState("");
   const [filteredApplicants, setFilteredApplicants] = useState(applicants);
@@ -33,7 +37,6 @@ const ViewApplicants = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(user);
     if (!user.loggedIn) navigate("/");
   }, []);
 
@@ -52,8 +55,6 @@ const ViewApplicants = () => {
   }, []);
 
   const isMobile = width <= 768;
-
-  console.log(filteredApplicants.map((applicant) => applicant));
 
   useEffect(() => {
     setFilteredApplicants(

@@ -11,7 +11,6 @@ const userSlice = createSlice({
     },
     logOutUser: (state) => {
       state = { ...initialState };
-      console.log(state);
       return state;
     },
   },

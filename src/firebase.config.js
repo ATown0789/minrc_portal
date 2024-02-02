@@ -47,17 +47,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const secondaryApp = initializeApp(firebaseConfig, "secondary");
 const db = getFirestore(app);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    const uid = user.uid;
-  } else {
-    //user signed out
-  }
-});
+const auth2 = getAuth(secondaryApp);
 
 export default app;
 
@@ -108,11 +102,35 @@ const logInWithEmailAndPassword = async (auth, email, password) => {
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    console.log(user);
     return user;
   } catch (err) {
     console.error(err);
     alert(err.message);
+  }
+};
+
+const registerNewUser = async (registrant) => {
+  try {
+    const res = await createUserWithEmailAndPassword(
+      auth2,
+      registrant.email,
+      registrant.password
+    );
+
+    const user = res.user;
+    const docRef = await addDoc(collection(db, "users"), {
+      uid: user.uid,
+      ...registrant,
+      password: null,
+    });
+    // console.log("Document written with ID: ", docRef.id);
+    await updateDoc(doc(db, "users", docRef.id), {
+      docId: docRef.id,
+    });
+    return true;
+  } catch (err) {
+    console.error(err);
+    return err.message;
   }
 };
 
@@ -130,7 +148,7 @@ const registerWithEmailAndPassword = async (registrant) => {
       ...registrant,
       password: null,
     });
-    console.log("Document written with ID: ", docRef.id);
+    // console.log("Document written with ID: ", docRef.id);
     await updateDoc(doc(db, "users", docRef.id), {
       docId: docRef.id,
     });
@@ -158,7 +176,7 @@ const resetPassword = async (oobCode, newpassword) => {
 };
 
 const logout = async () => {
-  console.log("signOut");
+  // console.log("signOut");
   signOut(auth);
   try {
     const q = query(
@@ -176,7 +194,7 @@ const addJobPosting = async (job) => {
     const docRef = await addDoc(collection(db, "jobs"), {
       ...job,
     });
-    console.log("Document written with ID: ", docRef.id);
+    // console.log("Document written with ID: ", docRef.id);
     await updateDoc(doc(db, "jobs", docRef.id), {
       id: docRef.id,
     });
@@ -200,19 +218,19 @@ const updateJob = async (job) => {
     await updateDoc(doc(db, "jobs", job.id), {
       ...job,
     });
-    console.log("Document updated");
+    // console.log("Document updated");
   } catch (e) {
     console.error("Error adding document", e);
   }
 };
 
 const updateUser = async (user) => {
-  console.log(user);
+  // console.log(user);
   try {
     await updateDoc(doc(db, "users", user.docId), {
       ...user,
     });
-    console.log("Document updated");
+    // console.log("Document updated");
   } catch (e) {
     console.error("Error adding document", e);
   }
@@ -231,4 +249,6 @@ export {
   updateJob,
   updateUser,
   resetPassword,
+  registerNewUser,
+  auth2,
 };

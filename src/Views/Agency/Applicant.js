@@ -24,8 +24,6 @@ const Applicant = ({ applicant }) => {
 
   const superUser = !!state?.superUser;
 
-  console.log("SuperUSER", superUser);
-
   const declineTemplateParams = {
     agency: user.agency,
     job: job?.title,

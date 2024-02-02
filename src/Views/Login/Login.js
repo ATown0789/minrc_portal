@@ -69,7 +69,6 @@ const Login = ({ loginType }) => {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       const user = res.user;
-      console.log(user);
       try {
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         const doc = await getDocs(q);
@@ -183,7 +182,7 @@ const Login = ({ loginType }) => {
 
           <p className="bottom-text">
             New to MINRC?
-            <Link to={`new-${loginType}`}>Learn More.</Link>
+            <Link to={`learn-more`}>Learn More.</Link>
           </p>
         </div>
 

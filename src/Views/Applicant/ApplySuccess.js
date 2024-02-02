@@ -8,7 +8,6 @@ const ApplySuccess = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(user);
     if (!user.loggedIn) navigate("/");
   }, []);
 

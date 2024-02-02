@@ -37,14 +37,11 @@ const ApplicantHome = ({ getJobs }) => {
     if (!user.loggedIn) navigate("/");
 
     if (!user.education) {
-      console.log(!user.education);
       navigate("/edit-profile");
     }
 
     if (jobs?.length === 0) {
-      console.log("Jobs", jobs);
       getJobs();
-      console.log("get jobs");
       setFilteredJobs(jobs);
     }
     // window.scrollTo({ top: 0, behavior: "instant" });
@@ -58,10 +55,7 @@ const ApplicantHome = ({ getJobs }) => {
     setIsExpanded(!isExpanded);
   }
 
-  useEffect(() => {
-    console.log(filterObject.empty);
-    console.log(filterObject.skills);
-  }, [filterObject]);
+  useEffect(() => {}, [filterObject]);
 
   useEffect(() => {
     setFilteredJobs(
@@ -148,8 +142,6 @@ const ApplicantHome = ({ getJobs }) => {
 
         if (rating > 0) {
           if (job.match < rating) {
-            console.log("job.match: ", job.match);
-            console.log("rating: ", rating);
             if (filterObject.empty)
               setFilterObject({ ...filterObject, empty: false });
             return false;

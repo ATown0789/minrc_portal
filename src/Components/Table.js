@@ -12,11 +12,6 @@ const Table = ({ jobs, setModalToggle, setDeleteJobId, superUser }) => {
       .replace(/[\s_-]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
-  useEffect(() => {
-    //   console.log("JOBS FROM TABLE", jobs);
-    console.log(jobs);
-  }, [jobs]);
-
   return (
     <div className="table-container" role="table">
       <div className="flex-table header" role="rowgroup">
@@ -35,9 +30,9 @@ const Table = ({ jobs, setModalToggle, setDeleteJobId, superUser }) => {
       </div>
       {jobs.map((job, index) => {
         const url = slugify(job.title + job.id);
-        // console.log("JOB FROM TABLE", job);
         return (
           <div
+            key={index}
             className={
               index % 2 !== 0
                 ? "flex-table row even-row"
@@ -77,9 +72,9 @@ const Table = ({ jobs, setModalToggle, setDeleteJobId, superUser }) => {
               <div className="applicant-container">
                 {job.interested?.length > 0 ? (
                   job.interested.map((applicant, index) => {
-                    console.log(applicant);
                     return (
                       <Link
+                        key={index}
                         className="applicant-btn"
                         to={`/applicant-${slugify(applicant)}`}
                         state={{
@@ -108,6 +103,7 @@ const Table = ({ jobs, setModalToggle, setDeleteJobId, superUser }) => {
                   job.contacted.map((applicant, index) => {
                     return (
                       <Link
+                        key={index}
                         className="applicant-btn"
                         to={`/applicant-${slugify(applicant)}`}
                         state={{
@@ -135,6 +131,7 @@ const Table = ({ jobs, setModalToggle, setDeleteJobId, superUser }) => {
                   job.declined.map((applicant, index) => {
                     return (
                       <Link
+                        key={index}
                         className="applicant-btn"
                         to={`/applicant-${slugify(applicant)}`}
                         state={{

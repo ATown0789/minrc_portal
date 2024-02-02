@@ -50,7 +50,6 @@ const AddJob = () => {
   const errors = methods.formState.errors;
 
   useEffect(() => {
-    console.log(user);
     if (!user.loggedIn) navigate("/");
   }, []);
 
@@ -89,9 +88,7 @@ const AddJob = () => {
       dateCreated: currentDate,
       match: 0,
     };
-    console.log(job);
     let newJobID = await addJobPosting(job);
-    console.log(await newJobID);
 
     dispatch(addJob({ ...job, id: newJobID }));
 

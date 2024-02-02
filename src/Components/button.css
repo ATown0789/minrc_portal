@@ -61,7 +61,8 @@ button {
   text-decoration: none;
 }
 
-.primary.small {
+.primary.small,
+.tertiary.small {
   width: 50%;
   align-self: center;
   margin-top: 40px;

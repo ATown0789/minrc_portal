@@ -58,9 +58,7 @@ const ApplicantSignup = () => {
         .filter((str) => str.trim() !== ""),
       agency: "applicant",
     };
-    console.log(registrant);
     registerApplicant(registrant).then((response) => {
-      console.log(response);
       if (response === true) {
         setTimeout(() => {
           dispatch(setLoader(false));

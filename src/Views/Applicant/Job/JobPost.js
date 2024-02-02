@@ -1,7 +1,6 @@
 import Keyword from "Components/Keyword";
 import React, { useEffect, useState } from "react";
 import "./jobpost.css";
-import * as MdIcons from "react-icons/md";
 import { Link } from "react-router-dom";
 import positionOptions from "../../../DUMMY_DATA/positionOptions.json";
 import { useDispatch, useSelector } from "react-redux";
@@ -104,11 +103,19 @@ const JobPost = ({ job }) => {
                   I'm Interested
                 </Link>
               ) : (
-                <div className="sticky-job-btn-container">
-                  <Link className="job-btn edit sticky" to={`/edit-${url}`}>
-                    Edit Job
-                  </Link>
-                </div>
+                <Link
+                  style={{
+                    width: "20%",
+                    margin: "5px",
+                    lineHeight: "2",
+                    textAlign: "center",
+                    justifySelf: "flex-end",
+                  }}
+                  className="primary secondary interest-btn"
+                  to={`/edit-${url}`}
+                >
+                  Edit Job
+                </Link>
               )}
             </div>
 
@@ -130,14 +137,14 @@ const JobPost = ({ job }) => {
                         : (comma = ", ");
                       return stateName + comma;
                     })}
+                  {job.remote && (
+                    <p className="job-detail-text parenthesis-text">
+                      (Remote work possible)
+                    </p>
+                  )}
                 </p>
               </div>
               <div className="flex-column">
-                {job.remote && (
-                  <p className="job-detail-text parenthesis-text">
-                    (Remote work possible)
-                  </p>
-                )}
                 <h4>
                   <span className="job-detail-icon">
                     <BsBuildings />
@@ -251,11 +258,13 @@ const JobPost = ({ job }) => {
                 I'm Interested
               </Link>
             ) : (
-              <div className="sticky-job-btn-container">
-                <Link className="job-btn edit sticky" to={`/edit-${url}`}>
-                  Edit Job
-                </Link>
-              </div>
+              <Link
+                style={{ margin: "5px", lineHeight: "4.5" }}
+                className="primary secondary interest-btn"
+                to={`/edit-${url}`}
+              >
+                Edit Job
+              </Link>
             )}
           </div>
         )}

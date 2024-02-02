@@ -305,11 +305,11 @@ export const typeValidation = {
 
 export const agencyValidation = {
   name: "agency",
-  label: "Agency",
+  label: "Agency Name",
   type: "text",
   id: "agency",
   className: "input",
-  placeholder: "Hiring agency",
+  placeholder: "Hiring agency name",
   validation: {
     required: {
       value: true,
@@ -531,7 +531,7 @@ export const agencyLocationValidation = {
   label: "Agency Location",
   id: "location",
   type: "select",
-  placeholder: "Select your state",
+  placeholder: "Select agency state",
   validation: {
     required: {
       value: true,
@@ -610,6 +610,20 @@ export const newUserEmailValidation = {
       value:
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       message: "enter a valid email address",
+    },
+  },
+};
+
+export const newUserTypeSelectValidation = {
+  name: "userType",
+  label: "User Type",
+  id: "userType",
+  type: "select",
+  placeholder: "Select user type",
+  validation: {
+    required: {
+      value: true,
+      message: "required",
     },
   },
 };

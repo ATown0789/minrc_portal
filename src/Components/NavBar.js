@@ -28,8 +28,6 @@ const NavBar = () => {
   }, []);
 
   useEffect(() => {
-    console.log(myUser);
-
     myUser.agency === "applicant"
       ? setSidebarData(ApplicantSidebarData)
       : myUser.agency !== "applicant" &&

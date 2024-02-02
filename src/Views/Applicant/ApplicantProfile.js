@@ -1,3 +1,4 @@
+import Button from "Components/Button";
 import { setLoader } from "Redux/Loader/loaderSlice";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +8,6 @@ function ApplicantProfile() {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(user);
 
   useEffect(() => {
     if (!user.loggedIn) navigate("/");
@@ -45,12 +45,12 @@ function ApplicantProfile() {
         {user.summary.map((summary, index) => {
           return <p key={index}>{summary}</p>;
         })}
-        <button
+        <Button
           onClick={() => navigate("/edit-profile")}
           className="primary secondary edit-btn"
         >
           Edit
-        </button>
+        </Button>
       </div>
     </div>
   ) : (

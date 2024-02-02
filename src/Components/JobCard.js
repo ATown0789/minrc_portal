@@ -45,10 +45,8 @@ const JobCard = ({ job, user }) => {
 
   useEffect(() => {
     const skillsNum = matchSkills();
-    console.log("SKILL NUM", skillsNum);
     const interestNum = matchAois();
     const starRate = (skillsNum + interestNum) / 2;
-    console.log(starRate);
     setMyMatch(Math.round(starRate));
     dispatch(editJob({ ...job, match: Math.round(starRate) }));
   }, []);
