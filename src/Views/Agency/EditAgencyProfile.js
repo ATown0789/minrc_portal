@@ -75,9 +75,8 @@ const EditAgencyProfile = ({ user }) => {
   const onSubmit = methods.handleSubmit(async (data) => {
     dispatch(setLoader(true));
     let agency = {
-      ...user,
+      docId: user.docId,
       email: data.agencyEmail,
-      password: data.password,
       fName: data.fName,
       lName: data.lName,
       stateSel: data.location.value,

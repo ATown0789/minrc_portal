@@ -73,7 +73,7 @@ const AddUser = () => {
       from_email: "noreply@mg.minrcportal.com",
       to_email:
         data.userType.value === "applicant" ? data.email : data.agencyEmail,
-      from_name: user.agency,
+      from_name: "MINRC Portal",
       to_name: data.fName,
       subject: "MINRC Job Portal Registration",
       reply_to: !!user.email ? user.email : "noreply@mg.minrcportal.com",
