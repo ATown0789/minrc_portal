@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 const JobPostSuccess = () => {
   const user = useSelector((state) => state.user);
 
-  console.log(user);
   return (
     <>
       <div className="success-container">

@@ -136,15 +136,11 @@ const JobPost = ({ job }) => {
                       interestedDisable ? "secondary disabled" : "secondary"
                     }
                     onClick={() => {
-                      console.log(user);
-
                       !interestExist
                         ? interested.push(job.id)
                         : !user.interested.includes(job.id)
                         ? (interested = [...user.interested, job.id])
                         : (interested = [...user.interested]);
-
-                      console.log(interested);
                       let updatedUser = {
                         ...user,
                         interested: interested,
@@ -327,15 +323,11 @@ const JobPost = ({ job }) => {
                 className="card-btn"
                 variant={interestedDisable ? "secondary disabled" : "secondary"}
                 onClick={() => {
-                  console.log(user);
-
                   !interestExist
                     ? interested.push(job.id)
                     : !user.interested.includes(job.id)
                     ? (interested = [...user.interested, job.id])
                     : (interested = [...user.interested]);
-
-                  console.log(interested);
                   let updatedUser = {
                     ...user,
                     interested: interested,

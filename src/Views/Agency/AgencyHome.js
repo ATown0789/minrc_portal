@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./agencyhome.css";
 import PostedPositions from "./PostedPositions";
 import { useNavigate, Link } from "react-router-dom";
@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Modal from "Components/Modal";
 import { setLoader } from "Redux/Loader/loaderSlice";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "firebase.config";
+import { db, updateJob } from "firebase.config";
 import { loadApplicants } from "Redux/Applicants/applicantSlice";
-import { loadJobs } from "Redux/Jobs/jobSlice";
+import { editJob, loadJobs } from "Redux/Jobs/jobSlice";
 import MobileAgencyCard from "Components/MobileAgencyCard";
 import Table from "Components/Table";
 
@@ -19,7 +19,7 @@ const AgencyHome = () => {
   const applicants = useSelector((state) => state.applicants);
   const [modalToggle, setModalToggle] = useState(false);
   const [deleteJobId, setDeleteJobId] = useState("");
-  const [filteredJobs, setFilteredJobs] = useState([]);
+  const filteredJobs = useRef([]);
   const dispatch = useDispatch();
 
   function getApplicants() {
@@ -59,9 +59,40 @@ const AgencyHome = () => {
     const jobList = jobs.filter((job) => {
       return job.agencyId === user.uid;
     });
-    setFilteredJobs(jobList);
+
+    console.log(jobList);
+
+    filteredJobs.current = [...jobList];
     console.log(applicants);
   }, [jobs]);
+
+  useEffect(() => {
+    filteredJobs.current.forEach((job) => {
+      let jobInterested = [];
+
+      applicants.forEach((applicant) => {
+        let interestedExist = !!applicant.interested;
+        if (interestedExist) {
+          if (
+            applicant.interested.includes(job.id) &&
+            !job.contacted.includes(applicant.uid) &&
+            !job.declined.includes(applicant.uid)
+          ) {
+            jobInterested.push(applicant.uid);
+          }
+        }
+      });
+
+      let newJob = {
+        ...job,
+        interested: jobInterested,
+      };
+
+      console.log(job.title, jobInterested);
+      dispatch(editJob(newJob));
+      updateJob(newJob);
+    });
+  }, []);
 
   useEffect(() => {
     setTimeout(() => dispatch(setLoader(false)), 1000);
@@ -81,7 +112,7 @@ const AgencyHome = () => {
       <div className="tab-content">
         <h1>Dashboard</h1>
         <div className="mobile">
-          {filteredJobs.map((job) => {
+          {filteredJobs.current.map((job) => {
             return (
               <MobileAgencyCard
                 key={job.id}
@@ -92,10 +123,10 @@ const AgencyHome = () => {
             );
           })}
         </div>
-        {filteredJobs.length ? (
+        {filteredJobs.current.length ? (
           <div className="desktop ">
             <Table
-              jobs={filteredJobs}
+              jobs={filteredJobs.current}
               setDeleteJobId={setDeleteJobId}
               setModalToggle={setModalToggle}
             />

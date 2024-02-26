@@ -9,8 +9,6 @@ import Button from "./Button";
 function Modal({ setModalToggle, deleteJobId, modalType, email }) {
   const dispatch = useDispatch();
 
-  console.log(modalType);
-
   return (
     <div className="modal-background">
       {modalType === "delete" ? (

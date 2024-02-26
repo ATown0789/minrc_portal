@@ -91,8 +91,6 @@ const ApplicantHome = ({ getJobs }) => {
         }
 
         if (filterObject.type) {
-          console.log(filterObject);
-          console.log(job);
           let doesContain = false;
           if (filterObject.empty)
             setFilterObject({ ...filterObject, empty: false });

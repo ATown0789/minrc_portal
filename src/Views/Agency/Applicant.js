@@ -21,9 +21,6 @@ const Applicant = ({ applicant }) => {
 
   let job = {};
 
-  console.log(state);
-  console.log(applicant);
-
   if (state) job = { ...state.job };
 
   const superUser = !!state?.superUser;
@@ -125,104 +122,115 @@ const Applicant = ({ applicant }) => {
         <div className="applicant-attributes-container">
           <h3>Skills:</h3>
           <span className="skill-container">
-            {applicant.skills.map((skill) => (
-              <span className="applicant-skill">{skill.label}</span>
+            {applicant.skills.map((skill, index) => (
+              <span key={index} className="applicant-skill">
+                {skill.label}
+              </span>
             ))}
           </span>
         </div>
         <div className="applicant-attributes-container">
           <h3>Areas of Interest:</h3>
           <span className="skill-container">
-            {applicant.interests.map((interest) => (
-              <span className="applicant-skill">{interest.label}</span>
+            {applicant.interests.map((interest, index) => (
+              <span key={index} className="applicant-skill">
+                {interest.label}
+              </span>
             ))}
           </span>
         </div>
 
         <div className="button-container">
           {console.log(job.declined)}
-          {console.log("applicant id", applicant.uid)}
-          {!job?.declined?.includes(applicant.uid) && (
-            <Button
-              onClick={() => {
-                dispatch(setLoader(true));
-                sendEmail(declineTemplateParams);
-                console.log(job, applicant.uid);
-                let removeIndex = job.interested.findIndex(
-                  (element) => applicant.uid === element
-                );
-                console.log(removeIndex);
-                let newInterested = [...job.interested];
-                if (removeIndex !== -1) newInterested.splice(removeIndex, 1);
-                let newJob = {
-                  ...job,
-                  interested: newInterested,
-                  declined: !!job.declined
-                    ? job.declined.includes(applicant.uid)
-                      ? [...job.declined]
-                      : [...job.declined, applicant.uid]
-                    : [applicant.uid],
-                };
 
-                console.log(newJob);
-                updateJob(newJob);
-                dispatch(editJob(newJob));
-                user.agency === "MINRC Job Portal Admin"
-                  ? navigate("/super-home")
-                  : navigate("/agency-home");
+          {job?.declined?.includes(applicant.uid) && (
+            <Button
+              variant={"primary secondary"}
+              onClick={() => {
+                navigate(-1);
               }}
-              variant="primary delete"
             >
-              Decline
+              Back
             </Button>
           )}
-          <Button
-            variant="primary"
-            onClick={() => {
-              dispatch(setLoader(true));
-              Object.keys(job).length !== 0
-                ? sendEmail(interestTemplateParams)
-                : sendEmail(contactTemplateParams);
-              console.log(job, applicant.uid);
-              let removeIndex = job?.interested?.findIndex(
-                (element) => applicant.uid === element
-              );
-              console.log(removeIndex);
-              let newInterested = [];
-              let newDeclined = [];
-              let removeDeclineIndex = 0;
-              if (!!job?.interested) newInterested = [...job?.interested];
-              if (removeIndex !== -1) newInterested.splice(removeIndex, 1);
-              else {
-                removeDeclineIndex = job.declined?.findIndex(
-                  (element) => applicant.uid === element
-                );
-                if (removeDeclineIndex !== -1) {
-                  newDeclined = [...job?.declined];
-                  newDeclined.splice(removeDeclineIndex, 1);
-                }
-              }
-              let newJob = {
-                ...job,
-                interested: newInterested,
-                declined: removeIndex ? job.declined : newDeclined,
-                contacted: !!job.contacted
-                  ? job.contacted.includes(applicant.uid)
-                    ? [...job.contacted]
-                    : [...job.contacted, applicant.uid]
-                  : [applicant.uid],
-              };
+          {!job?.declined?.includes(applicant.uid) &&
+            !job?.contacted?.includes(applicant.uid) && (
+              <Button
+                onClick={() => {
+                  dispatch(setLoader(true));
+                  sendEmail(declineTemplateParams);
+                  let removeIndex = job.interested.findIndex(
+                    (element) => applicant.uid === element
+                  );
+                  let newInterested = [...job.interested];
+                  if (removeIndex !== -1) newInterested.splice(removeIndex, 1);
+                  let newJob = {
+                    ...job,
+                    interested: newInterested,
+                    declined: !!job.declined
+                      ? job.declined.includes(applicant.uid)
+                        ? [...job.declined]
+                        : [...job.declined, applicant.uid]
+                      : [applicant.uid],
+                  };
 
-              console.log(newJob);
-              if (Object.keys(job).length !== 0) updateJob(newJob);
-              dispatch(editJob(newJob));
-              user.agency === "MINRC Job Portal Admin"
-                ? navigate("/super-home")
-                : navigate("/agency-home");
-            }}
-          >
-            Contact
-          </Button>
+                  updateJob(newJob);
+                  dispatch(editJob(newJob));
+                  user.agency === "MINRC Job Portal Admin"
+                    ? navigate("/super-home")
+                    : navigate("/agency-home");
+                }}
+                variant="primary delete"
+              >
+                Decline
+              </Button>
+            )}
+          {!job?.declined?.includes(applicant.uid) &&
+            !job?.contacted?.includes(applicant.uid) && (
+              <Button
+                variant="primary"
+                onClick={() => {
+                  dispatch(setLoader(true));
+                  Object.keys(job).length !== 0
+                    ? sendEmail(interestTemplateParams)
+                    : sendEmail(contactTemplateParams);
+                  let removeIndex = job?.interested?.findIndex(
+                    (element) => applicant.uid === element
+                  );
+                  let newInterested = [];
+                  let newDeclined = [];
+                  let removeDeclineIndex = 0;
+                  if (!!job?.interested) newInterested = [...job?.interested];
+                  if (removeIndex !== -1) newInterested.splice(removeIndex, 1);
+                  else {
+                    removeDeclineIndex = job.declined?.findIndex(
+                      (element) => applicant.uid === element
+                    );
+                    if (removeDeclineIndex !== -1) {
+                      newDeclined = [...job?.declined];
+                      newDeclined.splice(removeDeclineIndex, 1);
+                    }
+                  }
+                  let newJob = {
+                    ...job,
+                    interested: newInterested,
+                    declined: removeIndex ? job.declined : newDeclined,
+                    contacted: !!job.contacted
+                      ? job.contacted.includes(applicant.uid)
+                        ? [...job.contacted]
+                        : [...job.contacted, applicant.uid]
+                      : [applicant.uid],
+                  };
+                  if (Object.keys(job).length !== 0) updateJob(newJob);
+                  dispatch(editJob(newJob));
+                  user.agency === "MINRC Job Portal Admin"
+                    ? navigate("/super-home")
+                    : navigate("/agency-home");
+                }}
+              >
+                Contact
+              </Button>
+            )}
         </div>
       </div>
     </div>
