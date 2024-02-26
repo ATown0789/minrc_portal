@@ -20,7 +20,7 @@ const Main = () => {
   const [user] = useAuthState(auth);
 
   useEffect(() => {
-    setTimeout(() => dispatch(setLoader(false)), 1000);
+    setTimeout(() => dispatch(setLoader(false)), 1300);
   }, []);
 
   const getUserData = async (user) => {

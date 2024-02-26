@@ -20,11 +20,28 @@ const AgencyHome = () => {
   const [modalToggle, setModalToggle] = useState(false);
   const [deleteJobId, setDeleteJobId] = useState("");
   const filteredJobs = useRef([]);
+  const applicantsForFilter = useRef([]);
   const dispatch = useDispatch();
 
-  function getApplicants() {
+  const fetchJobs = async () => {
+    const jobsCollection = collection(db, "jobs");
+    await getDocs(jobsCollection)
+      .then((response) => {
+        const jobsArray = response.docs.map((doc) => ({
+          ...doc.data(),
+        }));
+        dispatch(loadJobs(jobsArray));
+        filteredJobs.current = jobsArray.filter((job) => {
+          console.log("GETTING FILTERED JOBS");
+          return job.agencyId === user.uid;
+        });
+      })
+      .catch((error) => console.log(error.message));
+  };
+
+  const fetchApplicants = async () => {
     const applicantsCollection = collection(db, "users");
-    getDocs(applicantsCollection)
+    await getDocs(applicantsCollection)
       .then((response) => {
         const usersArray = response.docs
           .map((doc) => ({
@@ -32,27 +49,80 @@ const AgencyHome = () => {
           }))
           .filter((user) => user.agency === "applicant");
         dispatch(loadApplicants(usersArray));
+        applicantsForFilter.current = usersArray;
       })
       .catch((error) => console.log(error.message));
-  }
+  };
 
-  function getJobs() {
-    const jobsCollection = collection(db, "jobs");
-    getDocs(jobsCollection)
-      .then((response) => {
-        const jobsArray = response.docs.map((doc) => ({
-          ...doc.data(),
-        }));
-        dispatch(loadJobs(jobsArray));
+  // function getApplicants() {
+  //   const applicantsCollection = collection(db, "users");
+  //   getDocs(applicantsCollection)
+  //     .then((response) => {
+  //       const usersArray = response.docs
+  //         .map((doc) => ({
+  //           ...doc.data(),
+  //         }))
+  //         .filter((user) => user.agency === "applicant");
+  //       dispatch(loadApplicants(usersArray));
+  //     })
+  //     .catch((error) => console.log(error.message));
+  // }
 
-        setTimeout(() => dispatch(setLoader(false)), 1000);
-      })
-      .catch((error) => console.log(error.message));
+  // function getJobs() {
+  //   const jobsCollection = collection(db, "jobs");
+  //   getDocs(jobsCollection)
+  //     .then((response) => {
+  //       const jobsArray = response.docs.map((doc) => ({
+  //         ...doc.data(),
+  //       }));
+  //       dispatch(loadJobs(jobsArray));
+
+  //       setTimeout(() => dispatch(setLoader(false)), 1000);
+  //     })
+  //     .catch((error) => console.log(error.message));
+  // }
+
+  function stopLoader() {
+    dispatch(setLoader(false));
   }
 
   useEffect(() => {
-    getApplicants();
-    getJobs();
+    console.log(filteredJobs.current.length);
+    if (
+      filteredJobs.current.length > 0 &&
+      applicantsForFilter.current.length > 0
+    ) {
+      filteredJobs.current.forEach((job) => {
+        let jobInterested = [];
+
+        applicants.forEach((applicant) => {
+          let interestedExist = !!applicant.interested;
+          if (interestedExist) {
+            if (
+              applicant.interested.includes(job.id) &&
+              !job?.contacted?.includes(applicant.uid) &&
+              !job?.declined?.includes(applicant.uid)
+            ) {
+              jobInterested.push(applicant.uid);
+            }
+          }
+        });
+
+        let newJob = {
+          ...job,
+          interested: jobInterested,
+        };
+
+        dispatch(editJob(newJob));
+        updateJob(newJob);
+        setTimeout(stopLoader, 1500);
+      });
+    }
+  }, [filteredJobs.current.length]);
+
+  useEffect(() => {
+    fetchApplicants();
+    fetchJobs();
   }, []);
 
   useEffect(() => {
@@ -60,42 +130,11 @@ const AgencyHome = () => {
       return job.agencyId === user.uid;
     });
 
-    console.log(jobList);
-
     filteredJobs.current = [...jobList];
-    console.log(applicants);
   }, [jobs]);
 
   useEffect(() => {
-    filteredJobs.current.forEach((job) => {
-      let jobInterested = [];
-
-      applicants.forEach((applicant) => {
-        let interestedExist = !!applicant.interested;
-        if (interestedExist) {
-          if (
-            applicant.interested.includes(job.id) &&
-            !job.contacted.includes(applicant.uid) &&
-            !job.declined.includes(applicant.uid)
-          ) {
-            jobInterested.push(applicant.uid);
-          }
-        }
-      });
-
-      let newJob = {
-        ...job,
-        interested: jobInterested,
-      };
-
-      console.log(job.title, jobInterested);
-      dispatch(editJob(newJob));
-      updateJob(newJob);
-    });
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => dispatch(setLoader(false)), 1000);
+    // setTimeout(() => dispatch(setLoader(false)), 1000);
     if (!user.loggedIn) navigate("/");
   });
 

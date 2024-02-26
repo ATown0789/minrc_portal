@@ -8,6 +8,7 @@ import { setLoader } from "Redux/Loader/loaderSlice";
 import emailjs, { send } from "@emailjs/browser";
 import Button from "Components/Button";
 import { editJob } from "Redux/Jobs/jobSlice";
+import { IoArrowBack } from "react-icons/io5";
 
 const Applicant = ({ applicant }) => {
   const { state } = useLocation();
@@ -143,14 +144,15 @@ const Applicant = ({ applicant }) => {
         <div className="button-container">
           {console.log(job.declined)}
 
-          {job?.declined?.includes(applicant.uid) && (
+          {(job?.declined?.includes(applicant.uid) ||
+            job?.contacted?.includes(applicant.uid)) && (
             <Button
               variant={"primary secondary"}
               onClick={() => {
                 navigate(-1);
               }}
             >
-              Back
+              <IoArrowBack /> Back
             </Button>
           )}
           {!job?.declined?.includes(applicant.uid) &&
@@ -159,12 +161,13 @@ const Applicant = ({ applicant }) => {
                 onClick={() => {
                   dispatch(setLoader(true));
                   sendEmail(declineTemplateParams);
+
                   let removeIndex = job.interested.findIndex(
                     (element) => applicant.uid === element
                   );
                   let newInterested = [...job.interested];
                   if (removeIndex !== -1) newInterested.splice(removeIndex, 1);
-                  let newJob = {
+                  let updatedInterestedJob = {
                     ...job,
                     interested: newInterested,
                     declined: !!job.declined
@@ -174,8 +177,8 @@ const Applicant = ({ applicant }) => {
                       : [applicant.uid],
                   };
 
-                  updateJob(newJob);
-                  dispatch(editJob(newJob));
+                  updateJob(updatedInterestedJob);
+                  dispatch(editJob(updatedInterestedJob));
                   user.agency === "MINRC Job Portal Admin"
                     ? navigate("/super-home")
                     : navigate("/agency-home");
@@ -197,32 +200,35 @@ const Applicant = ({ applicant }) => {
                   let removeIndex = job?.interested?.findIndex(
                     (element) => applicant.uid === element
                   );
-                  let newInterested = [];
-                  let newDeclined = [];
-                  let removeDeclineIndex = 0;
-                  if (!!job?.interested) newInterested = [...job?.interested];
+                  let newInterested = [...job.interested];
                   if (removeIndex !== -1) newInterested.splice(removeIndex, 1);
-                  else {
-                    removeDeclineIndex = job.declined?.findIndex(
-                      (element) => applicant.uid === element
-                    );
-                    if (removeDeclineIndex !== -1) {
-                      newDeclined = [...job?.declined];
-                      newDeclined.splice(removeDeclineIndex, 1);
-                    }
-                  }
-                  let newJob = {
+                  /****** REMOVED BECAUSE WE NO LONGER ALLOW CONTACT AFTER BEING DECLINED */
+                  // let newDeclined = [];
+                  // let removeDeclineIndex = 0;
+                  // if (!!job?.interested) newInterested = [...job?.interested];
+                  // if (removeIndex !== -1) newInterested.splice(removeIndex, 1);
+                  // else {
+                  //   removeDeclineIndex = job.declined?.findIndex(
+                  //     (element) => applicant.uid === element
+                  //   );
+                  //   if (removeDeclineIndex !== -1) {
+                  //     newDeclined = [...job?.declined];
+                  //     newDeclined.splice(removeDeclineIndex, 1);
+                  //   }
+                  // }
+                  let updatedInterestedJob = {
                     ...job,
                     interested: newInterested,
-                    declined: removeIndex ? job.declined : newDeclined,
+
                     contacted: !!job.contacted
                       ? job.contacted.includes(applicant.uid)
                         ? [...job.contacted]
                         : [...job.contacted, applicant.uid]
                       : [applicant.uid],
                   };
-                  if (Object.keys(job).length !== 0) updateJob(newJob);
-                  dispatch(editJob(newJob));
+
+                  updateJob(updatedInterestedJob);
+                  dispatch(editJob(updatedInterestedJob));
                   user.agency === "MINRC Job Portal Admin"
                     ? navigate("/super-home")
                     : navigate("/agency-home");
