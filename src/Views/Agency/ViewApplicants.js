@@ -133,6 +133,9 @@ const ViewApplicants = () => {
             applicant.stateSel
               .toLowerCase()
               .includes(searchText.toLowerCase()) ||
+            applicant.uid
+              .toLowerCase()
+              .includes(searchText.toLocaleLowerCase()) ||
             applicant.interests.forEach((aoi) => {
               if (aoi.value.toLowerCase().includes(searchText.toLowerCase())) {
                 doesContain = true;
@@ -171,6 +174,7 @@ const ViewApplicants = () => {
             rating={rating}
             setRating={setRating}
             isApplicant={true}
+            setSearchText={setSearchText}
           />
         </div>
         <div className="job-container">
