@@ -104,7 +104,7 @@ function App() {
           options={
             user?.agency === "applicant"
               ? ApplicantTabOptions
-              : user?.agency === "Super User"
+              : user?.agency === "MINRC Job Portal Admin"
               ? SuperTabOptions
               : AgencyTabOptions
           }

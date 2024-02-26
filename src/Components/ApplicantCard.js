@@ -131,7 +131,9 @@ const ApplicantCard = ({ applicant }) => {
             onClick={() => {
               dispatch(setLoader(true));
               sendEmail(contactTemplateParams);
-              navigate("/agency-home");
+              user.agency === "MINRC Job Portal Admin"
+                ? navigate("/super-home")
+                : navigate("/agency-home");
             }}
           >
             Contact

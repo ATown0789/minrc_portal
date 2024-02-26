@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function ForgotPassword() {
+function ForgotPassword({ type, userEmail }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user] = useAuthState(auth);
@@ -15,34 +15,49 @@ function ForgotPassword() {
   const id = useId();
 
   return (
-    <div className="center-flex-column">
-      <div>
-        <span className="login-element">
-          <label className="nowrap" htmlFor={`username-${id}`}>
-            Email:
-          </label>
-          <input
-            type="text"
-            id={`username-${id}`}
-            placeholder="Email Address"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-        </span>
+    <>
+      <div
+        style={
+          type === "forgotPassword"
+            ? { display: "flex", justifyContent: "center", width: "100%" }
+            : {}
+        }
+      >
+        {type === "forgotPassword" && (
+          <span className="login-element">
+            <label
+              className="nowrap"
+              style={{ width: "auto" }}
+              htmlFor={`username-${id}`}
+            >
+              Email:
+            </label>
+            <input
+              type="text"
+              id={`username-${id}`}
+              placeholder="Email Address"
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            ></input>
+          </span>
+        )}
       </div>
       <p className="input-error">{errorMessage}</p>
       <Button
+        style={{ minWidth: "180px" }}
         variant="primary"
         onClick={async (e) => {
           e.preventDefault();
-          sendPasswordReset(email);
+          type === "forgotPass"
+            ? sendPasswordReset(email)
+            : sendPasswordReset(userEmail);
           navigate("/");
         }}
       >
         Reset Password
       </Button>
-    </div>
+    </>
   );
 }
 

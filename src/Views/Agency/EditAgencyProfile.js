@@ -19,6 +19,8 @@ import { Input } from "Components/Input";
 import { setLoader } from "Redux/Loader/loaderSlice";
 import Button from "Components/Button";
 import Modal from "Components/Modal";
+import { IoArrowBack } from "react-icons/io5";
+
 const EditAgencyProfile = ({ user }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -84,7 +86,9 @@ const EditAgencyProfile = ({ user }) => {
     };
     updateUser(agency);
     dispatch(editUser(agency));
-    navigate("/agency-profile");
+    user.agency === "MINRC Job Portal Admin"
+      ? navigate("/super-home")
+      : navigate("/agency-home");
   });
 
   return (
@@ -93,7 +97,7 @@ const EditAgencyProfile = ({ user }) => {
         <Modal
           modalToggle={modalToggle}
           setModalToggle={setModalToggle}
-          type={"forgotPass"}
+          type={"resetPassword"}
         />
       )}
       <div className="tab-content">
@@ -126,9 +130,61 @@ const EditAgencyProfile = ({ user }) => {
               options={stateOptions}
             />
 
-            <Button onClick={onSubmit} className="primary small" type="submit">
-              Update Profile
-            </Button>
+            <div style={{ marginTop: "30px" }} className="btn-container">
+              {/* <Button
+                type="button"
+                onClick={() => {
+                  const values = methods.getValues();
+                  // navigate("/applicant-profile");
+                  if (
+                    !values.applicantAois &&
+                    !values.applicantSkills &&
+                    !values.education &&
+                    !values.fName &&
+                    !values.lName &&
+                    !values.locaiton &&
+                    !values.minrcYear &&
+                    !values.professionalSummar
+                  ) {
+                    navigate("/applicant-profile");
+                    console.log(values);
+                  } else
+                    alert(
+                      "Please fill out all form fields to continue or logout to exit"
+                    );
+                }}
+                className="primary secondary"
+              >
+                Cancel
+              </Button> */}
+
+              <Button
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "200px",
+                }}
+                className="primary secondary"
+                onClick={() => navigate(-1)}
+              >
+                <IoArrowBack style={{ marginRight: "5px" }} /> Cancel
+              </Button>
+
+              <Button
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "200px",
+                }}
+                onClick={onSubmit}
+                className="primary"
+                type="submit"
+              >
+                Update Profile
+              </Button>
+            </div>
           </form>
         </FormProvider>
       </div>

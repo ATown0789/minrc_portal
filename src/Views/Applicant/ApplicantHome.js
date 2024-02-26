@@ -51,12 +51,6 @@ const ApplicantHome = ({ getJobs }) => {
     };
   }, []);
 
-  function toggleCard() {
-    setIsExpanded(!isExpanded);
-  }
-
-  useEffect(() => {}, [filterObject]);
-
   useEffect(() => {
     setFilteredJobs(
       jobs.filter((job) => {
@@ -73,12 +67,6 @@ const ApplicantHome = ({ getJobs }) => {
             setFilterObject({ ...filterObject, empty: true });
           return true;
         }
-
-        // if (filterObject.type) {
-        //   if (!job.type.toLowerCase().includes(filterObject.type)) {
-        //     return false;
-        //   }
-        // }
 
         if (filterObject.remote) {
           let doesContain = false;
@@ -99,6 +87,20 @@ const ApplicantHome = ({ getJobs }) => {
               doesContain = true;
             }
           });
+          if (!doesContain) return false;
+        }
+
+        if (filterObject.type) {
+          console.log(filterObject);
+          console.log(job);
+          let doesContain = false;
+          if (filterObject.empty)
+            setFilterObject({ ...filterObject, empty: false });
+
+          if (job.type === filterObject.type) {
+            doesContain = true;
+          }
+
           if (!doesContain) return false;
         }
 

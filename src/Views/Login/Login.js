@@ -45,11 +45,11 @@ const Login = ({ loginType }) => {
   //     // console.log("GET  USER DATA", data);
   //     // data.agency === "applicant"
   //     //   ? navigate("/applicant-home")
-  //     //   : data.agency === "Super User"
+  //     //   : data.agency === "MINRC Job Portal Admin"
   //     //   ? navigate("/super-home")
   //     //   : data.agency !== "applicant" &&
   //     //     data.agency !== "default" &&
-  //     //     data.agency !== "Super User"
+  //     //     data.agency !== "MINRC Job Portal Admin"
   //     //   ? navigate("/agency-home")
   //     //   : navigate("/");
   //   } catch (err) {
@@ -80,9 +80,9 @@ const Login = ({ loginType }) => {
             ? navigate("/applicant-home")
             : data.agency !== "applicant" &&
               data.agency !== "default" &&
-              data.agency !== "Super User"
+              data.agency !== "MINRC Job Portal Admin"
             ? navigate("/agency-home")
-            : data.agency === "Super User"
+            : data.agency === "MINRC Job Portal Admin"
             ? navigate("/super-home")
             : navigate("/");
       } catch (err) {
@@ -104,7 +104,7 @@ const Login = ({ loginType }) => {
         <Modal
           modalToggle={modalToggle}
           setModalToggle={setModalToggle}
-          type={"forgotPass"}
+          modalType={"forgotPassword"}
         />
       )}
       <div className={`form-container`}>

@@ -16,6 +16,7 @@ const AgencyHome = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const jobs = useSelector((state) => state.jobs);
+  const applicants = useSelector((state) => state.applicants);
   const [modalToggle, setModalToggle] = useState(false);
   const [deleteJobId, setDeleteJobId] = useState("");
   const [filteredJobs, setFilteredJobs] = useState([]);
@@ -59,6 +60,7 @@ const AgencyHome = () => {
       return job.agencyId === user.uid;
     });
     setFilteredJobs(jobList);
+    console.log(applicants);
   }, [jobs]);
 
   useEffect(() => {

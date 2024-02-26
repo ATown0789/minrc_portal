@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.css";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./Redux/store";
+import "react-tooltip/dist/react-tooltip.css";
 import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

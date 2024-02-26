@@ -9,9 +9,13 @@ const Button = ({
   active,
   id,
   className,
+  title,
+  disabled,
 }) => {
   return (
     <button
+      disabled={disabled}
+      data-tooltip={title}
       style={style}
       id={id}
       className={

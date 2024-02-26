@@ -107,7 +107,7 @@ const SeafwaNav = () => {
         </ul>
       </nav>
       <div className="minrc-title-container">
-        <h1>Minorities in Natural Resources Conservation Committe</h1>
+        <h1>Minorities in Natural Resources Conservation Committee</h1>
       </div>
       <div className="minrc-menu-container">
         <Link

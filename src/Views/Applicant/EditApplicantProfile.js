@@ -22,6 +22,8 @@ import { Input } from "Components/Input";
 import { setLoader } from "Redux/Loader/loaderSlice";
 import Button from "Components/Button";
 import Modal from "Components/Modal";
+import { IoArrowBack } from "react-icons/io5";
+
 const EditApplicantProfile = ({ user }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -110,7 +112,7 @@ const EditApplicantProfile = ({ user }) => {
         <Modal
           modalToggle={modalToggle}
           setModalToggle={setModalToggle}
-          type={"forgotPass"}
+          type={"resetPassword"}
         />
       )}
       <div className="tab-content">
@@ -124,7 +126,11 @@ const EditApplicantProfile = ({ user }) => {
             Reset Password
           </Button>
         </div>
-
+        {!user?.education && (
+          <p style={{ fontWeight: "bold", color: "red" }}>
+            Please complete your profile in its entirety before continuing.
+          </p>
+        )}
         <FormProvider {...methods}>
           <form
             onSubmit={(e) => e.preventDefault()}
@@ -158,7 +164,7 @@ const EditApplicantProfile = ({ user }) => {
             />
             <Input {...professionalSummaryValidation} />
 
-            <div className="btn-container">
+            <div style={{ marginTop: "30px" }} className="btn-container">
               {/* <Button
                 type="button"
                 onClick={() => {
@@ -186,7 +192,30 @@ const EditApplicantProfile = ({ user }) => {
                 Cancel
               </Button> */}
 
-              <Button onClick={onSubmit} className="primary" type="submit">
+              <Button
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "200px",
+                }}
+                className="primary secondary"
+                onClick={() => navigate(-1)}
+              >
+                <IoArrowBack style={{ marginRight: "5px" }} /> Cancel
+              </Button>
+
+              <Button
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "200px",
+                }}
+                onClick={onSubmit}
+                className="primary"
+                type="submit"
+              >
                 Update Profile
               </Button>
             </div>

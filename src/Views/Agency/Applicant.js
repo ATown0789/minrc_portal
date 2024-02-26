@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLoader } from "Redux/Loader/loaderSlice";
 import emailjs, { send } from "@emailjs/browser";
 import Button from "Components/Button";
+import { editJob } from "Redux/Jobs/jobSlice";
 
 const Applicant = ({ applicant }) => {
   const { state } = useLocation();
@@ -19,6 +20,9 @@ const Applicant = ({ applicant }) => {
   }, []);
 
   let job = {};
+
+  console.log(state);
+  console.log(applicant);
 
   if (state) job = { ...state.job };
 
@@ -137,7 +141,8 @@ const Applicant = ({ applicant }) => {
 
         <div className="button-container">
           {console.log(job.declined)}
-          {job?.declined?.includes(applicant.id) && (
+          {console.log("applicant id", applicant.uid)}
+          {!job?.declined?.includes(applicant.uid) && (
             <Button
               onClick={() => {
                 dispatch(setLoader(true));
@@ -161,10 +166,12 @@ const Applicant = ({ applicant }) => {
 
                 console.log(newJob);
                 updateJob(newJob);
-                navigate("/agency-home");
+                dispatch(editJob(newJob));
+                user.agency === "MINRC Job Portal Admin"
+                  ? navigate("/super-home")
+                  : navigate("/agency-home");
               }}
-              className="applicant-button warning"
-              variant="warning"
+              variant="primary delete"
             >
               Decline
             </Button>
@@ -208,7 +215,10 @@ const Applicant = ({ applicant }) => {
 
               console.log(newJob);
               if (Object.keys(job).length !== 0) updateJob(newJob);
-              navigate("/agency-home");
+              dispatch(editJob(newJob));
+              user.agency === "MINRC Job Portal Admin"
+                ? navigate("/super-home")
+                : navigate("/agency-home");
             }}
           >
             Contact

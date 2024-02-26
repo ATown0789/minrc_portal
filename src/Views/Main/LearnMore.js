@@ -1,6 +1,18 @@
-import React from "react";
+import { setLoader } from "Redux/Loader/loaderSlice";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LearnMore = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => dispatch(setLoader(false)), 1000);
+    if (!user.loggedIn) navigate("/");
+  });
+
   return (
     <div className="tab-content">
       <h3>About the MINRC Job Portal</h3>

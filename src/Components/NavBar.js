@@ -31,10 +31,10 @@ const NavBar = () => {
     myUser.agency === "applicant"
       ? setSidebarData(ApplicantSidebarData)
       : myUser.agency !== "applicant" &&
-        myUser.agency !== "Super User" &&
+        myUser.agency !== "MINRC Job Portal Admin" &&
         myUser.loggedIn
       ? setSidebarData(AgencySidebarData)
-      : myUser.agency === "Super User"
+      : myUser.agency === "MINRC Job Portal Admin"
       ? setSidebarData(SuperSidebarData)
       : setSidebarData(defaultSidebarData);
   }, [myUser]);
@@ -66,7 +66,7 @@ const NavBar = () => {
             if (myUser.loggedIn && myItem.title === "Home") {
               myUser.agency === "applicant"
                 ? (myItem.path = `/applicant-home`)
-                : myUser.agency === "Super User"
+                : myUser.agency === "MINRC Job Portal Admin"
                 ? (myItem.path = `/super-home`)
                 : (myItem.path = `/agency-home`);
               myItem.title = "Dashboard";

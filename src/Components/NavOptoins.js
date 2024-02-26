@@ -22,7 +22,7 @@ export const LoginNavTabOptions = [
 
 export const ApplicantTabOptions = [
   {
-    title: "Home",
+    title: "Job Board",
     path: "/applicant-home",
     icon: <FaBriefcase />,
   },
@@ -33,7 +33,7 @@ export const ApplicantTabOptions = [
   },
 
   {
-    title: "Contact",
+    title: "Support",
     path: "/contact",
     icon: <IoIcons.IoMdHelpCircle />,
   },
@@ -41,7 +41,7 @@ export const ApplicantTabOptions = [
 
 export const AgencyTabOptions = [
   {
-    title: "Home",
+    title: "Dashboard",
     path: "/agency-home",
     icon: <MdDashboard />,
   },
@@ -52,7 +52,7 @@ export const AgencyTabOptions = [
   },
 
   {
-    title: "Contact",
+    title: "Support",
     path: "/contact",
     icon: <IoIcons.IoMdHelpCircle />,
   },
@@ -70,7 +70,7 @@ export const AgencyTabOptions = [
 
 export const SuperTabOptions = [
   {
-    title: "Home",
+    title: "Dashboard",
     path: "/super-home",
     icon: <MdDashboard />,
   },
@@ -99,12 +99,12 @@ export const SuperTabOptions = [
 
 export const defaultTabOptions = [
   {
-    title: "Home",
+    title: "Log In",
     path: "/",
     icon: <AiFillHome />,
   },
   {
-    title: "Contact",
+    title: "Support",
     path: "/contact",
     icon: <IoIcons.IoMdHelpCircle />,
   },

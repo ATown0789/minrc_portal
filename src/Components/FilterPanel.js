@@ -13,6 +13,8 @@ import { PiBriefcaseMetalLight } from "react-icons/pi";
 import { BsGearWideConnected } from "react-icons/bs";
 import { FaGraduationCap } from "react-icons/fa6";
 import { BsSearch } from "react-icons/bs";
+import { Tooltip } from "react-tooltip";
+import { IoIosInformationCircleOutline } from "react-icons/io";
 
 const FilterPanel = ({
   filterObject,
@@ -126,6 +128,22 @@ const FilterPanel = ({
           </label>
         )}
       </div>
+
+      {!isApplicant && (
+        <Select
+          classNamePrefix="stevei-select"
+          placeholder="Filter by type"
+          components={{ Control }}
+          options={positionOptions}
+          onChange={(e) => {
+            setChangedFilter("position");
+            setFilterObject({ ...filterObject, type: e?.value });
+          }}
+          isClearable
+          styles={styles}
+        />
+      )}
+
       <MultiSelect
         className="multi-select"
         placeholder="Filter by interest"
@@ -165,6 +183,7 @@ const FilterPanel = ({
           setFilterObject({ ...filterObject, skills: state });
         }}
       />
+
       {isApplicant && (
         <>
           <Select
@@ -184,6 +203,21 @@ const FilterPanel = ({
       )}
       {!isApplicant && (
         <div className="match-container">
+          <a
+            style={{
+              cursor: "pointer",
+              float: "right",
+              padding: "0 5px 5px 5px",
+            }}
+            id="match-tooltip"
+          >
+            <IoIosInformationCircleOutline />
+          </a>
+          <Tooltip
+            style={{ width: "400px", zIndex: "999" }}
+            anchorSelect="#match-tooltip"
+            content="The number of stars indicates how compatible each job is according to your selected intersts/skills."
+          />
           <p className="match-p">Match at least:</p>
           <StarRating
             rating={rating}

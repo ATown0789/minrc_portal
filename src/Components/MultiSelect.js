@@ -72,8 +72,7 @@ export const MultiSelect = (props) => {
 
     return (
       <components.Control {...props}>
-        <span style={style}>{currentIcon}</span>
-        {children}
+        <span style={style}>{currentIcon}</span> {children}
       </components.Control>
     );
   };
@@ -103,7 +102,7 @@ export const MultiSelect = (props) => {
       onChange={onChange}
       hideSelectedOptions={false}
       isDisabled={disabled}
-      closeMenuOnSelect={false}
+      closeMenuOnSelect={true}
       closeMenuOnScroll={true}
       isMulti
       placeholder={props.placeholder}

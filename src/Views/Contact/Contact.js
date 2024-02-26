@@ -1,27 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./contact.css";
+import { useDispatch } from "react-redux";
+import { setLoader } from "Redux/Loader/loaderSlice";
 
 function Contact() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setTimeout(() => dispatch(setLoader(false)), 1000);
+  }, []);
+
   return (
     <div className="tab-content">
-      <div>
-        <h1>Contact</h1>
-      </div>
-      <div className="contact-info-container">
-        <h3>Firstname Lastname</h3>
-        <p>Job Title</p>
-        <p>email@email.com</p>
-        <p>123-456-7890</p>
+      <h1>Support</h1>
+      <div className="inner-tab-content">
+        <div className="contact-info-container">
+          <h3>MINRC Support</h3>
+          <p>
+            If you have any questions, comments, or concerns about the content
+            of the MINRC Job Portal please reach out to use via:
+          </p>
+          <a href="mailto:admin@minrcportal.com">admin@minrcportal.com</a>
 
-        <h3>Firstname Lastname</h3>
-        <p>Job Title</p>
-        <p>email@email.com</p>
-        <p>123-456-7890</p>
-
-        <h3>Firstname Lastname</h3>
-        <p>Job Title</p>
-        <p>email@email.com</p>
-        <p>123-456-7890</p>
+          <h3>Technical Support</h3>
+          <p>
+            For any help with the functionality of the MINRC Job Portal, to
+            report any bugs/issues you have encountered, or if you have any
+            suggestions for the app please contact us at:
+          </p>
+          <a href="mailto:support@minrcportal.com">support@minrcportal.com</a>
+        </div>
       </div>
     </div>
   );

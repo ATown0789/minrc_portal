@@ -33,6 +33,7 @@ import {
 import { Input } from "Components/Input";
 import { current } from "@reduxjs/toolkit";
 import Button from "Components/Button";
+import { IoArrowBack } from "react-icons/io5";
 
 const AddJob = () => {
   const dispatch = useDispatch();
@@ -103,7 +104,7 @@ const AddJob = () => {
       <div>
         <h1 className="new-job-h1">New Job Posting</h1>
       </div>
-      <div className="job-form-container">
+      <div className="job-form-container" style={{ position: "relative" }}>
         <FormProvider {...methods}>
           <form
             className="new-job-form"
@@ -159,16 +160,47 @@ const AddJob = () => {
             <Input {...hiringEmailValidation} />
             <Input {...hiringPhoneValidation} />
 
-            <Button
-              style={{ marginTop: "30px" }}
-              onClick={onSubmit}
-              className="primary"
-              type="submit"
+            <div
+              style={{
+                marginTop: "30px",
+              }}
+              className="btn-container"
             >
-              Submit
-            </Button>
+              <Button
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "200px",
+                }}
+                onClick={onSubmit}
+                className="primary"
+                type="submit"
+              >
+                Submit
+              </Button>
+            </div>
           </form>
         </FormProvider>
+        <Button
+          style={{
+            position: "absolute",
+            bottom: "130px",
+            left: "130px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "200px",
+          }}
+          type="button"
+          className="primary secondary"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate(-1);
+          }}
+        >
+          <IoArrowBack style={{ marginRight: "5px" }} /> Cancel
+        </Button>
       </div>
     </div>
   );

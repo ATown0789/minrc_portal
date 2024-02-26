@@ -336,14 +336,14 @@ export const salaryValidation = {
 export const startDateValidation = {
   name: "startDate",
   label: "Position Start Date",
-  type: "date",
+  type: "text",
   id: "startDate",
   className: "input",
-  placeholder: "mm/dd/yyyy",
+  placeholder: "Date position begins",
   validation: {
-    required: {
-      value: true,
-      message: "required",
+    maxLength: {
+      value: 30,
+      message: "30 characters max",
     },
   },
 };
@@ -351,14 +351,14 @@ export const startDateValidation = {
 export const endDateValidation = {
   name: "endDate",
   label: "Position End Date",
-  type: "date",
+  type: "text",
   id: "endDate",
   className: "input",
-  placeholder: "mm/dd/yyyy",
+  placeholder: "Date position ends",
   validation: {
-    required: {
-      value: true,
-      message: "required",
+    maxLength: {
+      value: 30,
+      message: "30 characters max",
     },
   },
 };

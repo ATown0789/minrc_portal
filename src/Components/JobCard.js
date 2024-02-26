@@ -5,9 +5,12 @@ import "./jobcard.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { editJob } from "Redux/Jobs/jobSlice";
-import { updateJob } from "firebase.config";
+import { updateJob, updateUser } from "firebase.config";
 import positionOptions from "../DUMMY_DATA/positionOptions.json";
 import Button from "./Button";
+import { Tooltip } from "react-tooltip";
+import { IoIosInformationCircleOutline } from "react-icons/io";
+import { editUser } from "Redux/User/userSlice";
 
 const JobCard = ({ job, user }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -16,6 +19,12 @@ const JobCard = ({ job, user }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  let interested = [];
+  let interestExist = !!user.interested;
+  let interestedDisable = interestExist
+    ? user.interested.includes(job.id)
+    : false;
+
   function toggleCard() {
     setIsExpanded(!isExpanded);
   }
@@ -23,8 +32,8 @@ const JobCard = ({ job, user }) => {
   const matchAois = () => {
     let aoiMatch = 0;
     !!job.aois &&
-      job.aois.forEach((aoi) => {
-        user.interests.forEach((interest) => {
+      job.aois?.forEach((aoi) => {
+        user.interests?.forEach((interest) => {
           if (aoi.value === interest.value) aoiMatch = aoiMatch + 1;
         });
       });
@@ -34,8 +43,8 @@ const JobCard = ({ job, user }) => {
 
   const matchSkills = () => {
     let skillMatch = 0;
-    job.skills.forEach((skill) => {
-      user.skills.forEach((uSkill) => {
+    job.skills?.forEach((skill) => {
+      user.skills?.forEach((uSkill) => {
         if (skill.value === uSkill.value) skillMatch = skillMatch + 1;
       });
     });
@@ -165,18 +174,35 @@ const JobCard = ({ job, user }) => {
             Learn More
           </Link>
           <Button
+            disabled={interestedDisable}
+            title="Send a notification to the Agency that you're interested in the position"
             className="card-btn"
-            variant="secondary"
+            variant={interestedDisable ? "secondary disabled" : "secondary"}
             onClick={() => {
-              let newJob = {
-                ...job,
-                interested: !!job.interested
-                  ? job.interested.includes(user.uid)
-                    ? [...job.interested]
-                    : [...job.interested, user.uid]
-                  : [user.uid],
+              console.log(user);
+
+              !interestExist
+                ? interested.push(job.id)
+                : !user.interested.includes(job.id)
+                ? (interested = [...user.interested, job.id])
+                : (interested = [...user.interested]);
+
+              console.log(interested);
+              let updatedUser = {
+                ...user,
+                interested: interested,
               };
-              updateJob(newJob);
+              dispatch(editUser(updatedUser));
+              updateUser(updatedUser);
+              // let newJob = {
+              //   ...job,
+              //   interested: !!job.interested
+              //     ? job.interested.includes(user.uid)
+              //       ? [...job.interested]
+              //       : [...job.interested, user.uid]
+              //     : [user.uid],
+              // };
+              // updateJob(newJob);
               navigate("/apply-success");
             }}
           >

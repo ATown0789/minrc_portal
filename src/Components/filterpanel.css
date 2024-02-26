@@ -103,30 +103,36 @@ h4 {
   margin-left: 0px;
 }
 
-.stevei-select__control {
+/* .stevei-select__control {
   margin-bottom: 10px !important;
-}
+} */
 
 .multi-select {
   margin-bottom: 10px;
 }
 
+.match-container {
+  width: 180px;
+}
+
 @media (min-width: 750px) {
   .filter-container {
     width: 90%;
+    gap: 10px;
   }
 
   .filter-panel {
     flex-direction: row !important;
     flex-wrap: wrap;
+    gap: 20px;
   }
 
   .search-input {
     padding: 0;
     height: 40px;
     align-self: center;
-    margin: 0 20px 40px 0;
-    width: 40%;
+    margin: 0;
+    width: 100%;
     padding-left: 40px;
   }
 
@@ -136,13 +142,12 @@ h4 {
   }
 
   #remote-label {
-    margin: 12px 20px;
-    width: 200px;
+    margin: 12px 0 0 12px;
   }
 
   .state-container {
     display: flex;
-    margin-right: 50px;
+    margin-right: 10px;
   }
 
   .stevei-select__menu {
@@ -151,16 +156,18 @@ h4 {
 
   .stevei-select__control {
     margin-top: 0px !important;
+    max-width: 300px;
   }
 
   .multi-select__control {
     margin-bottom: 0px !important;
-    margin-right: 50px;
+    /* margin-right: 50px; */
     /* min-height: 45px !important; */
   }
 
   .multi-select {
-    /* height: 50px; */
+    height: 100%;
+    max-width: 300px;
   }
 
   .star-rating {
@@ -173,7 +180,6 @@ h4 {
 
   .job-container {
     width: 100%;
-    gap: 30px;
   }
 
   .inner-job-container p {

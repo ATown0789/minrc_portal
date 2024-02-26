@@ -11,3 +11,9 @@
   width: 35%;
   align-self: flex-end;
 }
+
+@media (min-width: 700px) {
+  .edit-btn {
+    width: 25%;
+  }
+}

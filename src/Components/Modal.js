@@ -6,8 +6,10 @@ import { useDispatch } from "react-redux";
 import ForgotPassword from "Views/Login/ForgotPassword";
 import Button from "./Button";
 
-function Modal({ setModalToggle, deleteJobId, modalType }) {
+function Modal({ setModalToggle, deleteJobId, modalType, email }) {
   const dispatch = useDispatch();
+
+  console.log(modalType);
 
   return (
     <div className="modal-background">
@@ -46,7 +48,7 @@ function Modal({ setModalToggle, deleteJobId, modalType }) {
             </Button>
           </div>
         </div>
-      ) : (
+      ) : modalType === "forgotPassword" ? (
         <div className="modal-container">
           <button className="close-btn" onClick={() => setModalToggle(false)}>
             &#x2715;
@@ -62,8 +64,40 @@ function Modal({ setModalToggle, deleteJobId, modalType }) {
             </p>
           </div>
 
+          <div style={{ flexWrap: "wrap" }} className="modal-footer">
+            <ForgotPassword type={modalType} setModalToggle={setModalToggle} />
+            <Button
+              variant="primary tertiary"
+              onClick={() => setModalToggle(false)}
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div className="modal-container">
+          <button className="close-btn" onClick={() => setModalToggle(false)}>
+            &#x2715;
+          </button>
+          <div className="modal-title">
+            <h2>Password Reset</h2>
+          </div>
+          <div className="modal-body">
+            <p>Are you sure you would like to reset your password?</p>
+          </div>
+
           <div className="modal-footer">
-            <ForgotPassword />
+            <Button
+              variant="primary tertiary"
+              onClick={() => setModalToggle(false)}
+            >
+              Cancel
+            </Button>
+            <ForgotPassword
+              setModalToggle={setModalToggle}
+              type={modalType}
+              userEmail={email}
+            />
           </div>
         </div>
       )}
